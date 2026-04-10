@@ -1,0 +1,15 @@
+63f7b34db8d8cdea90c76aacccf841ec
+::res://::1775821720
+icon.svg::CompressedTexture2D::5256680275870911009::1775635768::1775635778::1::::<><><>0<>0<>2411308defdc111dab9116001b9ec155<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+::res://Assets/::1775653923
+New Piskel-1.png.png::CompressedTexture2D::8934744191523527809::1775653923::1775653923::1::::<><><>0<>0<>29c01fc241dc0002c92333e10466e1f7<>res://.godot/imported/New Piskel-1.png.png-8f6d42e63b16e95e40fa034040f53d9a.ctex::
+New Piskel-2.png.png::CompressedTexture2D::3539874641218804468::1775653923::1775653923::1::::<><><>0<>0<>5594c183ba5461ed834b57da82f5415e<>res://.godot/imported/New Piskel-2.png.png-62365e65039dd88d72bf299f23160611.ctex::
+New Piskel-3.png.png::CompressedTexture2D::8015241198012737918::1775653923::1775653923::1::::<><><>0<>0<>a82e243c01a517e9d2438f8744673d84<>res://.godot/imported/New Piskel-3.png.png-f2338931e9ef62b1e51f1bee5eacf081.ctex::
+New Piskel-4.png.png::CompressedTexture2D::9090704747886341305::1775653923::1775653923::1::::<><><>0<>0<>41f7add0aa3dd4ca2720805762037fd4<>res://.godot/imported/New Piskel-4.png.png-b8e71e59a351d36654038f7552f2e5f4.ctex::
+New Piskel-5.png.png::CompressedTexture2D::4282255368014742220::1775653923::1775653923::1::::<><><>0<>0<>d4375931ff4740c923cd44edca917798<>res://.godot/imported/New Piskel-5.png.png-dcc6df380969761ee592e6c81d548b2c.ctex::
+::res://Scenes/::1775821715
+main.tscn::PackedScene::2053472815083690334::1775636401::0::1::::<><><>0<>0<><>::
+player.tscn::PackedScene::183396040109218979::1775655855::0::1::::<><><>0<>0<><>::uid://d0kb6w010lurh::::res://Assets/New Piskel-1.png.png<>uid://bqo0hogrl1agi::::res://Assets/New Piskel-2.png.png<>uid://d2rutxmfo1jyv::::res://Assets/New Piskel-4.png.png<>uid://b2ameda6urfl1::::res://Assets/New Piskel-5.png.png<>uid://dmgv37k7trl55::::res://Assets/New Piskel-3.png.png
+main_menu.tscn::PackedScene::8129418089348184317::1775821715::0::1::::<><><>0<>0<><>::
+main_menu.gd::GDScript::4962600711373252428::1775821803::0::1::::<>Control<><>0<>0<><>::
+::res://Scripts/::1775636058

@@ -1,0 +1,6 @@
+Button
+VBoxContainer
+ColorRect
+AnimatedSprite2D
+Sprite2D
+CharacterBody2D
