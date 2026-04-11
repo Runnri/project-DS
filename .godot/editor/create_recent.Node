@@ -1,3 +1,6 @@
+CanvasModulate
+ProgressBar
+CanvasLayer
 Camera2D
 TileMapLayer
 CollisionShape2D

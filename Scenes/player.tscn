@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cu3rg6jpc4vf"]
+[gd_scene load_steps=28 format=3 uid="uid://cu3rg6jpc4vf"]
 
 [ext_resource type="Texture2D" uid="uid://beecudkqe1mxu" path="res://Assets/mc/slime_f1.png" id="1_fkybt"]
 [ext_resource type="Texture2D" uid="uid://drkfhfovd8nd8" path="res://Assets/mc/slime_atas-1.png.png" id="1_olqyp"]
@@ -25,7 +25,7 @@
 [ext_resource type="Script" uid="uid://c4pvh6quxqc8s" path="res://Scripts/camera_2d.gd" id="23_bi64h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8gxox"]
-size = Vector2(126, 110)
+size = Vector2(142, 110)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tx1dd"]
 animations = [{
@@ -208,11 +208,17 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bi64h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ijsl"]
+bg_color = Color(0.25996894, 0.6950768, 0.47315234, 1)
+
 [node name="Player" type="CharacterBody2D"]
+position = Vector2(11, 65)
 script = ExtResource("1_wpjfl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-7, 6)
+position = Vector2(-6, 6)
 shape = SubResource("RectangleShape2D_8gxox")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -224,3 +230,16 @@ frame_progress = 0.72833765
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("23_bi64h")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+custom_minimum_size = Vector2(200, 50)
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 220.0
+offset_bottom = 70.0
+size_flags_horizontal = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_bi64h")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2ijsl")
+show_percentage = false
