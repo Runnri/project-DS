@@ -1,15 +1,40 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1775821720
+::res://::1775913518
 icon.svg::CompressedTexture2D::5256680275870911009::1775635768::1775635778::1::::<><><>0<>0<>2411308defdc111dab9116001b9ec155<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
-::res://Assets/::1775653923
+::res://Assets/::1775913518
 New Piskel-1.png.png::CompressedTexture2D::8934744191523527809::1775653923::1775653923::1::::<><><>0<>0<>29c01fc241dc0002c92333e10466e1f7<>res://.godot/imported/New Piskel-1.png.png-8f6d42e63b16e95e40fa034040f53d9a.ctex::
 New Piskel-2.png.png::CompressedTexture2D::3539874641218804468::1775653923::1775653923::1::::<><><>0<>0<>5594c183ba5461ed834b57da82f5415e<>res://.godot/imported/New Piskel-2.png.png-62365e65039dd88d72bf299f23160611.ctex::
 New Piskel-3.png.png::CompressedTexture2D::8015241198012737918::1775653923::1775653923::1::::<><><>0<>0<>a82e243c01a517e9d2438f8744673d84<>res://.godot/imported/New Piskel-3.png.png-f2338931e9ef62b1e51f1bee5eacf081.ctex::
 New Piskel-4.png.png::CompressedTexture2D::9090704747886341305::1775653923::1775653923::1::::<><><>0<>0<>41f7add0aa3dd4ca2720805762037fd4<>res://.godot/imported/New Piskel-4.png.png-b8e71e59a351d36654038f7552f2e5f4.ctex::
 New Piskel-5.png.png::CompressedTexture2D::4282255368014742220::1775653923::1775653923::1::::<><><>0<>0<>d4375931ff4740c923cd44edca917798<>res://.godot/imported/New Piskel-5.png.png-dcc6df380969761ee592e6c81d548b2c.ctex::
-::res://Scenes/::1775821715
+::res://Assets/mc/::1775913986
+slime_atas-1.png.png::CompressedTexture2D::8373432541191095699::1775913489::1775913518::1::::<><><>0<>0<>f1eed876da9a4a0b75f56972e59b55fd<>res://.godot/imported/slime_atas-1.png.png-fc76da297ae5ec399e9f59ffe6dd6b5c.ctex::
+slime_atas-2.png.png::CompressedTexture2D::6308798074529452898::1775913489::1775913518::1::::<><><>0<>0<>2696565063c04366cb04486c8dc1456a<>res://.godot/imported/slime_atas-2.png.png-f0febd985f36d112c54eddf50331e849.ctex::
+slime_atas-3.png.png::CompressedTexture2D::6511526346329348058::1775913489::1775913518::1::::<><><>0<>0<>2473fa1eb5244a9745f771ad5a084ddd<>res://.godot/imported/slime_atas-3.png.png-07411feaa41aa1d08267dd871201e62e.ctex::
+slime_atas-4.png.png::CompressedTexture2D::8300921639354024184::1775913489::1775913518::1::::<><><>0<>0<>7d067794fc630f43d8eb3b46fe6b8134<>res://.godot/imported/slime_atas-4.png.png-3b4acfc506eea6585362eb44eec090dc.ctex::
+slime_atas-5.png.png::CompressedTexture2D::4516425727529156737::1775913489::1775913518::1::::<><><>0<>0<>531c184cee0a5010cde34914300204a2<>res://.godot/imported/slime_atas-5.png.png-c59883de214765a1d803cde17bf6ebc6.ctex::
+slime_bawah-1.png.png::CompressedTexture2D::222399969871508011::1775913799::1775913799::1::::<><><>0<>0<>5ccd9142435ad1faa1ef2b3a1ba12602<>res://.godot/imported/slime_bawah-1.png.png-ac104e4cd7d8b94245e8932b62ab61fc.ctex::
+slime_bawah-2.png.png::CompressedTexture2D::524641438307445182::1775913799::1775913799::1::::<><><>0<>0<>6d5f1c5d00b1b3884ee5c1b6f129dea1<>res://.godot/imported/slime_bawah-2.png.png-51bfb95d7093142ea0a2658c090597f2.ctex::
+slime_bawah-3.png.png::CompressedTexture2D::4517900714286934661::1775913799::1775913799::1::::<><><>0<>0<>3501ee994cd8660c2dec1addf9b63c71<>res://.godot/imported/slime_bawah-3.png.png-72cc0e704b00369841486a9a8a9153f5.ctex::
+slime_bawah-4.png.png::CompressedTexture2D::3627301653835665595::1775913799::1775913799::1::::<><><>0<>0<>49ae1ace58f05c0e58234781b075dd7b<>res://.godot/imported/slime_bawah-4.png.png-5a7fe4dc2e23b1944da665e79ec4e7b3.ctex::
+slime_bawah-5.png.png::CompressedTexture2D::2504000707790044359::1775913799::1775913799::1::::<><><>0<>0<>f1868e3f55d73da3f816a3eba7922beb<>res://.godot/imported/slime_bawah-5.png.png-edbded3c257004248e904aeef82e01a9.ctex::
+slime_f1-4.png.png::CompressedTexture2D::1380418222078315603::1775912990::1775913518::1::::<><><>0<>0<>c3fb17cbd3cd04cea71064bff3e4f595<>res://.godot/imported/slime_f1-4.png.png-cdf5e37d59050286323cf00f99dafaa3.ctex::
+slime_f1.png::CompressedTexture2D::2675590892876543842::1775912235::1775913518::1::::<><><>0<>0<>7a110cd0474625c032e29705c9425419<>res://.godot/imported/slime_f1.png-e6a334e1cc49b8738693ab9ad991f360.ctex::
+slime_f2.png::CompressedTexture2D::5710510930755862304::1775912235::1775913518::1::::<><><>0<>0<>616d1f242eff8a5d71b76e0e72825dcb<>res://.godot/imported/slime_f2.png-078387572e0afdc514749319dbcc4f70.ctex::
+slime_f3.png::CompressedTexture2D::3853694612792249792::1775912235::1775913518::1::::<><><>0<>0<>a92c8350b577c5aa6d1fa27de45b259c<>res://.godot/imported/slime_f3.png-a801911fdcdda7b82e6e3d5b715f8f7c.ctex::
+slime_f4.png::CompressedTexture2D::5710028477371338586::1775912235::1775913518::1::::<><><>0<>0<>4bb569856caa7f4dcf76fd71dd5dd03f<>res://.godot/imported/slime_f4.png-f32473064b678e463e60f16ecbe075ad.ctex::
+slime_f5.png::CompressedTexture2D::7591695346963227419::1775912235::1775913518::1::::<><><>0<>0<>22dd58511f553af9d439679a1ba7ad2f<>res://.godot/imported/slime_f5.png-ae7d832e7e3449d167486c055f45c3dd.ctex::
+slime_kiri-1.png.png::CompressedTexture2D::5577320295880243850::1775913986::1775913986::1::::<><><>0<>0<>ef1a737386915528c3c6c5e2a1c2ff5b<>res://.godot/imported/slime_kiri-1.png.png-0de8fa10722e830d55ef74f969e94719.ctex::
+slime_kiri-2.png::CompressedTexture2D::3362596970623505275::1775913986::1775913986::1::::<><><>0<>0<>0fbbacef57a8f8914c6cc41e5be08eeb<>res://.godot/imported/slime_kiri-2.png-0a525108fd5e94bb34fc4c31b7b947aa.ctex::
+slime_kiri-3.png.png::CompressedTexture2D::6349371006976108926::1775913986::1775913986::1::::<><><>0<>0<>7dd6a4ac942acd4961e7bd5a5dad3589<>res://.godot/imported/slime_kiri-3.png.png-f9eca4f3889c80e1f969a480ba4ef90c.ctex::
+slime_kiri-4.png.png::CompressedTexture2D::8929350645850542867::1775913986::1775913986::1::::<><><>0<>0<>a4a2e39258d28879a3273eaa1c16c244<>res://.godot/imported/slime_kiri-4.png.png-c69c08f6d2b62a5f8854550a1908ed65.ctex::
+slime_kiri-5.png.png::CompressedTexture2D::6646453580322445195::1775913986::1775913986::1::::<><><>0<>0<>9174f1218288769e4deeaf8cf407d1ce<>res://.godot/imported/slime_kiri-5.png.png-5f10024a43ed156405c54b77e87c22c7.ctex::
+::res://Scenes/::1775913518
+difficulty.tscn::PackedScene::8849373037000845251::1775909919::0::1::::<><><>0<>0<><>::uid://bebkvxmpmtd71::::res://Scripts/difficulty.gd
+level_easy.tscn::PackedScene::3563133766503080625::1775910515::0::1::::<><><>0<>0<><>::
 main.tscn::PackedScene::2053472815083690334::1775636401::0::1::::<><><>0<>0<><>::
-player.tscn::PackedScene::183396040109218979::1775655855::0::1::::<><><>0<>0<><>::uid://d0kb6w010lurh::::res://Assets/New Piskel-1.png.png<>uid://bqo0hogrl1agi::::res://Assets/New Piskel-2.png.png<>uid://d2rutxmfo1jyv::::res://Assets/New Piskel-4.png.png<>uid://b2ameda6urfl1::::res://Assets/New Piskel-5.png.png<>uid://dmgv37k7trl55::::res://Assets/New Piskel-3.png.png
-main_menu.tscn::PackedScene::8129418089348184317::1775821715::0::1::::<><><>0<>0<><>::
-main_menu.gd::GDScript::4962600711373252428::1775821803::0::1::::<>Control<><>0<>0<><>::
-::res://Scripts/::1775636058
+main_menu.tscn::PackedScene::8129418089348184317::1775910013::0::1::::<><><>0<>0<><>::uid://ccx6kq3asp2rg::::res://Scripts/main_menu.gd
+player.tscn::PackedScene::183396040109218979::1775913518::0::1::::<><><>0<>0<><>::uid://beecudkqe1mxu::::res://Assets/mc/slime_f1.png<>uid://cnmhjsrfrdtga::::res://Assets/mc/slime_f2.png<>uid://bu5011bykhtcy::::res://Assets/mc/slime_f3.png<>uid://dgfqd34mp1y64::::res://Assets/mc/slime_f5.png<>uid://cnl8lnacfr8b3::::res://Assets/mc/slime_f4.png<>uid://twxj0ec0jhex::::res://Assets/mc/slime_f1-4.png.png
+::res://Scripts/::1775910010
+difficulty.gd::GDScript::2669886334871982878::1775909093::0::1::::<>Control<><>0<>0<><>::
+main_menu.gd::GDScript::4962600711373252428::1775910010::0::1::::<>Control<><>0<>0<><>::

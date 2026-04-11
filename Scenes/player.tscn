@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cu3rg6jpc4vf"]
+[gd_scene load_steps=8 format=3 uid="uid://cu3rg6jpc4vf"]
 
-[ext_resource type="Texture2D" uid="uid://d0kb6w010lurh" path="res://Assets/New Piskel-1.png.png" id="1_fkybt"]
-[ext_resource type="Texture2D" uid="uid://bqo0hogrl1agi" path="res://Assets/New Piskel-2.png.png" id="2_x3wgy"]
-[ext_resource type="Texture2D" uid="uid://d2rutxmfo1jyv" path="res://Assets/New Piskel-4.png.png" id="3_3smsa"]
-[ext_resource type="Texture2D" uid="uid://b2ameda6urfl1" path="res://Assets/New Piskel-5.png.png" id="4_8erm5"]
-[ext_resource type="Texture2D" uid="uid://dmgv37k7trl55" path="res://Assets/New Piskel-3.png.png" id="5_f1ek2"]
+[ext_resource type="Texture2D" uid="uid://beecudkqe1mxu" path="res://Assets/mc/slime_f1.png" id="1_fkybt"]
+[ext_resource type="Texture2D" uid="uid://cnmhjsrfrdtga" path="res://Assets/mc/slime_f2.png" id="2_x3wgy"]
+[ext_resource type="Texture2D" uid="uid://bu5011bykhtcy" path="res://Assets/mc/slime_f3.png" id="3_3smsa"]
+[ext_resource type="Texture2D" uid="uid://dgfqd34mp1y64" path="res://Assets/mc/slime_f5.png" id="4_8erm5"]
+[ext_resource type="Texture2D" uid="uid://cnl8lnacfr8b3" path="res://Assets/mc/slime_f4.png" id="5_f1ek2"]
+[ext_resource type="Texture2D" uid="uid://twxj0ec0jhex" path="res://Assets/mc/slime_f1-4.png.png" id="6_x3wgy"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tx1dd"]
 animations = [{
@@ -22,13 +23,47 @@ animations = [{
 "texture": ExtResource("4_8erm5")
 }, {
 "duration": 1.0,
+"texture": ExtResource("5_f1ek2")
+}],
+"loop": true,
+"name": &"atas",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("1_fkybt")
 }, {
 "duration": 1.0,
-"texture": ExtResource("1_fkybt")
+"texture": ExtResource("2_x3wgy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3smsa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_8erm5")
 }, {
 "duration": 1.0,
 "texture": ExtResource("5_f1ek2")
+}],
+"loop": true,
+"name": &"bawah",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_fkybt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_fkybt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_fkybt")
+}, {
+"duration": 0.41,
+"texture": ExtResource("6_x3wgy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_fkybt")
 }, {
 "duration": 1.0,
 "texture": ExtResource("1_fkybt")
@@ -40,12 +75,55 @@ animations = [{
 "texture": ExtResource("1_fkybt")
 }],
 "loop": true,
-"name": &"default",
-"speed": 3.0
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_fkybt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_x3wgy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3smsa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_8erm5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_f1ek2")
+}],
+"loop": true,
+"name": &"kanan",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_fkybt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_x3wgy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3smsa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_8erm5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_f1ek2")
+}],
+"loop": true,
+"name": &"kiri",
+"speed": 5.0
 }]
 
 [node name="Player" type="CharacterBody2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-6, -53.000004)
+scale = Vector2(8.38, 9.320001)
 sprite_frames = SubResource("SpriteFrames_tx1dd")
-frame_progress = 0.30184197
+animation = &"atas"
+frame_progress = 0.95797735

@@ -1,6 +1,8 @@
+Label
 Button
 VBoxContainer
 ColorRect
+RichTextLabel
 AnimatedSprite2D
 Sprite2D
 CharacterBody2D
