@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://beecudkqe1mxu" path="res://Assets/mc/slime_f1.png" id="1_fkybt"]
 [ext_resource type="Texture2D" uid="uid://drkfhfovd8nd8" path="res://Assets/mc/slime_atas-1.png.png" id="1_olqyp"]
-[ext_resource type="Script" uid="uid://dgrdj2igtndam" path="res://Scripts/player.gd" id="1_wpjfl"]
+[ext_resource type="Script" uid="uid://dgrdj2igtndam" path="res://Scenes/player.gd" id="1_wpjfl"]
 [ext_resource type="Texture2D" uid="uid://cv5a8n3tb6k31" path="res://Assets/mc/slime_atas-2.png.png" id="2_wpjfl"]
 [ext_resource type="Texture2D" uid="uid://cnmhjsrfrdtga" path="res://Assets/mc/slime_f2.png" id="2_x3wgy"]
 [ext_resource type="Texture2D" uid="uid://bu5011bykhtcy" path="res://Assets/mc/slime_f3.png" id="3_3smsa"]
@@ -22,7 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://cwpxhibcvuh8q" path="res://Assets/mc/slime_kiri-3.png.png" id="19_36dho"]
 [ext_resource type="Texture2D" uid="uid://d0hpdohy3kfuh" path="res://Assets/mc/slime_kiri-4.png.png" id="20_yh6i2"]
 [ext_resource type="Texture2D" uid="uid://c1xuecbinsif8" path="res://Assets/mc/slime_kiri-5.png.png" id="21_nv4vc"]
-[ext_resource type="Script" uid="uid://c4pvh6quxqc8s" path="res://Scripts/camera_2d.gd" id="23_bi64h"]
+[ext_resource type="Script" uid="uid://c4pvh6quxqc8s" path="res://Scenes/camera_2d.gd" id="23_bi64h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8gxox"]
 size = Vector2(126, 110)
@@ -210,6 +210,7 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_wpjfl")
+speed = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-7, 6)
@@ -220,7 +221,7 @@ position = Vector2(-6, -53.000004)
 scale = Vector2(8.38, 9.320001)
 sprite_frames = SubResource("SpriteFrames_tx1dd")
 animation = &"idle_bawah"
-frame_progress = 0.72833765
+frame_progress = 0.6955061
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("23_bi64h")

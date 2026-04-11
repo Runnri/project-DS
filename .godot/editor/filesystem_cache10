@@ -1,12 +1,10 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1775913518
+::res://::1775920778
 icon.svg::CompressedTexture2D::5256680275870911009::1775635768::1775635778::1::::<><><>0<>0<>2411308defdc111dab9116001b9ec155<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
-::res://Assets/::1775913518
-New Piskel-1.png.png::CompressedTexture2D::8934744191523527809::1775653923::1775653923::1::::<><><>0<>0<>29c01fc241dc0002c92333e10466e1f7<>res://.godot/imported/New Piskel-1.png.png-8f6d42e63b16e95e40fa034040f53d9a.ctex::
-New Piskel-2.png.png::CompressedTexture2D::3539874641218804468::1775653923::1775653923::1::::<><><>0<>0<>5594c183ba5461ed834b57da82f5415e<>res://.godot/imported/New Piskel-2.png.png-62365e65039dd88d72bf299f23160611.ctex::
-New Piskel-3.png.png::CompressedTexture2D::8015241198012737918::1775653923::1775653923::1::::<><><>0<>0<>a82e243c01a517e9d2438f8744673d84<>res://.godot/imported/New Piskel-3.png.png-f2338931e9ef62b1e51f1bee5eacf081.ctex::
-New Piskel-4.png.png::CompressedTexture2D::9090704747886341305::1775653923::1775653923::1::::<><><>0<>0<>41f7add0aa3dd4ca2720805762037fd4<>res://.godot/imported/New Piskel-4.png.png-b8e71e59a351d36654038f7552f2e5f4.ctex::
-New Piskel-5.png.png::CompressedTexture2D::4282255368014742220::1775653923::1775653923::1::::<><><>0<>0<>d4375931ff4740c923cd44edca917798<>res://.godot/imported/New Piskel-5.png.png-dcc6df380969761ee592e6c81d548b2c.ctex::
+::res://Assets/::1775915767
+::res://Assets/map/::1775920668
+tileset.png::CompressedTexture2D::1596487682577923166::1775915758::1775915767::1::::<><><>0<>0<>cae3e254ab3d75d4451757a08252151c<>res://.godot/imported/tileset.png-fdc6992d73deb985bce2c93b0c82ea35.ctex::
+tileset_arranged.png::CompressedTexture2D::8657010288529334615::1775918013::1775918013::1::::<><><>0<>0<>076770b974b8166d3d373630fb6e0672<>res://.godot/imported/tileset_arranged.png-20e8b8e2e29a2db3a9001dd6113c5aa6.ctex::
 ::res://Assets/mc/::1775913986
 slime_atas-1.png.png::CompressedTexture2D::8373432541191095699::1775913489::1775913518::1::::<><><>0<>0<>f1eed876da9a4a0b75f56972e59b55fd<>res://.godot/imported/slime_atas-1.png.png-fc76da297ae5ec399e9f59ffe6dd6b5c.ctex::
 slime_atas-2.png.png::CompressedTexture2D::6308798074529452898::1775913489::1775913518::1::::<><><>0<>0<>2696565063c04366cb04486c8dc1456a<>res://.godot/imported/slime_atas-2.png.png-f0febd985f36d112c54eddf50331e849.ctex::
@@ -29,12 +27,14 @@ slime_kiri-2.png::CompressedTexture2D::3362596970623505275::1775913986::17759139
 slime_kiri-3.png.png::CompressedTexture2D::6349371006976108926::1775913986::1775913986::1::::<><><>0<>0<>7dd6a4ac942acd4961e7bd5a5dad3589<>res://.godot/imported/slime_kiri-3.png.png-f9eca4f3889c80e1f969a480ba4ef90c.ctex::
 slime_kiri-4.png.png::CompressedTexture2D::8929350645850542867::1775913986::1775913986::1::::<><><>0<>0<>a4a2e39258d28879a3273eaa1c16c244<>res://.godot/imported/slime_kiri-4.png.png-c69c08f6d2b62a5f8854550a1908ed65.ctex::
 slime_kiri-5.png.png::CompressedTexture2D::6646453580322445195::1775913986::1775913986::1::::<><><>0<>0<>9174f1218288769e4deeaf8cf407d1ce<>res://.godot/imported/slime_kiri-5.png.png-5f10024a43ed156405c54b77e87c22c7.ctex::
-::res://Scenes/::1775913518
+::res://Scenes/::1775920778
+camera_2d.gd::GDScript::6840572710486269548::1775916758::0::1::::<>Camera2D<><>0<>0<><>::
 difficulty.tscn::PackedScene::8849373037000845251::1775909919::0::1::::<><><>0<>0<><>::uid://bebkvxmpmtd71::::res://Scripts/difficulty.gd
-level_easy.tscn::PackedScene::3563133766503080625::1775910515::0::1::::<><><>0<>0<><>::
+level_easy.tscn::PackedScene::3563133766503080625::1775920741::0::1::::<><><>0<>0<><>::uid://cu3rg6jpc4vf::::res://Scenes/player.tscn<>uid://w0l6ih0qnuju::::res://Assets/map/tileset.png<>uid://dvlrxvan4ceyx::::res://Assets/map/tileset_arranged.png
 main.tscn::PackedScene::2053472815083690334::1775636401::0::1::::<><><>0<>0<><>::
 main_menu.tscn::PackedScene::8129418089348184317::1775910013::0::1::::<><><>0<>0<><>::uid://ccx6kq3asp2rg::::res://Scripts/main_menu.gd
-player.tscn::PackedScene::183396040109218979::1775913518::0::1::::<><><>0<>0<><>::uid://beecudkqe1mxu::::res://Assets/mc/slime_f1.png<>uid://cnmhjsrfrdtga::::res://Assets/mc/slime_f2.png<>uid://bu5011bykhtcy::::res://Assets/mc/slime_f3.png<>uid://dgfqd34mp1y64::::res://Assets/mc/slime_f5.png<>uid://cnl8lnacfr8b3::::res://Assets/mc/slime_f4.png<>uid://twxj0ec0jhex::::res://Assets/mc/slime_f1-4.png.png
-::res://Scripts/::1775910010
+player.tscn::PackedScene::183396040109218979::1775920788::0::1::::<><><>0<>0<><>::uid://beecudkqe1mxu::::res://Assets/mc/slime_f1.png<>uid://drkfhfovd8nd8::::res://Assets/mc/slime_atas-1.png.png<>uid://dgrdj2igtndam::::res://Scripts/player.gd<>uid://cv5a8n3tb6k31::::res://Assets/mc/slime_atas-2.png.png<>uid://cnmhjsrfrdtga::::res://Assets/mc/slime_f2.png<>uid://bu5011bykhtcy::::res://Assets/mc/slime_f3.png<>uid://cy1h5gbmvc1j7::::res://Assets/mc/slime_atas-3.png.png<>uid://dqja74obsuooe::::res://Assets/mc/slime_atas-4.png.png<>uid://dgfqd34mp1y64::::res://Assets/mc/slime_f5.png<>uid://cnl8lnacfr8b3::::res://Assets/mc/slime_f4.png<>uid://b5l14v5fcxo7r::::res://Assets/mc/slime_atas-5.png.png<>uid://dfy5ovrcr228::::res://Assets/mc/slime_bawah-1.png.png<>uid://twxj0ec0jhex::::res://Assets/mc/slime_f1-4.png.png<>uid://hqe1dvdmj0yc::::res://Assets/mc/slime_bawah-2.png.png<>uid://b5mrfunagc38d::::res://Assets/mc/slime_bawah-3.png.png<>uid://brxdemkbs0b6r::::res://Assets/mc/slime_bawah-4.png.png<>uid://bbw7r43021q0v::::res://Assets/mc/slime_bawah-5.png.png<>uid://clpxwd476ncv7::::res://Assets/mc/slime_kiri-1.png.png<>uid://bn54ql3lhysxv::::res://Assets/mc/slime_kiri-2.png<>uid://cwpxhibcvuh8q::::res://Assets/mc/slime_kiri-3.png.png<>uid://d0hpdohy3kfuh::::res://Assets/mc/slime_kiri-4.png.png<>uid://c1xuecbinsif8::::res://Assets/mc/slime_kiri-5.png.png<>uid://c4pvh6quxqc8s::::res://Scenes/camera_2d.gd
+::res://Scripts/::1775920778
 difficulty.gd::GDScript::2669886334871982878::1775909093::0::1::::<>Control<><>0<>0<><>::
 main_menu.gd::GDScript::4962600711373252428::1775910010::0::1::::<>Control<><>0<>0<><>::
+player.gd::GDScript::7615689188637363696::1775916831::0::1::::<>CharacterBody2D<><>0<>0<><>::
