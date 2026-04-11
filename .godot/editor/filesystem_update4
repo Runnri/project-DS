@@ -3,3 +3,5 @@ res://Scripts/main_menu.gd
 res://Scenes/difficulty.tscn
 res://Scenes/difficulty.gd
 res://Scenes/player.tscn
+res://Scenes/player.gd
+res://Scenes/level_easy.tscn
