@@ -1,16 +1,11 @@
 extends Area2D
 
-@export var item_name: String = "Senter"
+@export var nama_item: String = "senter"
 
-func _ready():
-	body_entered.connect(_on_body_entered)
-
-func _on_body_entered(body):
-	if body.has_method("tambah_item"):
-		# Kita tanya Player, "Bisa nampung barang nggak?"
-		# Hasilnya (true/false) kita simpan di variabel 'berhasil_diambil'
-		var berhasil_diambil = body.tambah_item(item_name)
-		
-		# Kalau hasilnya true (berhasil masuk inventory)
-		if berhasil_diambil == true:
-			queue_free() # Baru deh senternya menghilang dari map
+# Fungsi ini HANYA akan jalan kalau si Bit mencet tombol 'F' di dekat senter
+func interaksi(player):
+	# Kita panggil fungsi tambah_item yang ada di script Player
+	var berhasil_diambil = player.tambah_item(nama_item)
+	
+	if berhasil_diambil:
+		queue_free() # Senternya lenyap dari lantai karena sudah masuk inventory

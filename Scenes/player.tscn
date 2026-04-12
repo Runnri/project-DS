@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cu3rg6jpc4vf"]
+[gd_scene load_steps=33 format=3 uid="uid://cu3rg6jpc4vf"]
 
 [ext_resource type="Texture2D" uid="uid://beecudkqe1mxu" path="res://Assets/mc/slime_f1.png" id="1_fkybt"]
 [ext_resource type="Texture2D" uid="uid://drkfhfovd8nd8" path="res://Assets/mc/slime_atas-1.png.png" id="1_olqyp"]
@@ -233,6 +233,9 @@ use_hdr = true
 fill = 1
 fill_from = Vector2(0.4813084, 0.5046729)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_2ijsl"]
+radius = 147.0
+
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(11, 65)
 script = ExtResource("1_wpjfl")
@@ -256,9 +259,9 @@ script = ExtResource("23_bi64h")
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
 custom_minimum_size = Vector2(200, 50)
 offset_left = 14.0
-offset_top = 68.0
+offset_top = 14.0
 offset_right = 214.0
-offset_bottom = 118.0
+offset_bottom = 64.0
 size_flags_horizontal = 4
 theme_override_styles/background = SubResource("StyleBoxFlat_bi64h")
 theme_override_styles/fill = SubResource("StyleBoxFlat_2ijsl")
@@ -266,10 +269,10 @@ show_percentage = false
 metadata/_edit_use_anchors_ = true
 
 [node name="IconCMD" type="TextureButton" parent="CanvasLayer"]
-offset_left = 12.0
-offset_top = 108.00001
-offset_right = 524.0
-offset_bottom = 620.0
+offset_left = 229.99998
+offset_top = -10.999992
+offset_right = 742.0
+offset_bottom = 501.0
 scale = Vector2(0.2, 0.2)
 texture_normal = ExtResource("24_2ijsl")
 metadata/_edit_use_anchors_ = true
@@ -319,3 +322,18 @@ position = Vector2(-4, -3)
 color = Color(1.1706618, 1.179842, 0.44084165, 1)
 energy = 3.1
 texture = SubResource("GradientTexture2D_2ijsl")
+
+[node name="InteractBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractBox"]
+position = Vector2(-7, 6)
+shape = SubResource("CircleShape2D_2ijsl")
+
+[node name="F" type="Label" parent="."]
+offset_left = 79.0
+offset_top = -54.0
+offset_right = 102.0
+offset_bottom = -31.0
+scale = Vector2(2, 2)
+theme_override_constants/shadow_outline_size = 4
+text = "[F]"

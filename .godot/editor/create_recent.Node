@@ -1,11 +1,12 @@
+Label
+CollisionShape2D
+Area2D
 PointLight2D
 Panel
 ColorRect
 TextureButton
 LineEdit
 RichTextLabel
-Area2D
-CollisionShape2D
 Sprite2D
 CanvasModulate
 ProgressBar

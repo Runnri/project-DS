@@ -10,3 +10,4 @@ res://Scripts/camera_2d.gd
 res://Scripts/player.gd
 res://Scenes/item_senter.tscn
 res://Scenes/item_senter.gd
+res://Scripts/item_senter.gd

@@ -23,6 +23,8 @@ var arah_terakhir: String = "bawah"
 @onready var notif_dot = $CanvasLayer/IconCMD/NotifDot
 @onready var log_teks = $CanvasLayer/CMD/LogTeks 
 @onready var senter_player = $SenterPlayer
+@onready var interact_box = $InteractBox
+@onready var prompt_f = $F
 
 # --- DATABASE TERMINAL ---
 var valid_commands = ["use flashlight", "use medkit", "use scanner", "help", "clear", "inventory"]
@@ -83,6 +85,21 @@ func _physics_process(delta):
 		sprite.play("idle_" + arah_terakhir) 
 	
 	move_and_slide()
+	# --- SISTEM MUNCULIN LOGO [F] OTOMATIS ---
+	var bisa_interaksi = false
+	var benda_sekitar = interact_box.get_overlapping_areas()
+	
+	# Godot akan ngecek, ada nggak barang yang bisa di-"interaksi" di dekat si Bit?
+	for benda in benda_sekitar:
+		if benda.has_method("interaksi"):
+			bisa_interaksi = true
+			break # Kalau ketemu 1 aja, langsung berhenti nyari
+			
+	# Kalau ada barang, munculkan [F]. Kalau nggak ada, sembunyikan.
+	if bisa_interaksi == true:
+		prompt_f.show()
+	else:
+		prompt_f.hide()
 
 # --- FUNGSI ANIMASI ---
 func update_animation(dir: Vector2):
@@ -108,6 +125,17 @@ func _input(event):
 		
 		# Menelan input TAB agar tidak tertulis masuk ke dalam LineEdit
 		get_viewport().set_input_as_handled()
+		
+		# --- FITUR INTERAKSI (TOMBOL F) ---
+	if event is InputEventKey and event.pressed and event.keycode == KEY_F:
+		# Cari semua benda yang masuk ke dalam InteractBox
+		var benda_sekitar = interact_box.get_overlapping_areas()
+		
+		for benda in benda_sekitar:
+			# Cek apakah benda itu punya script yang ada fungsi "interaksi"-nya
+			if benda.has_method("interaksi"):
+				benda.interaksi(self) # Lakukan interaksi dan kirim data si Bit ke benda tersebut
+				break # Stop looping, biar cuma 1 barang yang diambil per pencet F
 
 # --- FUNGSI INVENTORY & NOTIFIKASI ---
 func tambah_item(nama_barang: String) -> bool:
