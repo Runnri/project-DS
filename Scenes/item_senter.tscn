@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://cyu0e507haenc"]
+
+[ext_resource type="Script" uid="uid://cht2dlyvulbss" path="res://Scripts/item_senter.gd" id="1_268r4"]
+[ext_resource type="Texture2D" uid="uid://d085auaw05vkt" path="res://Assets/Gemini_Generated_Image_1wbvey1wbvey1wbv-removebg-preview-1.png.png" id="1_ra0kr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vc20f"]
+radius = 38.327538
+
+[sub_resource type="Gradient" id="Gradient_268r4"]
+offsets = PackedFloat32Array(0.12, 0.6933333)
+colors = PackedColorArray(0.57535124, 0.57535124, 0.57535124, 0.6917914, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vc20f"]
+gradient = SubResource("Gradient_268r4")
+width = 600
+height = 600
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.4813084, 0.5046729)
+
+[node name="item_senter" type="Area2D"]
+position = Vector2(311, 100)
+script = ExtResource("1_268r4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2, -4)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_ra0kr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -6)
+shape = SubResource("CircleShape2D_vc20f")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-4, -3)
+color = Color(1.1706618, 1.179842, 0.44084165, 1)
+energy = 3.1
+texture = SubResource("GradientTexture2D_vc20f")

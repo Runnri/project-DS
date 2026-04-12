@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cu3rg6jpc4vf"]
+[gd_scene load_steps=32 format=3 uid="uid://cu3rg6jpc4vf"]
 
 [ext_resource type="Texture2D" uid="uid://beecudkqe1mxu" path="res://Assets/mc/slime_f1.png" id="1_fkybt"]
 [ext_resource type="Texture2D" uid="uid://drkfhfovd8nd8" path="res://Assets/mc/slime_atas-1.png.png" id="1_olqyp"]
@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://d0hpdohy3kfuh" path="res://Assets/mc/slime_kiri-4.png.png" id="20_yh6i2"]
 [ext_resource type="Texture2D" uid="uid://c1xuecbinsif8" path="res://Assets/mc/slime_kiri-5.png.png" id="21_nv4vc"]
 [ext_resource type="Script" uid="uid://c4pvh6quxqc8s" path="res://Scripts/camera_2d.gd" id="23_bi64h"]
+[ext_resource type="Texture2D" uid="uid://bkjyqu3b8ns4f" path="res://Assets/cmd.png" id="24_2ijsl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8gxox"]
 size = Vector2(142, 110)
@@ -213,6 +214,25 @@ animations = [{
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ijsl"]
 bg_color = Color(0.25996894, 0.6950768, 0.47315234, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p1odr"]
+bg_color = Color(0.9999998, 0.09094224, 0.05946485, 1)
+corner_radius_top_left = 200
+corner_radius_top_right = 200
+corner_radius_bottom_right = 200
+corner_radius_bottom_left = 200
+
+[sub_resource type="Gradient" id="Gradient_268r4"]
+offsets = PackedFloat32Array(0.12, 0.6933333)
+colors = PackedColorArray(0.57535124, 0.57535124, 0.57535124, 0.6917914, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2ijsl"]
+gradient = SubResource("Gradient_268r4")
+width = 600
+height = 600
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.4813084, 0.5046729)
+
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(11, 65)
 script = ExtResource("1_wpjfl")
@@ -235,11 +255,67 @@ script = ExtResource("23_bi64h")
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
 custom_minimum_size = Vector2(200, 50)
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 220.0
-offset_bottom = 70.0
+offset_left = 14.0
+offset_top = 68.0
+offset_right = 214.0
+offset_bottom = 118.0
 size_flags_horizontal = 4
 theme_override_styles/background = SubResource("StyleBoxFlat_bi64h")
 theme_override_styles/fill = SubResource("StyleBoxFlat_2ijsl")
 show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="IconCMD" type="TextureButton" parent="CanvasLayer"]
+offset_left = 12.0
+offset_top = 108.00001
+offset_right = 524.0
+offset_bottom = 620.0
+scale = Vector2(0.2, 0.2)
+texture_normal = ExtResource("24_2ijsl")
+metadata/_edit_use_anchors_ = true
+
+[node name="NotifDot" type="Panel" parent="CanvasLayer/IconCMD"]
+visible = false
+layout_mode = 0
+offset_left = 414.99976
+offset_top = 89.99994
+offset_right = 454.99976
+offset_bottom = 129.99994
+scale = Vector2(2, 2)
+theme_override_styles/panel = SubResource("StyleBoxFlat_p1odr")
+
+[node name="CMD" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_right = 0.012152778
+anchor_bottom = 0.375
+offset_left = 5.0
+offset_top = 129.0
+offset_right = 1138.0
+offset_bottom = 377.0
+color = Color(0, 0, 0, 0.44705883)
+metadata/_edit_use_anchors_ = true
+
+[node name="LogTeks" type="RichTextLabel" parent="CanvasLayer/CMD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -51.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/CMD"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 470.0
+offset_right = 1144.0
+offset_bottom = 501.0
+placeholder_text = "masukan perntah"
+
+[node name="SenterPlayer" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(-4, -3)
+color = Color(1.1706618, 1.179842, 0.44084165, 1)
+energy = 3.1
+texture = SubResource("GradientTexture2D_2ijsl")
