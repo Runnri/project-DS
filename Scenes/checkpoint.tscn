@@ -1,0 +1,61 @@
+[gd_scene load_steps=10 format=3 uid="uid://cv5ccur3vggkh"]
+
+[ext_resource type="Texture2D" uid="uid://bb7iavtksvt8f" path="res://Assets/checkpoint/checkpoint_idle.png" id="1_i1pff"]
+[ext_resource type="Script" uid="uid://djq3nl3ij4jp2" path="res://Scripts/checkpoint.gd" id="1_opoc8"]
+[ext_resource type="Texture2D" uid="uid://cy4xqlrsr11uc" path="res://Assets/checkpoint/checkpoint_on1.png" id="2_opoc8"]
+[ext_resource type="Texture2D" uid="uid://b5f0lhk03chbv" path="res://Assets/checkpoint/checkpoint_on2.png" id="3_l0c30"]
+[ext_resource type="Texture2D" uid="uid://dv0tbhh8h88u2" path="res://Assets/checkpoint/checkpoint_on4.png" id="4_w8ggu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_naa5w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_i1pff")
+}],
+"loop": true,
+"name": &"mati",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_opoc8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_l0c30")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_w8ggu")
+}],
+"loop": true,
+"name": &"nyala",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_opoc8"]
+radius = 9.714285
+height = 21.714285
+
+[sub_resource type="Gradient" id="Gradient_opoc8"]
+offsets = PackedFloat32Array(0, 0.4381271)
+colors = PackedColorArray(0.69303393, 0.69303393, 0.69303393, 0.5986622, 0.69411767, 0.69411767, 0.69411767, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_l0c30"]
+gradient = SubResource("Gradient_opoc8")
+use_hdr = true
+fill = 1
+
+[node name="checkpoint" type="Area2D"]
+scale = Vector2(7, 7)
+script = ExtResource("1_opoc8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_naa5w")
+animation = &"nyala"
+frame_progress = 0.9646704
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_opoc8")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 1, 0.39607844, 1)
+texture = SubResource("GradientTexture2D_l0c30")

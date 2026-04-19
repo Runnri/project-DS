@@ -1,0 +1,24 @@
+# --- Godot 4 Spesifik ---
+.godot/                # Folder cache dan hasil import (WAJIB di-ignore)
+*.translation          # File hasil generate translasi
+*.uid                  # File ID unik (opsional, tapi sering bikin conflict)
+
+# --- Hasil Export (Build) ---
+# Jika kamu meng-export game ke .exe atau .apk, jangan masukkan ke Git
+export/
+*.exe
+*.zip
+*.apk
+*.html
+*.js
+*.wasm
+
+# --- File Sistem & Editor ---
+.DS_Store             # Khusus pengguna macOS
+Thumbs.db             # Khusus pengguna Windows
+*.tmp                 # File sementara
+
+# --- File Rahasia (Penting!) ---
+# Jika nanti kamu pakai API Key atau password di project
+.env
+secret.json

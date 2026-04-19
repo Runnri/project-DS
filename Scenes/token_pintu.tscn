@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3igleg0bsgj4"]
+
+[ext_resource type="Script" uid="uid://b57830rsgbvnb" path="res://Scripts/token_pintu.gd" id="1_aoc1e"]
+[ext_resource type="Texture2D" uid="uid://kxlwhgxhedms" path="res://Assets/data.png" id="1_mhv5v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mhv5v"]
+radius = 126.90942
+
+[node name="tokenPintu" type="Area2D"]
+script = ExtResource("1_aoc1e")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(7, 7)
+texture = ExtResource("1_mhv5v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(9, -9)
+shape = SubResource("CircleShape2D_mhv5v")

@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://biaick73xn0sw"]
+
+[ext_resource type="Texture2D" uid="uid://ce1q6g6tv6wun" path="res://Assets/pintu/lasers_spritesheet.png" id="1_w7ah0"]
+[ext_resource type="Script" uid="uid://dttbs8i7e3io7" path="res://Scripts/sensor_pintu.gd" id="2_30ymp"]
+
+[sub_resource type="GDScript" id="GDScript_vtnwu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30ymp"]
+atlas = ExtResource("1_w7ah0")
+region = Rect2(0, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yla5m"]
+atlas = ExtResource("1_w7ah0")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4pd8"]
+atlas = ExtResource("1_w7ah0")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m6ejn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_30ymp")
+}],
+"loop": true,
+"name": &"buka",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yla5m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h4pd8")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w7ah0"]
+size = Vector2(88, 80)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w7ah0"]
+height = 266.0
+
+[node name="pintu" type="StaticBody2D"]
+script = SubResource("GDScript_vtnwu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(9, 9)
+sprite_frames = SubResource("SpriteFrames_m6ejn")
+animation = &"buka"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 12)
+shape = SubResource("RectangleShape2D_w7ah0")
+
+[node name="sensorPintu" type="Area2D" parent="."]
+script = ExtResource("2_30ymp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sensorPintu"]
+shape = SubResource("CapsuleShape2D_w7ah0")

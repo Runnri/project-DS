@@ -1,0 +1,8 @@
+res://Scripts/difficulty.gd
+res://Scenes/difficulty.tscn
+res://Scenes/main_menu.tscn
+res://Scripts/main_menu.gd
+res://Scripts/intro_cut_scene.gd
+res://Scripts/player.gd
+res://Scenes/intro_cut_scene.tscn
+res://Scenes/level_easy.tscn

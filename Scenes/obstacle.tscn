@@ -1,0 +1,65 @@
+[gd_scene load_steps=9 format=3 uid="uid://c6w1x3fepwpp4"]
+
+[ext_resource type="Script" uid="uid://dslt86neix6m1" path="res://Scripts/obstacle.gd" id="1_2p81s"]
+[ext_resource type="Texture2D" uid="uid://ce1q6g6tv6wun" path="res://Assets/pintu/lasers_spritesheet.png" id="1_15o2q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2p81s"]
+atlas = ExtResource("1_15o2q")
+region = Rect2(0, 0, 15, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rvx1i"]
+atlas = ExtResource("1_15o2q")
+region = Rect2(15, 0, 15, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a6yce"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2p81s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rvx1i")
+}],
+"loop": true,
+"name": &"nyala",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p763d"]
+radius = 3.0
+height = 34.0
+
+[sub_resource type="Gradient" id="Gradient_2p81s"]
+offsets = PackedFloat32Array(0, 0.18729097, 0.5986622)
+colors = PackedColorArray(1, 1, 1, 0.7705882, 1, 1, 1, 0.7235294, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rvx1i"]
+gradient = SubResource("Gradient_2p81s")
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.45299146, 0.47863248)
+
+[node name="obstacle" type="Area2D"]
+scale = Vector2(7, 7)
+script = ExtResource("1_2p81s")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-0.11110963, -2.5555558)
+scale = Vector2(1, 1.382353)
+sprite_frames = SubResource("SpriteFrames_a6yce")
+animation = &"nyala"
+frame_progress = 0.2931285
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.22222137, 0.33333302)
+shape = SubResource("CapsuleShape2D_p763d")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 9.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = SubResource("GradientTexture2D_rvx1i")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="child_entered_tree" from="Timer" to="." method="_on_timer_child_entered_tree"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
