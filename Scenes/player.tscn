@@ -321,6 +321,7 @@ scale = Vector2(2, 2)
 theme_override_styles/panel = SubResource("StyleBoxFlat_p1odr")
 
 [node name="CMD" type="ColorRect" parent="CanvasLayer"]
+process_mode = 3
 anchors_preset = -1
 anchor_right = 0.012152778
 anchor_bottom = 0.375

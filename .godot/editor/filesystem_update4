@@ -6,3 +6,9 @@ res://Scripts/intro_cut_scene.gd
 res://Scripts/player.gd
 res://Scenes/intro_cut_scene.tscn
 res://Scenes/level_easy.tscn
+res://trigger_tutorial.gd
+res://Scenes/trigger_tutorial.tscn
+res://Scenes/tutorial_ui.gd
+res://Scenes/player.tscn
+res://Scripts/tutorial_ui.gd
+res://Scripts/obstacle.gd

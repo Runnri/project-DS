@@ -35,5 +35,8 @@ func _on_timer_timeout():
 func _on_body_entered(body: Node2D):
 	# Gunakan group "player" agar tidak tergantung nama node
 	if sedang_menyala and body.is_in_group("player"):
-		if body.has_method("mati"):
-			body.mati()
+		# Daripada langsung panggil mati(), kita panggil terima_damage()
+		if body.has_method("terima_damage"):
+			# Hitung 30% dari max HP player saat ini
+			var damage = int(body.max_hp * 0.3)
+			body.terima_damage(damage)

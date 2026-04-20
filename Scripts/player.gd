@@ -90,6 +90,9 @@ func _physics_process(delta):
 	if is_dead:
 		return
 
+	if get_tree().paused:
+		return
+
 	if terminal.visible:
 		velocity = Vector2.ZERO
 		sprite.play("idle_" + arah_terakhir)
@@ -139,6 +142,12 @@ func _input(event):
 
 	# BUKA/TUTUP TERMINAL (TAB)
 	if event is InputEventKey and event.pressed and event.keycode == KEY_TAB:
+		
+		# Cegah pemain buka CMD kalau lagi di tengah tutorial "gerak"
+		var layar_tutor = get_tree().current_scene.get_node_or_null("TutorialUI")
+		if layar_tutor and layar_tutor.tutorial_aktif == "gerak":
+			return
+			
 		if terminal.visible:
 			terminal.hide()
 			input_cmd.release_focus()
@@ -153,6 +162,10 @@ func _input(event):
 
 	# INTERAKSI (F)
 	if event is InputEventKey and event.pressed and event.keycode == KEY_F and not terminal.visible:
+		# Jangan bisa interaksi kalau game lagi pause!
+		if get_tree().paused: 
+			return 
+			
 		var benda_sekitar = interact_box.get_overlapping_areas()
 		for benda in benda_sekitar:
 			if benda.has_method("interaksi"):
@@ -290,13 +303,16 @@ func _on_cmd_submitted(new_text: String):
 					log_teks.text += "\n[Info] " + target + ": " + item_descriptions[target]
 				else:
 					log_teks.text += "\n[Available Commands]:\n- " + "\n- ".join(PackedStringArray(valid_commands))
-			"ls":
+				var layar_tutor = get_tree().current_scene.get_node_or_null("TutorialUI")
+				if layar_tutor and layar_tutor.tutorial_aktif == "cmd":
+					layar_tutor.tutup_tutorial()
+			"inventory":
 				if inventory.is_empty():
 					log_teks.text += "\n[Inventory]: (kosong)"
 				else:
 					log_teks.text += "\n[Inventory]: " + str(inventory)
 			"clear":
-				log_teks.text = "--- BIT TERMINAL ---"
+				log_teks.text = "------"
 			"killme":
 				terima_damage(max_hp)
 	else:
