@@ -12,3 +12,5 @@ res://Scenes/tutorial_ui.gd
 res://Scenes/player.tscn
 res://Scripts/tutorial_ui.gd
 res://Scripts/obstacle.gd
+res://Scripts/global.gd
+res://Scripts/auth.gd
