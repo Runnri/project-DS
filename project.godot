@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Project:pcs"
-run/main_scene="res://Scenes/auth.tscn"
+config/name="Project:undeleted"
+run/main_scene="uid://donw4q383pf0j"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://dxb8w6540of3r"
 
 [autoload]
 

@@ -1,5 +1,5 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1776757453
+::res://::1776785309
 icon.svg::CompressedTexture2D::5256680275870911009::1776599854::1776599854::1::::<><><>0<>0<>2411308defdc111dab9116001b9ec155<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 papan_sign.gd::GDScript::776269115017563845::1776757453::0::1::::<>Area2D<><>0<>0<><>::
 README.md::TextFile::-1::1776599854::0::1::::<><><>0<>0<><>::
@@ -53,11 +53,12 @@ checkpoint_on1.png::CompressedTexture2D::6518666237962954482::1776599854::177675
 checkpoint_on2.png::CompressedTexture2D::4503945834441371843::1776599854::1776756882::1::::<><><>0<>0<>8d59fb21f0d7aa3cd73a92702042dee2<>res://.godot/imported/checkpoint_on2.png-782de96df01f5d306824c4f94d8d6437.ctex::
 checkpoint_on3.png::CompressedTexture2D::5804526626204104750::1776599854::1776756882::1::::<><><>0<>0<>8a7009e0a99406c337a023fc43d2b727<>res://.godot/imported/checkpoint_on3.png-181b9436ae66fe74b3ff3132f33eb955.ctex::
 checkpoint_on4.png::CompressedTexture2D::8685992999973086495::1776599854::1776756882::1::::<><><>0<>0<>b83c81372c7466b5765db0e60ddfc303<>res://.godot/imported/checkpoint_on4.png-61d18ffb77300cc2c773ff4e2041a7ca.ctex::
-::res://Assets/pintu/::1776599854
+::res://Assets/pintu/::1776785377
 lasers_spritesheet.png::CompressedTexture2D::5108297758960819445::1776599854::1776599854::1::::<><><>0<>0<>a19f9c2e8d7090c09507c2fc3e9a193c<>res://.godot/imported/lasers_spritesheet.png-7233a9c1efa1677317dcdee5e7ea5f74.ctex::
+slime_logo.png.png::CompressedTexture2D::8777714456654888445::1776785377::1776785377::1::::<><><>0<>0<>73810547b38a8ec1ea8dc05eb3349430<>res://.godot/imported/slime_logo.png.png-be740c6cc2f2367355b229ea2d5b2641.ctex::
 ::res://Assets/villain/::1776755030
 robot_orange.png::CompressedTexture2D::337719484667681264::1776754972::1776755030::1::::<><><>0<>0<>bc42d44910130d7e01202f8de767cba2<>res://.godot/imported/robot_orange.png-4fda7a133d42abb4103c8e3ea00c7d40.ctex::
-::res://Scenes/::1776777829
+::res://Scenes/::1776785236
 auth.tscn::PackedScene::8498419586680269042::1776776504::0::1::::<><><>0<>0<><>::uid://b1kllesq2kaik::::res://Scripts/auth.gd
 checkpoint.tscn::PackedScene::6308864500009194163::1776756881::0::1::::<><><>0<>0<><>::uid://bb7iavtksvt8f::::res://Assets/ornamen/checkpoint/checkpoint_idle.png<>uid://djq3nl3ij4jp2::::res://Scripts/checkpoint.gd<>uid://cy4xqlrsr11uc::::res://Assets/ornamen/checkpoint/checkpoint_on1.png<>uid://b5f0lhk03chbv::::res://Assets/ornamen/checkpoint/checkpoint_on2.png<>uid://dv0tbhh8h88u2::::res://Assets/ornamen/checkpoint/checkpoint_on4.png
 difficulty.tscn::PackedScene::4049465540005123402::1776776170::0::1::::<><><>0<>0<><>::uid://bebkvxmpmtd71::::res://Scripts/difficulty.gd
@@ -71,11 +72,12 @@ obstacle.tscn::PackedScene::6995733024406757175::1776599854::0::1::::<><><>0<>0<
 papan_sign.tscn::PackedScene::8653337375136131878::1776757457::0::1::::<><><>0<>0<><>::uid://lcbbk8k3phhd::::res://papan_sign.gd<>uid://cu4tn21e3cq2i::::res://Assets/ornamen/ItemSprites.png
 pause_menu.tscn::PackedScene::7722666943492648531::1776777829::0::1::::<><><>0<>0<><>::uid://ffvs6gyqclve::::res://Scripts/pause_menu.gd
 pintu.tscn::PackedScene::2948421316298012470::1776599854::0::1::::<><><>0<>0<><>::uid://ce1q6g6tv6wun::::res://Assets/pintu/lasers_spritesheet.png<>uid://dttbs8i7e3io7::::res://Scripts/sensor_pintu.gd
-player.tscn::PackedScene::183396040109218979::1776777829::0::1::::<><><>0<>0<><>::uid://beecudkqe1mxu::::res://Assets/mc/slime_f1.png<>uid://drkfhfovd8nd8::::res://Assets/mc/slime_atas-1.png.png<>uid://dgrdj2igtndam::::res://Scripts/player.gd<>uid://cv5a8n3tb6k31::::res://Assets/mc/slime_atas-2.png.png<>uid://cnmhjsrfrdtga::::res://Assets/mc/slime_f2.png<>uid://bu5011bykhtcy::::res://Assets/mc/slime_f3.png<>uid://cy1h5gbmvc1j7::::res://Assets/mc/slime_atas-3.png.png<>uid://dqja74obsuooe::::res://Assets/mc/slime_atas-4.png.png<>uid://dgfqd34mp1y64::::res://Assets/mc/slime_f5.png<>uid://cnl8lnacfr8b3::::res://Assets/mc/slime_f4.png<>uid://b5l14v5fcxo7r::::res://Assets/mc/slime_atas-5.png.png<>uid://dfy5ovrcr228::::res://Assets/mc/slime_bawah-1.png.png<>uid://twxj0ec0jhex::::res://Assets/mc/slime_f1-4.png.png<>uid://hqe1dvdmj0yc::::res://Assets/mc/slime_bawah-2.png.png<>uid://b5mrfunagc38d::::res://Assets/mc/slime_bawah-3.png.png<>uid://brxdemkbs0b6r::::res://Assets/mc/slime_bawah-4.png.png<>uid://bbw7r43021q0v::::res://Assets/mc/slime_bawah-5.png.png<>uid://clpxwd476ncv7::::res://Assets/mc/slime_kiri-1.png.png<>uid://bn54ql3lhysxv::::res://Assets/mc/slime_kiri-2.png<>uid://cwpxhibcvuh8q::::res://Assets/mc/slime_kiri-3.png.png<>uid://d0hpdohy3kfuh::::res://Assets/mc/slime_kiri-4.png.png<>uid://c1xuecbinsif8::::res://Assets/mc/slime_kiri-5.png.png<>uid://bsb8jmyrythti::::res://Assets/mc/slime_mati.png.png<>uid://c4pvh6quxqc8s::::res://Scripts/camera_2d.gd<>uid://bkjyqu3b8ns4f::::res://Assets/cmd.png<>uid://d0um8gvjjtm2k::::res://Assets/mc/slime_mati2.png.png<>uid://kxlwhgxhedms::::res://Assets/data.png<>res://Scenes/pause_menu.tscn
+player.tscn::PackedScene::183396040109218979::1776780171::0::1::::<><><>0<>0<><>::uid://beecudkqe1mxu::::res://Assets/mc/slime_f1.png<>uid://drkfhfovd8nd8::::res://Assets/mc/slime_atas-1.png.png<>uid://dgrdj2igtndam::::res://Scripts/player.gd<>uid://cv5a8n3tb6k31::::res://Assets/mc/slime_atas-2.png.png<>uid://cnmhjsrfrdtga::::res://Assets/mc/slime_f2.png<>uid://bu5011bykhtcy::::res://Assets/mc/slime_f3.png<>uid://cy1h5gbmvc1j7::::res://Assets/mc/slime_atas-3.png.png<>uid://dqja74obsuooe::::res://Assets/mc/slime_atas-4.png.png<>uid://dgfqd34mp1y64::::res://Assets/mc/slime_f5.png<>uid://cnl8lnacfr8b3::::res://Assets/mc/slime_f4.png<>uid://b5l14v5fcxo7r::::res://Assets/mc/slime_atas-5.png.png<>uid://dfy5ovrcr228::::res://Assets/mc/slime_bawah-1.png.png<>uid://twxj0ec0jhex::::res://Assets/mc/slime_f1-4.png.png<>uid://hqe1dvdmj0yc::::res://Assets/mc/slime_bawah-2.png.png<>uid://b5mrfunagc38d::::res://Assets/mc/slime_bawah-3.png.png<>uid://brxdemkbs0b6r::::res://Assets/mc/slime_bawah-4.png.png<>uid://bbw7r43021q0v::::res://Assets/mc/slime_bawah-5.png.png<>uid://clpxwd476ncv7::::res://Assets/mc/slime_kiri-1.png.png<>uid://bn54ql3lhysxv::::res://Assets/mc/slime_kiri-2.png<>uid://cwpxhibcvuh8q::::res://Assets/mc/slime_kiri-3.png.png<>uid://d0hpdohy3kfuh::::res://Assets/mc/slime_kiri-4.png.png<>uid://c1xuecbinsif8::::res://Assets/mc/slime_kiri-5.png.png<>uid://bsb8jmyrythti::::res://Assets/mc/slime_mati.png.png<>uid://c4pvh6quxqc8s::::res://Scripts/camera_2d.gd<>uid://bkjyqu3b8ns4f::::res://Assets/cmd.png<>uid://d0um8gvjjtm2k::::res://Assets/mc/slime_mati2.png.png<>uid://kxlwhgxhedms::::res://Assets/data.png<>uid://cvob8q345qd4u::::res://Assets/ornamen/slime_darahada.png.png<>uid://dia6gw47cgudn::::res://Scenes/pause_menu.tscn
+splash_screen.tscn::PackedScene::8170131219844146375::1776785236::0::1::::<><><>0<>0<><>::uid://cx2yt5e161ebn::::res://Scripts/splash_screen.gd
 token_pintu.tscn::PackedScene::9141448861166404519::1776599854::0::1::::<><><>0<>0<><>::uid://b57830rsgbvnb::::res://Scripts/token_pintu.gd<>uid://kxlwhgxhedms::::res://Assets/data.png
 trigger_level.tscn::PackedScene::1306446330622259485::1776599854::0::1::::<><><>0<>0<><>::uid://qgnp2u0n3ved::::res://Scripts/trigger_level.gd
 trigger_tutorial.tscn::PackedScene::8078979503709313386::1776693798::0::1::::<><><>0<>0<><>::uid://01damr8dl60a::::res://trigger_tutorial.gd
-::res://Scripts/::1776777798
+::res://Scripts/::1776785236
 auth.gd::GDScript::4232662165139247002::1776776504::0::1::::<>Control<><>0<>0<><>::
 camera_2d.gd::GDScript::6840572710486269548::1776599854::0::1::::<>Camera2D<><>0<>0<><>::
 checkpoint.gd::GDScript::7825715600392812085::1776776691::0::1::::<>Area2D<><>0<>0<><>::
@@ -88,8 +90,9 @@ load_game.gd::GDScript::5406457989727213604::1776601396::0::1::::<>Control<><>0<
 main_menu.gd::GDScript::214865463133368484::1776775939::0::1::::<>Control<><>0<>0<><>::
 obstacle.gd::GDScript::8446583594419652518::1776697025::0::1::::<>Area2D<><>0<>0<><>::
 pause_menu.gd::GDScript::362574946703449226::1776775938::0::1::::<>CanvasLayer<><>0<>0<><>::
-player.gd::GDScript::7615689188637363696::1776777798::0::1::::<>CharacterBody2D<><>0<>0<><>::
+player.gd::GDScript::7615689188637363696::1776779393::0::1::::<>CharacterBody2D<><>0<>0<><>::
 sensor_pintu.gd::GDScript::8532167865901488060::1776599854::0::1::::<>Area2D<><>0<>0<><>::
+splash_screen.gd::GDScript::6444415691434645055::1776785232::0::1::::<>Control<><>0<>0<><>::
 token_pintu.gd::GDScript::4560201084125964151::1776599854::0::1::::<>Area2D<><>0<>0<><>::
 trigger_level.gd::GDScript::1136225322728339375::1776599898::0::1::::<>Area2D<><>0<>0<><>::
 tutorial_ui.gd::GDScript::8237973378913075344::1776694446::0::1::::<>CanvasLayer<><>0<>0<><>::
