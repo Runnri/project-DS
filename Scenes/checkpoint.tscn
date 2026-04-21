@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://cv5ccur3vggkh"]
 
-[ext_resource type="Texture2D" uid="uid://bb7iavtksvt8f" path="res://Assets/checkpoint/checkpoint_idle.png" id="1_i1pff"]
+[ext_resource type="Texture2D" uid="uid://bb7iavtksvt8f" path="res://Assets/ornamen/checkpoint/checkpoint_idle.png" id="1_i1pff"]
 [ext_resource type="Script" uid="uid://djq3nl3ij4jp2" path="res://Scripts/checkpoint.gd" id="1_opoc8"]
-[ext_resource type="Texture2D" uid="uid://cy4xqlrsr11uc" path="res://Assets/checkpoint/checkpoint_on1.png" id="2_opoc8"]
-[ext_resource type="Texture2D" uid="uid://b5f0lhk03chbv" path="res://Assets/checkpoint/checkpoint_on2.png" id="3_l0c30"]
-[ext_resource type="Texture2D" uid="uid://dv0tbhh8h88u2" path="res://Assets/checkpoint/checkpoint_on4.png" id="4_w8ggu"]
+[ext_resource type="Texture2D" uid="uid://cy4xqlrsr11uc" path="res://Assets/ornamen/checkpoint/checkpoint_on1.png" id="2_opoc8"]
+[ext_resource type="Texture2D" uid="uid://b5f0lhk03chbv" path="res://Assets/ornamen/checkpoint/checkpoint_on2.png" id="3_l0c30"]
+[ext_resource type="Texture2D" uid="uid://dv0tbhh8h88u2" path="res://Assets/ornamen/checkpoint/checkpoint_on4.png" id="4_w8ggu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_naa5w"]
 animations = [{

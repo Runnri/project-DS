@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvj0g44g442d3"]
+
+[ext_resource type="Script" uid="uid://lcbbk8k3phhd" path="res://papan_sign.gd" id="1_vflwr"]
+[ext_resource type="Texture2D" uid="uid://cu4tn21e3cq2i" path="res://Assets/ornamen/ItemSprites.png" id="2_a3588"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gtpys"]
+size = Vector2(30, 28)
+
+[node name="PapanSign" type="Area2D"]
+scale = Vector2(4, 4)
+script = ExtResource("1_vflwr")
+isi_pesan = ""
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4.9999995, 4.9999995)
+scale = Vector2(1.0604211, 1.0811672)
+texture = ExtResource("2_a3588")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5, 4)
+shape = SubResource("RectangleShape2D_gtpys")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -22.0
+offset_top = -40.0
+offset_right = 18.0
+offset_bottom = -17.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

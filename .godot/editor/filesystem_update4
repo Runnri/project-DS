@@ -1,1 +1,5 @@
 res://Scenes/level_easy.tscn
+res://papan_sign.gd
+res://Scenes/checkpoint.tscn
+res://Scripts/papan_sign.tscn
+res://Scenes/papan_sign.tscn
