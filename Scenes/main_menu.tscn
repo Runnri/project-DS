@@ -70,38 +70,36 @@ alignment = 1
 
 [node name="Start" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_styles/hover = SubResource("StyleBoxFlat_28flt")
 action_mode = 0
+theme_override_styles/hover = SubResource("StyleBoxFlat_28flt")
 text = "Start"
 
 [node name="LoadButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_styles/hover = SubResource("StyleBoxFlat_28flt")
 action_mode = 0
+theme_override_styles/hover = SubResource("StyleBoxFlat_28flt")
 text = "Load"
 
 [node name="Quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_styles/hover = SubResource("StyleBoxFlat_28flt")
 action_mode = 0
+theme_override_styles/hover = SubResource("StyleBoxFlat_28flt")
 text = "Quit"
 
 [node name="LabelUser" type="Label" parent="."]
-modulate = Color(0.5, 0.9, 1, 0.8)
 layout_mode = 1
-anchors_preset = 6
+anchors_preset = 4
 anchor_left = 1.0
-anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 0.5
 offset_left = -160.0
 offset_top = 14.0
 offset_right = -14.0
 offset_bottom = 36.0
 grow_horizontal = 0
-grow_vertical = 2
+text = ""
 label_settings = SubResource("LabelSettings_user")
 horizontal_alignment = 2
+modulate = Color(0.5, 0.9, 1.0, 0.8)
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]

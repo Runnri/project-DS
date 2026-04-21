@@ -1,12 +1,9 @@
 extends Control
 
-# ==========================================
-# 1. PERSIAPAN NODE & VARIABEL
-# ==========================================
 @onready var vbox        = $VBoxContainer
 @onready var judul_game  = $Judul
 @onready var load_button = $VBoxContainer/LoadButton
-@onready var label_user  = $LabelUser   # Label kecil "Login sebagai: xxx"
+@onready var label_user  = $LabelUser
 
 var time: float = 0.0
 var base_vbox_y: float = 0.0
@@ -15,27 +12,18 @@ var timer_tunggu: float = 0.0
 var is_glitching: bool = false
 var durasi_glitch: float = 0.0
 
-# ==========================================
-# 2. READY
-# ==========================================
 func _ready():
 	base_vbox_y    = vbox.position.y
 	base_judul_pos = judul_game.position
 	timer_tunggu   = randf_range(2.0, 5.0)
-	_perbarui_ui_user()
 
-func _perbarui_ui_user():
-	# Tampilkan username jika sudah login
-	if label_user != null:
-		if Global.sudah_login():
-			label_user.text    = "[ " + Global.username_aktif + " ]"
-			label_user.visible = true
-		else:
-			label_user.visible = false
+	# Tampilkan nama user (pasti sudah login saat sampai di sini)
+	if label_user:
+		label_user.text = "[ " + Global.username_aktif + " ]"
 
-	# Tombol Load hanya aktif jika sudah login DAN ada save
-	if load_button != null:
-		if Global.sudah_login() and Global.ada_file_save():
+	# Tombol Load aktif hanya jika ada save untuk user ini
+	if load_button:
+		if Global.ada_file_save():
 			load_button.disabled = false
 			var info = Global.baca_info_save()
 			if info.size() > 0:
@@ -47,11 +35,8 @@ func _perbarui_ui_user():
 			load_button.disabled = true
 			load_button.tooltip_text = "Belum ada data tersimpan."
 
-# ==========================================
-# 3. PROCESS (animasi)
-# ==========================================
 func _process(delta):
-	time += delta * 1.0
+	time += delta
 	vbox.position.y = base_vbox_y + (sin(time) * 10.0)
 
 	if not is_glitching:
@@ -76,24 +61,11 @@ func stop_glitch():
 	judul_game.position = base_judul_pos
 	timer_tunggu        = randf_range(2.0, 6.0)
 
-# ==========================================
-# 4. TOMBOL
-# ==========================================
 func _on_start_button_pressed():
-	# Kalau belum login → ke Auth dulu, tujuan = start
-	# Kalau sudah login → langsung ke difficulty
-	if Global.sudah_login():
-		get_tree().change_scene_to_file("res://Scenes/difficulty.tscn")
-	else:
-		Global.auth_tujuan = "start"
-		get_tree().change_scene_to_file("res://Scenes/auth.tscn")
+	get_tree().change_scene_to_file("res://Scenes/difficulty.tscn")
 
 func _on_load_button_pressed():
-	if Global.sudah_login():
-		get_tree().change_scene_to_file("res://Scenes/load_game.tscn")
-	else:
-		Global.auth_tujuan = "load"
-		get_tree().change_scene_to_file("res://Scenes/auth.tscn")
+	get_tree().change_scene_to_file("res://Scenes/load_game.tscn")
 
 func _on_quit_button_pressed():
 	get_tree().quit()

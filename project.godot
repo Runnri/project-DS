@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Project:pcs"
-run/main_scene="uid://dn27lfn6eh8r6"
+run/main_scene="res://Scenes/auth.tscn"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 

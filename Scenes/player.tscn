@@ -51,7 +51,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"atas",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -71,7 +71,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"bawah",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -189,7 +189,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"kanan",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -209,7 +209,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"kiri",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -281,8 +281,7 @@ process_mode = 3
 position = Vector2(-6, -53.000004)
 scale = Vector2(8.38, 9.320001)
 sprite_frames = SubResource("SpriteFrames_tx1dd")
-animation = &"mati"
-frame_progress = 0.15506151
+animation = &"idle_bawah"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("23_bi64h")
