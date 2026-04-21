@@ -3,3 +3,12 @@ res://papan_sign.gd
 res://Scenes/checkpoint.tscn
 res://Scripts/papan_sign.tscn
 res://Scenes/papan_sign.tscn
+res://Scenes/player.tscn
+res://Scripts/player.gd
+res://Scripts/checkpoint.gd
+res://Scripts/auth.gd
+res://Scripts/main_menu.gd
+res://Scenes/difficulty.tscn
+res://Scenes/auth.tscn
+res://Scenes/main_menu.tscn
+res://Scenes/pause_menu.tscn

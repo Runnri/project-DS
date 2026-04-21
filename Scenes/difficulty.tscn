@@ -1,33 +1,105 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxxuduk0eo1l3"]
+[gd_scene load_steps=15 format=3 uid="uid://bxxuduk0eo1l3"]
 
 [ext_resource type="Script" uid="uid://bebkvxmpmtd71" path="res://Scripts/difficulty.gd" id="1_s0jdy"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ffxoj"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.66111434, 0.826612, 0.9336285, 1)
+[sub_resource type="LabelSettings" id="LS_sysinfo"]
+font_size = 10
+font_color = Color(0, 0.5, 0.45, 0.4)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s0jdy"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.86, 0.7338667, 0.387, 1)
+[sub_resource type="LabelSettings" id="LS_tag"]
+font_size = 10
+font_color = Color(0, 0.6, 0.55, 0.6)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hhimi"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.8, 0.264, 0.264, 1)
+[sub_resource type="LabelSettings" id="LS_judul"]
+font_size = 36
+font_color = Color(0, 0.95, 0.85, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_s0jdy"]
-font_size = 47
+[sub_resource type="StyleBoxFlat" id="SB_divider"]
+bg_color = Color(0, 0.7, 0.8, 0.18)
+
+[sub_resource type="StyleBoxFlat" id="SB_card_easy_normal"]
+content_margin_left = 18.0
+content_margin_top = 14.0
+content_margin_right = 18.0
+content_margin_bottom = 14.0
+bg_color = Color(0.02, 0.06, 0.05, 1)
+border_width_left = 2
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.1, 0.75, 0.5, 0.5)
+
+[sub_resource type="StyleBoxFlat" id="SB_card_easy_hover"]
+content_margin_left = 18.0
+content_margin_top = 14.0
+content_margin_right = 18.0
+content_margin_bottom = 14.0
+bg_color = Color(0.04, 0.12, 0.09, 1)
+border_width_left = 3
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.15, 1, 0.65, 0.95)
+
+[sub_resource type="LabelSettings" id="LS_easy"]
+font_size = 18
+font_color = Color(0.2, 1, 0.65, 1)
+
+[sub_resource type="StyleBoxFlat" id="SB_card_med_normal"]
+content_margin_left = 18.0
+content_margin_top = 14.0
+content_margin_right = 18.0
+content_margin_bottom = 14.0
+bg_color = Color(0.06, 0.05, 0.02, 1)
+border_width_left = 2
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.75, 0.6, 0.1, 0.5)
+
+[sub_resource type="StyleBoxFlat" id="SB_card_med_hover"]
+content_margin_left = 18.0
+content_margin_top = 14.0
+content_margin_right = 18.0
+content_margin_bottom = 14.0
+bg_color = Color(0.12, 0.1, 0.03, 1)
+border_width_left = 3
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.8, 0.1, 0.95)
+
+[sub_resource type="LabelSettings" id="LS_med"]
+font_size = 18
+font_color = Color(1, 0.82, 0.2, 1)
+
+[sub_resource type="StyleBoxFlat" id="SB_card_hard_normal"]
+content_margin_left = 18.0
+content_margin_top = 14.0
+content_margin_right = 18.0
+content_margin_bottom = 14.0
+bg_color = Color(0.06, 0.02, 0.02, 1)
+border_width_left = 2
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.75, 0.15, 0.1, 0.5)
+
+[sub_resource type="StyleBoxFlat" id="SB_card_hard_hover"]
+content_margin_left = 18.0
+content_margin_top = 14.0
+content_margin_right = 18.0
+content_margin_bottom = 14.0
+bg_color = Color(0.14, 0.04, 0.03, 1)
+border_width_left = 3
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.2, 0.15, 0.95)
+
+[sub_resource type="LabelSettings" id="LS_hard"]
+font_size = 18
+font_color = Color(1, 0.3, 0.25, 1)
 
 [node name="Difficulty" type="Control"]
 layout_mode = 3
@@ -38,59 +110,153 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_s0jdy")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="BG" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+color = Color(0.01, 0.01, 0.02, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="AccentLineV" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 220.0
+offset_right = 221.0
+offset_bottom = 600.0
+color = Color(0, 0.75, 0.85, 0.06)
+
+[node name="AccentLineH" type="ColorRect" parent="."]
+layout_mode = 0
+offset_top = 440.0
+offset_right = 1280.0
+offset_bottom = 441.0
+color = Color(0, 0.75, 0.85, 0.05)
+
+[node name="SysInfo" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -147.5
-offset_top = -50.5
-offset_right = 147.5
-offset_bottom = 50.5
+offset_left = 14.0
+offset_top = 10.0
+offset_right = 500.0
+offset_bottom = 24.0
+text = "PROJECT:DC  //  SELECT_DIFFICULTY_NODE
+SMKN2 Cimahi jaya"
+label_settings = SubResource("LS_sysinfo")
+
+[node name="TitleBlock" type="VBoxContainer" parent="."]
+layout_mode = 1
+offset_left = 80.0
+offset_top = 90.0
+offset_right = 700.0
+offset_bottom = 175.0
+theme_override_constants/separation = 5
+
+[node name="LabelTag" type="Label" parent="TitleBlock"]
+layout_mode = 2
+text = "> CHOOSE THREAT LEVEL"
+label_settings = SubResource("LS_tag")
+
+[node name="Judul" type="Label" parent="TitleBlock"]
+layout_mode = 2
+text = "DIFFICULTY"
+label_settings = SubResource("LS_judul")
+
+[node name="Divider" type="Panel" parent="."]
+layout_mode = 1
+offset_left = 80.0
+offset_top = 182.0
+offset_right = 500.0
+offset_bottom = 184.0
+theme_override_styles/panel = SubResource("SB_divider")
+
+[node name="CardsBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+offset_left = 80.0
+offset_top = 200.0
+offset_right = 520.0
+offset_bottom = 420.0
+theme_override_constants/separation = 10
+
+[node name="Easy" type="Button" parent="CardsBox"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_styles/normal = SubResource("SB_card_easy_normal")
+theme_override_styles/pressed = SubResource("SB_card_easy_hover")
+theme_override_styles/hover = SubResource("SB_card_easy_hover")
+action_mode = 0
+alignment = 0
+
+[node name="EasyLabel" type="Label" parent="CardsBox/Easy"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_right = -18.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Easy" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_styles/hover = SubResource("StyleBoxFlat_ffxoj")
-text = "Easy"
-
-[node name="Medium" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_styles/hover = SubResource("StyleBoxFlat_s0jdy")
-text = "Medium"
-
-[node name="Hard" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_styles/hover = SubResource("StyleBoxFlat_hhimi")
-text = "Hard"
-
-[node name="Judul" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -229.5
-offset_top = 230.0
-offset_right = 233.5
-offset_bottom = 313.0
-grow_horizontal = 2
-text = "Select your difficulty"
-label_settings = SubResource("LabelSettings_s0jdy")
-horizontal_alignment = 1
+text = "EASY      "
+label_settings = SubResource("LS_easy")
 vertical_alignment = 1
 
-[connection signal="pressed" from="VBoxContainer/Easy" to="." method="_on_easy_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Medium" to="." method="_on_medium_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Hard" to="." method="_on_hard_button_pressed"]
+[node name="Medium" type="Button" parent="CardsBox"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_styles/normal = SubResource("SB_card_med_normal")
+theme_override_styles/pressed = SubResource("SB_card_med_hover")
+theme_override_styles/hover = SubResource("SB_card_med_hover")
+action_mode = 0
+alignment = 0
+
+[node name="MedLabel" type="Label" parent="CardsBox/Medium"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_right = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "MEDIUM "
+label_settings = SubResource("LS_med")
+vertical_alignment = 1
+
+[node name="Hard" type="Button" parent="CardsBox"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_styles/normal = SubResource("SB_card_hard_normal")
+theme_override_styles/pressed = SubResource("SB_card_hard_hover")
+theme_override_styles/hover = SubResource("SB_card_hard_hover")
+action_mode = 0
+alignment = 0
+
+[node name="HardLabel" type="Label" parent="CardsBox/Hard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_right = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "HARD     "
+label_settings = SubResource("LS_hard")
+vertical_alignment = 1
+
+[node name="VersionLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = -20.0
+offset_right = 300.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "v0.9.1-alpha  //  RUN OR DELETED"
+label_settings = SubResource("LS_sysinfo")
+
+[connection signal="pressed" from="CardsBox/Easy" to="." method="_on_easy_button_pressed"]
+[connection signal="pressed" from="CardsBox/Medium" to="." method="_on_medium_button_pressed"]
+[connection signal="pressed" from="CardsBox/Hard" to="." method="_on_hard_button_pressed"]

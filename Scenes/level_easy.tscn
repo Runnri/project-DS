@@ -330,7 +330,7 @@ position = Vector2(5333.0005, 8495.001)
 position = Vector2(-184, 11295.001)
 
 [node name="Player" parent="." instance=ExtResource("1_3u8fx")]
-position = Vector2(-2859, 14275)
+position = Vector2(6219, 792)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
@@ -344,7 +344,7 @@ position = Vector2(648, 289)
 position = Vector2(5762, 794)
 
 [node name="item_senter3" parent="." instance=ExtResource("4_r5svf")]
-position = Vector2(-2630, 14296)
+position = Vector2(-855, 13523)
 
 [node name="tokenPintu" parent="." instance=ExtResource("6_3xkti")]
 position = Vector2(9637, 3026)

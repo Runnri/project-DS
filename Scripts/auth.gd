@@ -2,10 +2,13 @@ extends Control
 
 var mode: String = "login"
 
-@onready var label_judul    = $Panel/VBox/LabelJudul
+@onready var label_prompt  = $Panel/VBox/HeaderBox/LabelPrompt
+@onready var label_judul   = $Panel/VBox/HeaderBox/LabelJudul
 @onready var input_username = $Panel/VBox/InputUsername
 @onready var input_password = $Panel/VBox/InputPassword
-@onready var label_error    = $Panel/VBox/LabelError
+@onready var label_error   = $Panel/VBox/LabelError
+@onready var btn_aksi      = $Panel/VBox/BtnAksi
+@onready var btn_toggle    = $Panel/VBox/BtnToggle
 
 func _ready():
 	label_error.text = ""
@@ -19,13 +22,15 @@ func _set_mode(m: String):
 	input_password.text = ""
 
 	if mode == "login":
-		label_judul.text = "// LOGIN //"
-		$Panel/VBox/BtnAksi.text   = "MASUK"
-		$Panel/VBox/BtnToggle.text = "Belum punya akun? Register"
+		label_prompt.text  = "> IDENTIFYING USER..."
+		label_judul.text   = "ACCESS_TERMINAL"
+		btn_aksi.text      = "LOGIN"
+		btn_toggle.text    = "NO ACCOUNT?  REGISTER_NEW"
 	else:
-		label_judul.text = "// REGISTER //"
-		$Panel/VBox/BtnAksi.text   = "DAFTAR"
-		$Panel/VBox/BtnToggle.text = "Sudah punya akun? Login"
+		label_prompt.text  = "> CREATING NEW IDENTITY..."
+		label_judul.text   = "REGISTER_NODE"
+		btn_aksi.text      = "REGISTER"
+		btn_toggle.text    = "HAVE ACCOUNT?  LOGIN"
 
 func _on_btn_aksi_pressed():
 	var username = input_username.text
@@ -42,14 +47,14 @@ func _on_btn_aksi_pressed():
 		err_msg = Global.register(username, password)
 		if err_msg == "":
 			Global.login(username, password)
-			label_error.modulate = Color(0.3, 1.0, 0.5, 1)
-			label_error.text = "Akun berhasil dibuat! Masuk..."
+			label_error.add_theme_color_override("font_color", Color(0.2, 0.9, 0.5, 1.0))
+			label_error.text = "> IDENTITY COMMITTED. LOGGING IN..."
 			await get_tree().create_timer(1.0).timeout
 			get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
 	if err_msg != "":
-		label_error.modulate = Color(1.0, 0.3, 0.3, 1)
-		label_error.text = err_msg
+		label_error.add_theme_color_override("font_color", Color(0.95, 0.2, 0.2, 1.0))
+		label_error.text = "> ERR: " + err_msg.to_upper()
 
 func _on_btn_toggle_pressed():
 	if mode == "login":

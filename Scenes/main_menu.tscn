@@ -1,20 +1,69 @@
-[gd_scene load_steps=5 format=3 uid="uid://dn27lfn6eh8r6"]
+[gd_scene load_steps=13 format=3 uid="uid://dn27lfn6eh8r6"]
 
-[ext_resource type="Script" uid="uid://ccx6kq3asp2rg" path="res://Scripts/main_menu.gd" id="1_28flt"]
+[ext_resource type="Script" uid="uid://dcc2kaxiy6tc" path="res://Scripts/main_menu.gd" id="1_28flt"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_28flt"]
-font_size = 47
+[sub_resource type="LabelSettings" id="LS_sysinfo"]
+font_size = 10
+font_color = Color(0, 0.5, 0.45, 0.45)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28flt"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
+[sub_resource type="LabelSettings" id="LS_subtitle"]
+font_size = 11
+font_color = Color(0, 0.6, 0.55, 0.7)
+
+[sub_resource type="LabelSettings" id="LS_judul"]
+font_size = 52
+font_color = Color(0, 0.95, 0.85, 1)
+
+[sub_resource type="StyleBoxFlat" id="SB_divider"]
+bg_color = Color(0, 0.7, 0.8, 0.2)
+
+[sub_resource type="StyleBoxFlat" id="SB_btn_normal"]
+bg_color = Color(0, 0, 0, 0)
+border_width_bottom = 1
+border_color = Color(0, 0.6, 0.7, 0.4)
+
+[sub_resource type="StyleBoxFlat" id="SB_btn_pressed"]
+content_margin_left = 14.0
+bg_color = Color(0, 0.9, 1, 0.15)
 border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.74328566, 0.81006587, 0.87257004, 1)
+border_width_bottom = 1
+border_color = Color(0, 1, 1, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_user"]
-font_size = 13
+[sub_resource type="StyleBoxFlat" id="SB_btn_hover"]
+content_margin_left = 14.0
+bg_color = Color(0, 0.8, 0.9, 0.08)
+border_width_left = 1
+border_width_bottom = 1
+border_color = Color(0, 0.95, 1, 0.9)
+
+[sub_resource type="StyleBoxFlat" id="SB_btn_disabled"]
+bg_color = Color(0, 0, 0, 0)
+border_width_bottom = 1
+border_color = Color(0.3, 0.3, 0.3, 0.3)
+
+[sub_resource type="StyleBoxFlat" id="SB_user_badge"]
+content_margin_left = 8.0
+content_margin_top = 3.0
+content_margin_right = 8.0
+content_margin_bottom = 3.0
+bg_color = Color(0, 0.5, 0.45, 0.12)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.6, 0.55, 0.4)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="LabelSettings" id="LS_user"]
+font_size = 11
+font_color = Color(0, 0.8, 0.7, 0.7)
+
+[sub_resource type="LabelSettings" id="LS_version"]
+font_size = 9
+font_color = Color(0.2, 0.4, 0.38, 0.4)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -25,82 +74,166 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_28flt")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="BG" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 1.0
-offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0, 0, 0, 1)
+color = Color(0.01, 0.01, 0.02, 1)
 
-[node name="Judul" type="Label" parent="."]
+[node name="GridLines" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -165.5
-offset_top = 282.0
-offset_right = 169.5
-offset_bottom = 365.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
-text = "Run or deleted"
-label_settings = SubResource("LabelSettings_28flt")
-horizontal_alignment = 1
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0.6, 0.5, 0.02)
+
+[node name="AccentLineV" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 220.0
+offset_right = 221.0
+offset_bottom = 600.0
+color = Color(0, 0.75, 0.85, 0.07)
+
+[node name="AccentLineH" type="ColorRect" parent="."]
+layout_mode = 0
+offset_top = 440.0
+offset_right = 1280.0
+offset_bottom = 441.0
+color = Color(0, 0.75, 0.85, 0.06)
+
+[node name="SysInfo" type="Label" parent="."]
+layout_mode = 1
+offset_left = 14.0
+offset_top = 10.0
+offset_right = 500.0
+offset_bottom = 24.0
+text = "PROJECT:PCS  //  BUILD_0.9.1  //  NODE_MAINMENU"
+label_settings = SubResource("LS_sysinfo")
+
+[node name="TitleBlock" type="VBoxContainer" parent="."]
+layout_mode = 1
+offset_left = 80.0
+offset_top = 120.0
+offset_right = 700.0
+offset_bottom = 290.0
+theme_override_constants/separation = 6
+
+[node name="LabelTag" type="Label" parent="TitleBlock"]
+layout_mode = 2
+text = "> SYSTEM ONLINE"
+label_settings = SubResource("LS_subtitle")
+
+[node name="Judul" type="Label" parent="TitleBlock"]
+layout_mode = 2
+text = "RUN OR
+DELETED"
+label_settings = SubResource("LS_judul")
+
+[node name="LabelSub" type="Label" parent="TitleBlock"]
+layout_mode = 2
+text = "ESCAPE OR BE ERASED."
+label_settings = SubResource("LS_subtitle")
+
+[node name="MenuBlock" type="VBoxContainer" parent="."]
+layout_mode = 1
+offset_left = 80.0
+offset_top = 310.0
+offset_right = 380.0
+offset_bottom = 480.0
+theme_override_constants/separation = 2
+
+[node name="Divider" type="Panel" parent="MenuBlock"]
+custom_minimum_size = Vector2(160, 1)
+layout_mode = 2
+theme_override_styles/panel = SubResource("SB_divider")
+
+[node name="Start" type="Button" parent="MenuBlock"]
+custom_minimum_size = Vector2(220, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.95, 0.9, 0.9)
+theme_override_colors/font_hover_color = Color(0, 1, 0.95, 1)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("SB_btn_normal")
+theme_override_styles/pressed = SubResource("SB_btn_pressed")
+theme_override_styles/hover = SubResource("SB_btn_hover")
+action_mode = 0
+text = "NEW_GAME"
+alignment = 0
+
+[node name="LoadButton" type="Button" parent="MenuBlock"]
+custom_minimum_size = Vector2(220, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.95, 0.9, 0.9)
+theme_override_colors/font_hover_color = Color(0, 1, 0.95, 1)
+theme_override_colors/font_disabled_color = Color(0.3, 0.4, 0.38, 0.4)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("SB_btn_normal")
+theme_override_styles/pressed = SubResource("SB_btn_pressed")
+theme_override_styles/hover = SubResource("SB_btn_hover")
+theme_override_styles/disabled = SubResource("SB_btn_disabled")
+action_mode = 0
+text = "LOAD_SAVE"
+alignment = 0
+
+[node name="Quit" type="Button" parent="MenuBlock"]
+custom_minimum_size = Vector2(220, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.3, 0.3, 0.8)
+theme_override_colors/font_hover_color = Color(1, 0.35, 0.3, 1)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("SB_btn_normal")
+theme_override_styles/pressed = SubResource("SB_btn_pressed")
+theme_override_styles/hover = SubResource("SB_btn_hover")
+action_mode = 0
+text = "QUIT"
+alignment = 0
+
+[node name="LabelUser" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = 10.0
+offset_right = -12.0
+offset_bottom = 30.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("SB_user_badge")
+
+[node name="UserText" type="Label" parent="LabelUser"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LS_user")
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VersionLabel" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -137.5
-offset_top = 41.25
-offset_right = 137.5
-offset_bottom = 224.75
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = -20.0
+offset_right = 300.0
+offset_bottom = -4.0
 grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-alignment = 1
+grow_vertical = 0
+text = "v0.9.1-alpha  //  PROJECT:PCS"
+label_settings = SubResource("LS_version")
 
-[node name="Start" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-action_mode = 0
-theme_override_styles/hover = SubResource("StyleBoxFlat_28flt")
-text = "Start"
-
-[node name="LoadButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-action_mode = 0
-theme_override_styles/hover = SubResource("StyleBoxFlat_28flt")
-text = "Load"
-
-[node name="Quit" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-action_mode = 0
-theme_override_styles/hover = SubResource("StyleBoxFlat_28flt")
-text = "Quit"
-
-[node name="LabelUser" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 4
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -160.0
-offset_top = 14.0
-offset_right = -14.0
-offset_bottom = 36.0
-grow_horizontal = 0
-text = ""
-label_settings = SubResource("LabelSettings_user")
-horizontal_alignment = 2
-modulate = Color(0.5, 0.9, 1.0, 0.8)
-
-[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MenuBlock/Start" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MenuBlock/LoadButton" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="MenuBlock/Quit" to="." method="_on_quit_button_pressed"]

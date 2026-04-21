@@ -1,9 +1,9 @@
 extends Control
 
-@onready var vbox        = $VBoxContainer
-@onready var judul_game  = $Judul
-@onready var load_button = $VBoxContainer/LoadButton
-@onready var label_user  = $LabelUser
+@onready var vbox        = $MenuBlock
+@onready var judul_game  = $TitleBlock/Judul
+@onready var load_button = $MenuBlock/LoadButton
+@onready var user_text   = $LabelUser/UserText
 
 var time: float = 0.0
 var base_vbox_y: float = 0.0
@@ -17,27 +17,25 @@ func _ready():
 	base_judul_pos = judul_game.position
 	timer_tunggu   = randf_range(2.0, 5.0)
 
-	# Tampilkan nama user (pasti sudah login saat sampai di sini)
-	if label_user:
-		label_user.text = "[ " + Global.username_aktif + " ]"
+	if user_text:
+		user_text.text = "USER: " + Global.username_aktif.to_upper()
 
-	# Tombol Load aktif hanya jika ada save untuk user ini
 	if load_button:
 		if Global.ada_file_save():
 			load_button.disabled = false
 			var info = Global.baca_info_save()
 			if info.size() > 0:
-				var nama = info.get("level","?").get_file().replace(".tscn","").replace("_"," ").capitalize()
-				load_button.tooltip_text = "Level: " + nama + \
-					"\nKesulitan: " + info.get("kesulitan","?").capitalize() + \
-					"\nDisimpan: " + info.get("timestamp","?")
+				var nama = info.get("level","?").get_file().replace(".tscn","").replace("_"," ").to_upper()
+				load_button.tooltip_text = "LEVEL: " + nama + \
+					"\nDIFF: " + info.get("kesulitan","?").to_upper() + \
+					"\nSAVED: " + info.get("timestamp","?")
 		else:
 			load_button.disabled = true
-			load_button.tooltip_text = "Belum ada data tersimpan."
+			load_button.tooltip_text = "NO SAVE DATA FOUND."
 
 func _process(delta):
 	time += delta
-	vbox.position.y = base_vbox_y + (sin(time) * 10.0)
+	vbox.position.y = base_vbox_y + (sin(time) * 6.0)
 
 	if not is_glitching:
 		timer_tunggu -= delta
@@ -45,15 +43,15 @@ func _process(delta):
 			mulai_glitch()
 	else:
 		durasi_glitch -= delta
-		judul_game.position.x = base_judul_pos.x + randf_range(-8.0, 8.0)
-		judul_game.position.y = base_judul_pos.y + randf_range(-3.0, 3.0)
-		judul_game.visible    = randf() > 0.4
+		judul_game.position.x = base_judul_pos.x + randf_range(-6.0, 6.0)
+		judul_game.position.y = base_judul_pos.y + randf_range(-2.0, 2.0)
+		judul_game.visible    = randf() > 0.35
 		if durasi_glitch <= 0:
 			stop_glitch()
 
 func mulai_glitch():
 	is_glitching  = true
-	durasi_glitch = randf_range(0.1, 0.3)
+	durasi_glitch = randf_range(0.08, 0.25)
 
 func stop_glitch():
 	is_glitching       = false

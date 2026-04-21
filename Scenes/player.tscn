@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cu3rg6jpc4vf"]
+[gd_scene load_steps=39 format=3 uid="uid://cu3rg6jpc4vf"]
 
 [ext_resource type="Texture2D" uid="uid://beecudkqe1mxu" path="res://Assets/mc/slime_f1.png" id="1_fkybt"]
 [ext_resource type="Texture2D" uid="uid://drkfhfovd8nd8" path="res://Assets/mc/slime_atas-1.png.png" id="1_olqyp"]
@@ -27,6 +27,8 @@
 [ext_resource type="Texture2D" uid="uid://bkjyqu3b8ns4f" path="res://Assets/cmd.png" id="24_2ijsl"]
 [ext_resource type="Texture2D" uid="uid://d0um8gvjjtm2k" path="res://Assets/mc/slime_mati2.png.png" id="24_vfarp"]
 [ext_resource type="Texture2D" uid="uid://kxlwhgxhedms" path="res://Assets/data.png" id="27_vfarp"]
+[ext_resource type="Texture2D" uid="uid://cvob8q345qd4u" path="res://Assets/ornamen/slime_darahada.png.png" id="28_83xs0"]
+[ext_resource type="PackedScene" uid="uid://dia6gw47cgudn" path="res://Scenes/pause_menu.tscn" id="ext_pause_menu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8gxox"]
 size = Vector2(142, 110)
@@ -233,9 +235,10 @@ animations = [{
 }]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bi64h"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ijsl"]
-bg_color = Color(0.25996894, 0.6950768, 0.47315234, 1)
+bg_color = Color(0.07737034, 0.3459779, 0.5569969, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p1odr"]
 bg_color = Color(0.9999998, 0.09094224, 0.05946485, 1)
@@ -243,9 +246,6 @@ corner_radius_top_left = 200
 corner_radius_top_right = 200
 corner_radius_bottom_right = 200
 corner_radius_bottom_left = 200
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0gysh"]
-bg_color = Color(0.9607843, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_vfarp"]
 font_size = 22
@@ -276,6 +276,8 @@ script = ExtResource("1_wpjfl")
 position = Vector2(-6, 6)
 shape = SubResource("RectangleShape2D_8gxox")
 
+[node name="PauseMenu" parent="." instance=ExtResource("ext_pause_menu")]
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 process_mode = 3
 position = Vector2(-6, -53.000004)
@@ -290,10 +292,13 @@ script = ExtResource("23_bi64h")
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
 custom_minimum_size = Vector2(200, 50)
-offset_left = 14.0
-offset_top = 53.0
-offset_right = 214.0
-offset_bottom = 103.0
+anchors_preset = -1
+anchor_right = 0.040798612
+offset_left = 37.0
+offset_top = 382.0
+offset_right = 237.0
+offset_bottom = 432.0
+rotation = -1.5707964
 size_flags_horizontal = 4
 theme_override_styles/background = SubResource("StyleBoxFlat_bi64h")
 theme_override_styles/fill = SubResource("StyleBoxFlat_2ijsl")
@@ -301,10 +306,10 @@ show_percentage = false
 metadata/_edit_use_anchors_ = true
 
 [node name="IconCMD" type="TextureButton" parent="CanvasLayer"]
-offset_left = 229.99998
-offset_top = 29.00001
-offset_right = 742.0
-offset_bottom = 541.0
+offset_left = 126.0
+offset_top = 81.999985
+offset_right = 638.0
+offset_bottom = 594.0
 scale = Vector2(0.2, 0.2)
 texture_normal = ExtResource("24_2ijsl")
 metadata/_edit_use_anchors_ = true
@@ -343,18 +348,11 @@ grow_vertical = 2
 
 [node name="LineEdit" type="LineEdit" parent="CanvasLayer/CMD"]
 layout_mode = 0
-offset_left = 3.0
-offset_top = 470.0
-offset_right = 1144.0
-offset_bottom = 501.0
+offset_left = 2.0
+offset_top = 540.0
+offset_right = 1143.0
+offset_bottom = 571.0
 placeholder_text = "masukan perntah"
-
-[node name="HpBar" type="ProgressBar" parent="CanvasLayer"]
-offset_left = 15.0
-offset_top = 12.0
-offset_right = 331.0
-offset_bottom = 39.0
-theme_override_styles/fill = SubResource("StyleBoxFlat_0gysh")
 
 [node name="LevelNotif" type="Label" parent="CanvasLayer"]
 modulate = Color(1, 1, 1, 0)
@@ -362,16 +360,40 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -293.0
-offset_top = -471.0
-offset_right = 303.0
-offset_bottom = -344.0
+offset_left = -370.0
+offset_top = -466.0
+offset_right = 226.0
+offset_bottom = -339.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
 label_settings = SubResource("LabelSettings_vfarp")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="NyawaContainer" type="HBoxContainer" parent="CanvasLayer"]
+offset_left = 8.0
+offset_top = 4.0
+offset_right = 343.0
+offset_bottom = 113.0
+
+[node name="Nyawa1" type="TextureRect" parent="CanvasLayer/NyawaContainer"]
+layout_mode = 2
+texture = ExtResource("28_83xs0")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Nyawa2" type="TextureRect" parent="CanvasLayer/NyawaContainer"]
+layout_mode = 2
+texture = ExtResource("28_83xs0")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Nyawa3" type="TextureRect" parent="CanvasLayer/NyawaContainer"]
+layout_mode = 2
+texture = ExtResource("28_83xs0")
+expand_mode = 3
+stretch_mode = 5
 
 [node name="SenterPlayer" type="PointLight2D" parent="."]
 visible = false

@@ -6,17 +6,25 @@ extends CharacterBody2D
 @export var speed: float = 200.0
 @export var sprint_speed: float = 350.0
 @export var max_stamina: float = 100.0
-@export var max_hp: int = 100
+@export var max_hp: int = 100        # Tetap ada untuk kompatibilitas save/load
 @export var max_inventory: int = 3
+@export var img_darah_ada: Texture2D = preload("res://Assets/ornamen/slime_darahada.png.png")
+@export var img_darah_kosong: Texture2D = preload("res://Assets/ornamen/slime_darahkosong.png.png")
 @onready var item_di_tangan = $ItemDiTangan
 
 # ==========================================
-# 2. STATUS PLAYER (Berubah saat bermain)
+# 2. STATUS PLAYER
 # ==========================================
 var stamina: float = max_stamina
 var stamina_drain: float = 40.0
 var stamina_regen: float = 20.0
-var hp: int = max_hp
+var hp: int = max_hp                 # Tetap ada untuk kompatibilitas save/load
+
+# --- SISTEM 3 NYAWA ---
+const MAX_NYAWA: int = 3
+var nyawa: int = MAX_NYAWA           # Nyawa saat ini (1–3)
+var spawn_awal: Vector2              # Posisi spawn PALING AWAL (tidak pernah berubah)
+
 var is_dead: bool = false
 var spawn_point: Vector2
 var inventory: Array = []
@@ -25,17 +33,24 @@ var arah_terakhir: String = "bawah"
 # ==========================================
 # 3. KONEKSI KE NODE (UI & Sensor)
 # ==========================================
-@onready var sprite       = $AnimatedSprite2D
-@onready var stamina_bar  = $CanvasLayer/ProgressBar
-@onready var hp_bar       = $CanvasLayer/HpBar
-@onready var terminal     = $CanvasLayer/CMD
-@onready var input_cmd    = $CanvasLayer/CMD/LineEdit
-@onready var notif_dot    = $CanvasLayer/IconCMD/NotifDot
-@onready var log_teks     = $CanvasLayer/CMD/LogTeks
+@onready var sprite        = $AnimatedSprite2D
+@onready var stamina_bar   = $CanvasLayer/ProgressBar
+@onready var terminal      = $CanvasLayer/CMD
+@onready var input_cmd     = $CanvasLayer/CMD/LineEdit
+@onready var notif_dot     = $CanvasLayer/IconCMD/NotifDot
+@onready var log_teks      = $CanvasLayer/CMD/LogTeks
 @onready var senter_player = $SenterPlayer
 @onready var interact_box  = $InteractBox
 @onready var prompt_f      = $F
 @onready var level_notif   = $CanvasLayer/LevelNotif
+@onready var nyawa_container = $CanvasLayer/NyawaContainer
+
+# Node nyawa (3 lingkaran)
+@onready var nyawa_nodes: Array = [
+	$CanvasLayer/NyawaContainer/Nyawa1,
+	$CanvasLayer/NyawaContainer/Nyawa2,
+	$CanvasLayer/NyawaContainer/Nyawa3,
+]
 
 # ==========================================
 # 4. DATABASE TERMINAL (Daftar Perintah)
@@ -52,34 +67,29 @@ var item_descriptions = {
 # 5. FUNGSI UTAMA
 # ==========================================
 func _ready():
-	# Player tidak ikut membeku saat game di-pause
 	self.process_mode = Node.PROCESS_MODE_ALWAYS
-
-	# Tambahkan ke group agar trigger_level.gd bisa mengenali player
 	add_to_group("player")
 
-	# Simpan posisi awal sebagai spawn point default
+	# Simpan posisi awal SEKALI — tidak pernah diubah checkpoint
+	spawn_awal  = global_position
 	spawn_point = global_position
 
-	# Setup awal UI Stamina & HP
+	# Setup stamina bar
 	if stamina_bar:
 		stamina_bar.max_value = max_stamina
 		stamina_bar.value = stamina
-	if hp_bar:
-		hp_bar.max_value = max_hp
-		hp_bar.value = hp
+
+	# Tampilkan nyawa awal (semua menyala)
+	_update_ui_nyawa()
 
 	terminal.hide()
 	notif_dot.hide()
 	senter_player.enabled = false
 	prompt_f.hide()
 
-	# Hubungkan tombol Enter ke fungsi CMD
 	if not input_cmd.text_submitted.is_connected(_on_cmd_submitted):
 		input_cmd.text_submitted.connect(_on_cmd_submitted)
 
-	# === FITUR LOAD GAME ===
-	# Jika pemain memilih "Load Game" dari menu, terapkan data save ke player ini
 	if Global.sedang_load:
 		Global.muat_game(self)
 
@@ -89,10 +99,8 @@ func _ready():
 func _physics_process(delta):
 	if is_dead:
 		return
-
 	if get_tree().paused:
 		return
-
 	if terminal.visible:
 		velocity = Vector2.ZERO
 		sprite.play("idle_" + arah_terakhir)
@@ -104,7 +112,6 @@ func _physics_process(delta):
 	if Input.is_physical_key_pressed(KEY_S) or Input.is_action_pressed("ui_down"):  direction.y += 1
 	if Input.is_physical_key_pressed(KEY_A) or Input.is_action_pressed("ui_left"):  direction.x -= 1
 	if Input.is_physical_key_pressed(KEY_D) or Input.is_action_pressed("ui_right"): direction.x += 1
-
 	direction = direction.normalized()
 
 	var current_speed = speed
@@ -134,20 +141,16 @@ func _physics_process(delta):
 	_update_interaction_prompt()
 
 # ==========================================
-# 7. INPUT (Deteksi Tombol Keyboard)
+# 7. INPUT
 # ==========================================
 func _input(event):
 	if is_dead:
 		return
 
-	# BUKA/TUTUP TERMINAL (TAB)
 	if event is InputEventKey and event.pressed and event.keycode == KEY_TAB:
-		
-		# Cegah pemain buka CMD kalau lagi di tengah tutorial "gerak"
 		var layar_tutor = get_tree().current_scene.get_node_or_null("TutorialUI")
 		if layar_tutor and layar_tutor.tutorial_aktif == "gerak":
 			return
-			
 		if terminal.visible:
 			terminal.hide()
 			input_cmd.release_focus()
@@ -160,12 +163,9 @@ func _input(event):
 			get_tree().paused = true
 		get_viewport().set_input_as_handled()
 
-	# INTERAKSI (F)
 	if event is InputEventKey and event.pressed and event.keycode == KEY_F and not terminal.visible:
-		# Jangan bisa interaksi kalau game lagi pause!
-		if get_tree().paused: 
-			return 
-			
+		if get_tree().paused:
+			return
 		var benda_sekitar = interact_box.get_overlapping_areas()
 		for benda in benda_sekitar:
 			if benda.has_method("interaksi"):
@@ -173,25 +173,49 @@ func _input(event):
 				break
 
 # ==========================================
-# 8. SISTEM KESEHATAN
+# 8. SISTEM NYAWA (3 LIVES)
 # ==========================================
+
+# Update tampilan 3 lingkaran berdasarkan nyawa sekarang
+func _update_ui_nyawa():
+	if not nyawa_container: return
+	
+	var list_nyawa = nyawa_container.get_children()
+	for i in range(list_nyawa.size()):
+		# Jika index kurang dari jumlah nyawa sekarang, pakai gambar 'ada'
+		if i < nyawa:
+			list_nyawa[i].texture = img_darah_ada
+		# Jika sudah berkurang, ganti ke gambar 'kosong'
+		else:
+			list_nyawa[i].texture = img_darah_kosong
+
+func _buat_stylebox_nyawa(isi: bool) -> StyleBoxFlat:
+	var sb = StyleBoxFlat.new()
+	sb.corner_radius_top_left    = 100
+	sb.corner_radius_top_right   = 100
+	sb.corner_radius_bottom_right = 100
+	sb.corner_radius_bottom_left  = 100
+	if isi:
+		sb.bg_color = Color(0.9, 0.1, 0.1, 1.0)
+	else:
+		sb.bg_color = Color(0.2, 0.2, 0.2, 0.7)
+		sb.border_width_left   = 1
+		sb.border_width_top    = 1
+		sb.border_width_right  = 1
+		sb.border_width_bottom = 1
+		sb.border_color = Color(0.5, 0.5, 0.5, 0.5)
+	return sb
+
+# Dipanggil oleh guard, obstacle, atau apapun yang menyakiti player
 func terima_damage(jumlah: int):
 	if is_dead:
 		return
-
-	hp -= jumlah
-	hp = max(hp, 0)  # Cegah HP minus
-
-	if hp_bar:
-		hp_bar.value = hp
-
-	if log_teks:
-		log_teks.text += "\n[WARNING]: System Damaged! HP: " + str(hp)
-
-	if hp <= 0:
-		mati()
+	# Untuk kompatibilitas, jumlah damage besar = langsung mati 1 nyawa
+	mati()
 
 func mati():
+	if is_dead:
+		return
 	is_dead = true
 	velocity = Vector2.ZERO
 	get_tree().paused = true
@@ -206,39 +230,65 @@ func mati():
 		if log_teks:
 			log_teks.text += "\n[Error]: Animation 'mati' not found."
 
-	if log_teks:
-		log_teks.text += "\n[FATAL ERROR]: System Purged. Rebooting..."
+	# Kurangi 1 nyawa
+	nyawa -= 1
+	nyawa = max(nyawa, 0)
+	_update_ui_nyawa()
 
-	# Timer tetap jalan saat pause (parameter kedua = true)
+	if log_teks:
+		log_teks.text += "\n[FATAL ERROR]: System Purged. Nyawa tersisa: " + str(nyawa)
+
 	await get_tree().create_timer(1.0, true).timeout
 
-	respawn()
+	if nyawa <= 0:
+		# Semua nyawa habis → reset ke spawn PALING AWAL
+		_game_over()
+	else:
+		# Masih ada nyawa → respawn di checkpoint terakhir
+		respawn()
 
 func respawn():
+	# Kembali ke checkpoint terakhir (spawn_point), BUKAN spawn awal
 	global_position = spawn_point
-
-	hp = max_hp
-	if hp_bar:
-		hp_bar.value = hp
-
 	stamina = max_stamina
 	if stamina_bar:
 		stamina_bar.value = stamina
-
 	is_dead = false
 	sprite.play("idle_" + arah_terakhir)
 	get_tree().paused = false
-
 	if log_teks:
 		log_teks.text += "\n[SYSTEM]: Reboot Successful. Cache restored."
 
+func _game_over():
+	# Semua nyawa habis → kembali ke spawn PALING AWAL dan reset nyawa
+	nyawa = MAX_NYAWA
+	_update_ui_nyawa()
+	global_position = spawn_awal
+	spawn_point = spawn_awal
+	# Reset semua checkpoint agar bisa disentuh ulang setelah game over
+	_reset_semua_checkpoint()
+	stamina = max_stamina
+	if stamina_bar:
+		stamina_bar.value = stamina
+	is_dead = false
+	sprite.play("idle_" + arah_terakhir)
+	get_tree().paused = false
+	if log_teks:
+		log_teks.text += "\n[SYSTEM]: All lives lost. Returning to origin..."
+
+func _reset_semua_checkpoint():
+	for cp in get_tree().get_nodes_in_group("checkpoint"):
+		if cp.has_method("reset_checkpoint"):
+			cp.reset_checkpoint()
+
 func update_checkpoint(posisi_baru: Vector2):
+	# Hanya update spawn_point (checkpoint), spawn_awal tidak berubah
 	spawn_point = posisi_baru
 	if log_teks:
 		log_teks.text += "\n[SYSTEM]: Sector recovery complete. New checkpoint cached."
 
 # ==========================================
-# 9. FUNGSI PENDUKUNG (Animasi, Interaksi, Item)
+# 9. FUNGSI PENDUKUNG
 # ==========================================
 func update_animation(dir: Vector2):
 	if abs(dir.x) > abs(dir.y):
@@ -280,7 +330,7 @@ func hapus_item(nama_barang: String):
 			log_teks.text += "\n[SYSTEM]: Item '" + nama + "' telah digunakan."
 
 # ==========================================
-# 10. TERMINAL: LOGIKA KETIKAN
+# 10. TERMINAL
 # ==========================================
 func _on_cmd_submitted(new_text: String):
 	var cmd = new_text.to_lower().strip_edges()
@@ -314,9 +364,8 @@ func _on_cmd_submitted(new_text: String):
 			"clear":
 				log_teks.text = "------"
 			"killme":
-				terima_damage(max_hp)
+				mati()
 	else:
-		# Auto-correction Typo (Levenshtein)
 		var best_match = ""
 		var min_dist = 999
 		for v_cmd in valid_commands:
@@ -324,7 +373,6 @@ func _on_cmd_submitted(new_text: String):
 			if dist < min_dist:
 				min_dist = dist
 				best_match = v_cmd
-
 		if min_dist <= 3:
 			log_teks.text += "\n[Error]: Perintah tidak ditemukan. Maksud kamu '" + best_match + "'?"
 		else:
@@ -351,17 +399,19 @@ func _handle_use_command(target: String):
 				log_teks.text += "\n[Error]: File 'tokenkey' tidak ada di inventory."
 		"medkit":
 			if "medkit" in inventory:
-				var hp_sebelum = hp
-				hp = min(hp + 50, max_hp)
-				hapus_item("medkit")
-				if hp_bar: hp_bar.value = hp
-				log_teks.text += "\n[System]: Medkit digunakan. HP: " + str(hp_sebelum) + " -> " + str(hp)
+				# Medkit sekarang memulihkan 1 nyawa jika tidak full
+				if nyawa < MAX_NYAWA:
+					nyawa += 1
+					_update_ui_nyawa()
+					hapus_item("medkit")
+					log_teks.text += "\n[System]: Medkit digunakan. Nyawa +1 (" + str(nyawa) + "/" + str(MAX_NYAWA) + ")"
+				else:
+					log_teks.text += "\n[System]: Nyawa sudah penuh!"
 			else:
 				log_teks.text += "\n[Error]: Item 'medkit' tidak ada di inventory."
 		"scanner":
 			if "scanner" in inventory:
 				log_teks.text += "\n[System]: Scanner aktif. Memindai area sekitar..."
-				# TODO: implementasi efek scan
 			else:
 				log_teks.text += "\n[Error]: Item 'scanner' tidak ada di inventory."
 		_:
@@ -384,7 +434,7 @@ func _levenshtein_distance(s1: String, s2: String) -> int:
 	return d[m][n]
 
 # ==========================================
-# 11. NOTIFIKASI LEVEL (FADE IN/OUT)
+# 11. NOTIFIKASI LEVEL
 # ==========================================
 func tampilkan_notif_level(pesan: String):
 	if level_notif:

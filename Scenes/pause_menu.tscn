@@ -1,0 +1,143 @@
+[gd_scene load_steps=11 format=3 uid="uid://dia6gw47cgudn"]
+
+[ext_resource type="Script" uid="uid://ffvs6gyqclve" path="res://Scripts/pause_menu.gd" id="1_pause"]
+
+[sub_resource type="StyleBoxFlat" id="SB_overlay"]
+bg_color = Color(0, 0, 0, 0.75)
+
+[sub_resource type="StyleBoxFlat" id="SB_panel"]
+bg_color = Color(0.02, 0.02, 0.04, 0.97)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.7, 0.8, 0.4)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="LabelSettings" id="LS_tag"]
+font_size = 10
+font_color = Color(0, 0.55, 0.5, 0.55)
+
+[sub_resource type="LabelSettings" id="LS_paused"]
+font_size = 26
+font_color = Color(0, 0.92, 0.82, 1)
+
+[sub_resource type="StyleBoxFlat" id="SB_resume_normal"]
+bg_color = Color(0, 0, 0, 0)
+border_width_bottom = 1
+border_color = Color(0, 0.65, 0.7, 0.4)
+
+[sub_resource type="StyleBoxFlat" id="SB_resume_hover"]
+content_margin_left = 10.0
+bg_color = Color(0, 0.8, 0.9, 0.1)
+border_width_left = 2
+border_width_bottom = 1
+border_color = Color(0, 1, 0.95, 0.9)
+
+[sub_resource type="StyleBoxFlat" id="SB_quit_normal"]
+bg_color = Color(0, 0, 0, 0)
+border_width_bottom = 1
+border_color = Color(0.6, 0.15, 0.1, 0.4)
+
+[sub_resource type="StyleBoxFlat" id="SB_quit_hover"]
+content_margin_left = 10.0
+bg_color = Color(0.9, 0.15, 0.1, 0.1)
+border_width_left = 2
+border_width_bottom = 1
+border_color = Color(1, 0.25, 0.2, 0.9)
+
+[sub_resource type="LabelSettings" id="LS_divider_label"]
+font_size = 9
+font_color = Color(0, 0.45, 0.4, 0.35)
+
+[node name="PauseMenu" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_pause")
+
+[node name="Overlay" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("SB_overlay")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -120.0
+offset_right = 160.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("SB_panel")
+
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 26.0
+offset_top = 26.0
+offset_right = -26.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="Tag" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+text = "> PROCESS_SUSPENDED"
+label_settings = SubResource("LS_tag")
+
+[node name="LabelPaused" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+text = "PAUSED"
+label_settings = SubResource("LS_paused")
+
+[node name="Spacer" type="Control" parent="Panel/VBox"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="BtnResume" type="Button" parent="Panel/VBox"]
+custom_minimum_size = Vector2(0, 38)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.97, 0.92, 0.9)
+theme_override_colors/font_hover_color = Color(0, 1, 0.95, 1)
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("SB_resume_normal")
+theme_override_styles/pressed = SubResource("SB_resume_hover")
+theme_override_styles/hover = SubResource("SB_resume_hover")
+action_mode = 0
+text = "RESUME"
+alignment = 0
+
+[node name="BtnQuitMenu" type="Button" parent="Panel/VBox"]
+custom_minimum_size = Vector2(0, 38)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.4, 0.35, 0.85)
+theme_override_colors/font_hover_color = Color(1, 0.3, 0.25, 1)
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("SB_quit_normal")
+theme_override_styles/pressed = SubResource("SB_quit_hover")
+theme_override_styles/hover = SubResource("SB_quit_hover")
+action_mode = 0
+text = "QUIT TO MENU"
+alignment = 0
+
+[node name="EscHint" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+text = "[ ESC ] TOGGLE"
+label_settings = SubResource("LS_divider_label")
+horizontal_alignment = 2
+
+[connection signal="pressed" from="Panel/VBox/BtnResume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Panel/VBox/BtnQuitMenu" to="." method="_on_quit_to_menu_pressed"]
