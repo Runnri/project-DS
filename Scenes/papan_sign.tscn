@@ -21,10 +21,10 @@ position = Vector2(5, 4)
 shape = SubResource("RectangleShape2D_gtpys")
 
 [node name="Label" type="Label" parent="."]
-offset_left = -22.0
-offset_top = -40.0
-offset_right = 18.0
-offset_bottom = -17.0
+offset_left = -116.25
+offset_top = -44.75
+offset_right = -76.25
+offset_bottom = -21.75
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

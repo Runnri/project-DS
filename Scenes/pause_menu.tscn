@@ -55,6 +55,7 @@ font_color = Color(0, 0.45, 0.4, 0.35)
 
 [node name="PauseMenu" type="CanvasLayer"]
 layer = 10
+visible = false
 script = ExtResource("1_pause")
 
 [node name="Overlay" type="Panel" parent="."]

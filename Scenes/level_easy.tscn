@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://bq1aj7gsmv3tt"]
+[gd_scene load_steps=20 format=4 uid="uid://bq1aj7gsmv3tt"]
 
 [ext_resource type="PackedScene" uid="uid://cu3rg6jpc4vf" path="res://Scenes/player.tscn" id="1_3u8fx"]
 [ext_resource type="Texture2D" uid="uid://w0l6ih0qnuju" path="res://Assets/map/tilesett.png" id="1_iy4cr"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://dpmshn8ad85ey" path="res://Scripts/tutorial_ui.gd" id="12_kxy8a"]
 [ext_resource type="PackedScene" uid="uid://dndru2s5nxilm" path="res://Scenes/trigger_tutorial.tscn" id="13_hoff1"]
 [ext_resource type="PackedScene" uid="uid://dvj0g44g442d3" path="res://Scenes/papan_sign.tscn" id="14_opnub"]
+[ext_resource type="PackedScene" uid="uid://ct05ojhl5pf63" path="res://Scenes/jalur_serangga.tscn" id="15_sncc4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t3aic"]
 texture = ExtResource("1_iy4cr")
@@ -330,7 +331,7 @@ position = Vector2(5333.0005, 8495.001)
 position = Vector2(-184, 11295.001)
 
 [node name="Player" parent="." instance=ExtResource("1_3u8fx")]
-position = Vector2(6219, 792)
+position = Vector2(-1946, 14149)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
@@ -611,8 +612,6 @@ jenis_tutorial = "f"
 
 [node name="PapanSign" parent="." instance=ExtResource("14_opnub")]
 position = Vector2(-2665, 14309)
-isi_pesan = "dasdsadsadadadad"
+isi_pesan = "masukan code 4 nomor untuk membuka pintu!"
 
-[node name="PapanSign2" parent="." instance=ExtResource("14_opnub")]
-position = Vector2(-2502, 14309)
-isi_pesan = "11111111111"
+[node name="JalurSerangga" parent="." instance=ExtResource("15_sncc4")]

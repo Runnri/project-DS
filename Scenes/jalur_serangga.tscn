@@ -1,0 +1,113 @@
+[gd_scene load_steps=17 format=3 uid="uid://ct05ojhl5pf63"]
+
+[ext_resource type="Texture2D" uid="uid://bigc7a4jxlqk1" path="res://Assets/villain/Dragonfly Sprite Sheet.png" id="1_w2y1h"]
+[ext_resource type="Script" uid="uid://bio6a77newvyu" path="res://Scripts/serangga.gd" id="2_8pmcg"]
+[ext_resource type="Texture2D" uid="uid://buenyphsmruac" path="res://Assets/villain/Dragonfly kiri.png" id="2_36jjs"]
+
+[sub_resource type="Curve2D" id="Curve2D_36jjs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8pmcg"]
+atlas = ExtResource("1_w2y1h")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1coc8"]
+atlas = ExtResource("1_w2y1h")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wi8x4"]
+atlas = ExtResource("1_w2y1h")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxqod"]
+atlas = ExtResource("1_w2y1h")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfrbk"]
+atlas = ExtResource("1_w2y1h")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8v1e"]
+atlas = ExtResource("2_36jjs")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x0vmo"]
+atlas = ExtResource("2_36jjs")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_byu8s"]
+atlas = ExtResource("2_36jjs")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4jxr"]
+atlas = ExtResource("2_36jjs")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_igs15"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8pmcg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1coc8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wi8x4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wxqod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qfrbk")
+}],
+"loop": true,
+"name": &"serangga_kanan",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c8v1e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x0vmo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_byu8s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4jxr")
+}],
+"loop": true,
+"name": &"serangga_kiri",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yxwpc"]
+radius = 6.731456
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w1114"]
+radius = 171.40594
+
+[node name="JalurSerangga" type="Path2D"]
+scale = Vector2(4, 4)
+curve = SubResource("Curve2D_36jjs")
+
+[node name="Follower" type="PathFollow2D" parent="."]
+position = Vector2(0, -23.5)
+
+[node name="Serangga" type="Area2D" parent="."]
+script = ExtResource("2_8pmcg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Serangga"]
+sprite_frames = SubResource("SpriteFrames_igs15")
+animation = &"serangga_kiri"
+frame_progress = 0.31938446
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Serangga"]
+position = Vector2(0, 2.75)
+shape = SubResource("CircleShape2D_yxwpc")
+
+[node name="ZonaDeteksi" type="Area2D" parent="Serangga"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Serangga/ZonaDeteksi"]
+shape = SubResource("CircleShape2D_w1114")

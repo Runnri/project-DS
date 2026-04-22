@@ -14,3 +14,7 @@ res://Scenes/main_menu.tscn
 res://Scenes/pause_menu.tscn
 res://Scenes/splash_screen.tscn
 res://Scenes/splash_screen.gd
+res://Scenes/serangga.tscn
+res://Scenes/serangga.gd
+res://Scripts/serangga.gd
+res://Scenes/jalur_serangga.tscn
