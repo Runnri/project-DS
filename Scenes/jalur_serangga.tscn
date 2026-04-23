@@ -4,8 +4,6 @@
 [ext_resource type="Script" uid="uid://bio6a77newvyu" path="res://Scripts/serangga.gd" id="2_8pmcg"]
 [ext_resource type="Texture2D" uid="uid://buenyphsmruac" path="res://Assets/villain/Dragonfly kiri.png" id="2_36jjs"]
 
-[sub_resource type="Curve2D" id="Curve2D_36jjs"]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_8pmcg"]
 atlas = ExtResource("1_w2y1h")
 region = Rect2(0, 0, 32, 32)
@@ -86,28 +84,58 @@ animations = [{
 radius = 6.731456
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w1114"]
-radius = 171.40594
+radius = 200.0
 
-[node name="JalurSerangga" type="Path2D"]
-scale = Vector2(4, 4)
-curve = SubResource("Curve2D_36jjs")
+# ============================================================
+# NODE ROOT — wadah untuk dua serangga silang
+# ============================================================
+[node name="JalurSerangga" type="Node2D"]
 
-[node name="Follower" type="PathFollow2D" parent="."]
-position = Vector2(0, -23.5)
-
-[node name="Serangga" type="Area2D" parent="."]
+# ---- SERANGGA 1: bergerak kiri → kanan ----
+# titik_a = pojok kiri, titik_b = pojok kanan (relatif terhadap posisi JalurSerangga di level)
+# Nilai titik_a/b akan di-override dari Inspector ketika di-place di level
+[node name="Serangga1" type="Area2D" parent="."]
 script = ExtResource("2_8pmcg")
+titik_a = Vector2(-300, 0)
+titik_b = Vector2(300, 0)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Serangga"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Serangga1"]
+scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_igs15")
-animation = &"serangga_kiri"
-frame_progress = 0.31938446
+animation = &"serangga_kanan"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Serangga"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Serangga1"]
 position = Vector2(0, 2.75)
 shape = SubResource("CircleShape2D_yxwpc")
 
-[node name="ZonaDeteksi" type="Area2D" parent="Serangga"]
+[node name="ZonaDeteksi" type="Area2D" parent="Serangga1"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Serangga/ZonaDeteksi"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Serangga1/ZonaDeteksi"]
 shape = SubResource("CircleShape2D_w1114")
+
+# ---- SERANGGA 2: bergerak kanan → kiri (titik_a & b dibalik, mulai dari B) ----
+[node name="Serangga2" type="Area2D" parent="."]
+script = ExtResource("2_8pmcg")
+titik_a = Vector2(300, 60)
+titik_b = Vector2(-300, 60)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Serangga2"]
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_igs15")
+animation = &"serangga_kiri"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Serangga2"]
+position = Vector2(0, 2.75)
+shape = SubResource("CircleShape2D_yxwpc")
+
+[node name="ZonaDeteksi" type="Area2D" parent="Serangga2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Serangga2/ZonaDeteksi"]
+shape = SubResource("CircleShape2D_w1114")
+
+[connection signal="body_entered" from="Serangga1/ZonaDeteksi" to="Serangga1" method="_on_zona_deteksi_body_entered"]
+[connection signal="body_exited" from="Serangga1/ZonaDeteksi" to="Serangga1" method="_on_zona_deteksi_body_exited"]
+[connection signal="body_entered" from="Serangga1" to="Serangga1" method="_on_body_entered"]
+[connection signal="body_entered" from="Serangga2/ZonaDeteksi" to="Serangga2" method="_on_zona_deteksi_body_entered"]
+[connection signal="body_exited" from="Serangga2/ZonaDeteksi" to="Serangga2" method="_on_zona_deteksi_body_exited"]
+[connection signal="body_entered" from="Serangga2" to="Serangga2" method="_on_body_entered"]

@@ -331,7 +331,7 @@ position = Vector2(5333.0005, 8495.001)
 position = Vector2(-184, 11295.001)
 
 [node name="Player" parent="." instance=ExtResource("1_3u8fx")]
-position = Vector2(-1946, 14149)
+position = Vector2(0, 444)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
@@ -615,3 +615,6 @@ position = Vector2(-2665, 14309)
 isi_pesan = "masukan code 4 nomor untuk membuka pintu!"
 
 [node name="JalurSerangga" parent="." instance=ExtResource("15_sncc4")]
+
+[node name="pintu2" parent="." instance=ExtResource("7_x5g1y")]
+position = Vector2(-2897, 14491)
