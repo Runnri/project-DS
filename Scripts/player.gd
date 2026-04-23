@@ -176,7 +176,7 @@ func _input(event):
 # 8. SISTEM NYAWA (3 LIVES)
 # ==========================================
 
-# Update tampilan 3 lingkaran berdasarkan nyawa sekarang
+#tampilan 3 lingkaran berdasarkan nyawa sekarang
 func _update_ui_nyawa():
 	if not nyawa_container: return
 	
@@ -207,7 +207,7 @@ func _buat_stylebox_nyawa(isi: bool) -> StyleBoxFlat:
 	return sb
 
 # Dipanggil oleh guard, obstacle, atau apapun yang menyakiti player
-func terima_damage(jumlah: int):
+func terima_damage(_jumlah: int):
 	if is_dead:
 		return
 	# Untuk kompatibilitas, jumlah damage besar = langsung mati 1 nyawa

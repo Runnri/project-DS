@@ -1,96 +1,61 @@
 extends Area2D
 
-# ==========================================
-# SERANGGA — Patroli silang + kejar player
-# ==========================================
-
-@export var speed_patrol: float = 80.0
-@export var speed_chase: float = 150.0
-
-# Dua titik pojok untuk jalur silang (diisi dari Inspector atau via kode)
-# Jika kosong, diambil dari posisi awal + offset
-@export var titik_a: Vector2 = Vector2.ZERO
-@export var titik_b: Vector2 = Vector2.ZERO
+@export var speed_patrol: float = 100.0
+@export var speed_chase: float = 180.0
 
 @onready var sprite = $AnimatedSprite2D
+@onready var path_follower = get_parent() # Ini buat akses PathFollow2D
 
 var player_target = null
 var mode_ngejar: bool = false
-var sudah_mati: bool = false
-
-# Arah patroli: 1 = menuju B, -1 = menuju A
-var arah_patrol: int = 1
+var posisi_awal_lokal: Vector2
 
 func _ready():
 	add_to_group("serangga")
-
-	# Jika titik tidak di-set dari luar, gunakan posisi awal apa adanya
-	if titik_a == Vector2.ZERO and titik_b == Vector2.ZERO:
-		titik_a = global_position
-		titik_b = global_position + Vector2(400, 0)
-
-	global_position = titik_a
-	sprite.play("serangga_kanan")
+	posisi_awal_lokal = position # Simpan posisi awal relatif ke Follower
 
 func _physics_process(delta):
-	if sudah_mati:
-		return
-
 	if mode_ngejar and player_target and is_instance_valid(player_target):
-		_kejar(delta)
+		# --- MODE NGEJAR ---
+		var arah = (player_target.global_position - global_position).normalized()
+		global_position += arah * speed_chase * delta
+		_atur_animasi(arah.x)
 	else:
-		_patrol(delta)
+		# --- MODE PATROLI (Kaya Keliling-keliling) ---
+		# Kembali ke posisi "gerbong" pelan-pelan kalau abis ngejar
+		position = position.move_toward(posisi_awal_lokal, speed_patrol * delta)
+		
+		# Jalankan gerbong keretanya di atas garis
+		if path_follower is PathFollow2D:
+			path_follower.progress += speed_patrol * delta
+			
+			# Animasi patroli berdasarkan progress
+			var arah_x = 1.0 # Anggap default kanan
+			# (Logika animasi otomatis ngikutin path biasanya lewat rotasi, 
+			# tapi di sini kita paksa arah x saja)
+			_atur_animasi(arah_x)
 
-# ---- PATROL SILANG ----
-func _patrol(delta):
-	var target = titik_b if arah_patrol == 1 else titik_a
-	var arah_vec = (target - global_position)
-
-	if arah_vec.length() < 8.0:
-		# Sampai di titik tujuan, balik arah
-		arah_patrol *= -1
-	else:
-		global_position += arah_vec.normalized() * speed_patrol * delta
-		_atur_animasi(arah_vec.x)
-
-# ---- KEJAR PLAYER ----
-func _kejar(delta):
-	var arah_vec = player_target.global_position - global_position
-	global_position += arah_vec.normalized() * speed_chase * delta
-	_atur_animasi(arah_vec.x)
-
-# ---- ANIMASI ----
 func _atur_animasi(arah_x: float):
-	if arah_x > 0.5:
+	if arah_x > 0:
 		sprite.play("serangga_kanan")
-	elif arah_x < -0.5:
+	else:
 		sprite.play("serangga_kiri")
 
-# ---- SINYAL ZONA DETEKSI ----
+# --- KONEKSI SINYAL (Pastikan sudah di-klik di editor!) ---
+
 func _on_zona_deteksi_body_entered(body):
-	if body.is_in_group("player") and not sudah_mati:
+	if body.is_in_group("player"):
 		player_target = body
 		mode_ngejar = true
 
 func _on_zona_deteksi_body_exited(body):
 	if body == player_target:
 		mode_ngejar = false
-		player_target = null
 
-# ---- KONTAK LANGSUNG = PLAYER MATI ----
+# INI BUAT BUNUH PLAYER (Sinyal dari Area2D Serangga yg atas)
 func _on_body_entered(body):
-	if body.is_in_group("player") and not sudah_mati:
+	if body.is_in_group("player"):
 		if body.has_method("mati"):
 			body.mati()
-
-# ---- DIPANGGIL SAAT CAHAYA MENYALA ----
-func matikan():
-	if sudah_mati:
-		return
-	sudah_mati = true
-	mode_ngejar = false
-
-	# Efek mati: fade out lalu hilang
-	var tween = create_tween()
-	tween.tween_property(self, "modulate:a", 0.0, 0.6)
-	tween.tween_callback(queue_free)
+		elif body.has_method("take_damage"): # Cek kalo namanya take_damage
+			body.take_damage(1)
