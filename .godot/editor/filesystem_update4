@@ -23,3 +23,5 @@ res://Scripts/obstacle.gd
 res://Scenes/robot.tscn
 res://Scenes/robot.gd
 res://Scripts/robot.gd
+res://Scenes/pintu_password.tscn
+res://Scripts/pintu_password.gd

@@ -26,6 +26,7 @@ var nyawa: int = MAX_NYAWA           # Nyawa saat ini (1–3)
 var spawn_awal: Vector2              # Posisi spawn PALING AWAL (tidak pernah berubah)
 
 var is_dead: bool = false
+var frozen: bool = false   # Di-set true oleh pintu_password saat UI aktif
 var spawn_point: Vector2
 var inventory: Array = []
 var arah_terakhir: String = "bawah"
@@ -101,6 +102,10 @@ func _physics_process(delta):
 		return
 	if get_tree().paused:
 		return
+	if frozen:
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return
 	if terminal.visible:
 		velocity = Vector2.ZERO
 		sprite.play("idle_" + arah_terakhir)
@@ -148,6 +153,11 @@ func _input(event):
 		return
 
 	if event is InputEventKey and event.pressed and event.keycode == KEY_TAB:
+		# Blokir TAB jika UI password sedang aktif
+		for pintu in get_tree().get_nodes_in_group("pintu_password"):
+			if pintu.get("ui_aktif") == true:
+				get_viewport().set_input_as_handled()
+				return
 		var layar_tutor = get_tree().current_scene.get_node_or_null("TutorialUI")
 		if layar_tutor and layar_tutor.tutorial_aktif == "gerak":
 			return
