@@ -55,7 +55,7 @@ position = Vector2(0.22222137, 0.33333302)
 shape = SubResource("CapsuleShape2D_p763d")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 9.0
+wait_time = 4.0
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 texture = SubResource("GradientTexture2D_rvx1i")

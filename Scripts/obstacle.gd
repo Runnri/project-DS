@@ -4,7 +4,7 @@ extends Area2D
 @onready var hitbox  = $CollisionShape2D
 @onready var timer   = $Timer
 
-var waktu_siklus: float = 8.0
+var waktu_siklus: float = 4.0
 var sedang_menyala: bool = false
 
 func _ready():

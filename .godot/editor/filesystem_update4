@@ -18,3 +18,8 @@ res://Scenes/serangga.tscn
 res://Scenes/serangga.gd
 res://Scripts/serangga.gd
 res://Scenes/jalur_serangga.tscn
+res://Scenes/obstacle.tscn
+res://Scripts/obstacle.gd
+res://Scenes/robot.tscn
+res://Scenes/robot.gd
+res://Scripts/robot.gd
