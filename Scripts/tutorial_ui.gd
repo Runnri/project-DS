@@ -19,7 +19,7 @@ func munculkan_tutorial(jenis: String):
 	get_tree().paused = true # BEKUKAN GAME!
 	
 	if jenis == "gerak":
-		teks_tutor.text = "[WARNING]\nTekan tombol W, A, S, D untuk bergerak."
+		teks_tutor.text = "[WARNING]\nTekan tombol W, A, S, D untuk bergerak.\nTekan tombol SHIFT untuk berlari"
 		spotlight.hide()
 		
 	elif jenis == "cmd":

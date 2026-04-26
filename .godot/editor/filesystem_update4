@@ -25,3 +25,5 @@ res://Scenes/robot.gd
 res://Scripts/robot.gd
 res://Scenes/pintu_password.tscn
 res://Scripts/pintu_password.gd
+res://Scenes/trigger_tutorial.tscn
+res://Scripts/tutorial_ui.gd
