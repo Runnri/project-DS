@@ -5,10 +5,12 @@ enum State { PATROL, CHASE }
 @onready var agent = $NavigationAgent2D
 @onready var ray = $RayCast2D
 @onready var sprite = $AnimatedSprite2D
+@onready var hitbox = $hitbox
 
 var state = State.PATROL
-var speed = 100
+var speed = 100.0
 
+# titik patrol kamu
 var patrol_points = [
 	Vector2(-5926,15183),
 	Vector2(-5934,16386),
@@ -20,6 +22,10 @@ var current_point = 0
 var player = null
 
 # ======================
+func _ready():
+	hitbox.body_entered.connect(_on_hit)
+
+# ======================
 func _physics_process(delta):
 
 	match state:
@@ -29,31 +35,31 @@ func _physics_process(delta):
 			_chase()
 
 	move_and_slide()
-	_update_animasi()
+	_update_anim()
 
 # ======================
 # PATROL
 # ======================
 func _patrol():
 	var target = patrol_points[current_point]
+
 	agent.target_position = target
-
 	var next = agent.get_next_path_position()
-	var dir = (next - global_position).normalized()
 
+	var dir = (next - global_position).normalized()
 	velocity = dir * speed
 
-	# rotate mata ke arah jalan
+	# arahkan mata ke depan
 	ray.target_position = dir * 150
 
-	# kalau sampai titik
+	# kalau sampai titik → lanjut
 	if global_position.distance_to(target) < 20:
 		current_point = (current_point + 1) % patrol_points.size()
 
-	# cek lihat player
+	# cek player
 	if ray.is_colliding():
 		var obj = ray.get_collider()
-		if obj.is_in_group("player"):
+		if obj and obj.is_in_group("player"):
 			player = obj
 			state = State.CHASE
 
@@ -65,48 +71,39 @@ func _chase():
 		state = State.PATROL
 		return
 
-	# 🔥 update target ke player
 	agent.target_position = player.global_position
-
-	# 🔥 ambil titik path berikutnya
-	var next_pos = agent.get_next_path_position()
-
-	var direction = (next_pos - global_position).normalized()
-
-	velocity = direction * speed * 1.4
-
-	# arahkan mata ke arah gerak
-	ray.target_position = direction * 150
-
-	# ❗ kalau sudah dekat banget → anggap kena
-	if global_position.distance_to(player.global_position) < 20:
-		player.queue_free() # atau damage
-
-	# ❗ kalau kehilangan line of sight
-	if not ray.is_colliding():
-		player = null
-		state = State.PATROL
-
-	agent.target_position = player.global_position
-
 	var next = agent.get_next_path_position()
-	var dir = (next - global_position).normalized()
 
+	var dir = (next - global_position).normalized()
 	velocity = dir * (speed * 1.3)
 
-	# update mata
+	# arahkan mata
 	ray.target_position = dir * 150
 
-	# kalau kehilangan (tidak terlihat lagi)
+	# kalau kena player
+	if global_position.distance_to(player.global_position) < 20:
+		player.queue_free()
+
+	# kalau sudah tidak lihat
 	if not ray.is_colliding():
-		state = State.PATROL
 		player = null
+		state = State.PATROL
+
+# ======================
+# HIT PLAYER (AREA)
+# ======================
+func _on_hit(body):
+	if body.is_in_group("player"):
+		if body.has_method("mati"):
+			body.mati()
+		elif body.has_method("take_damage"):
+			body.take_damage(1)
 
 # ======================
 # ANIMASI
 # ======================
-func _update_animasi():
-
+func _update_anim():
+	
 
 	if abs(velocity.x) > abs(velocity.y):
 		if velocity.x > 0:

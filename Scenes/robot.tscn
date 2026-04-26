@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://da2pmc4sveakk"]
+[gd_scene load_steps=21 format=3 uid="uid://da2pmc4sveakk"]
 
 [ext_resource type="Script" uid="uid://dl4cyypwk182u" path="res://Scripts/robot.gd" id="1_2vrla"]
 [ext_resource type="Texture2D" uid="uid://c5rs161mibp4u" path="res://Assets/villain/guard_orange_spritesheet.png" id="1_lp65t"]
@@ -138,23 +138,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lp65t"]
-size = Vector2(4.3, 9.3)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2vrla"]
 size = Vector2(8, 11)
-
-[sub_resource type="Gradient" id="Gradient_light"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTex_light"]
-gradient = SubResource("Gradient_light")
-width = 256
-height = 256
-fill = 1
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_6phhs"]
-radius = 126.62467
 
 [node name="robot" type="CharacterBody2D"]
 scale = Vector2(10, 10)
@@ -165,30 +150,13 @@ sprite_frames = SubResource("SpriteFrames_nssvp")
 animation = &"robot_kiri"
 frame_progress = 0.1916808
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2.3841858e-07, 2.3841858e-07)
-scale = Vector2(0.99999994, 0.99999994)
-shape = SubResource("RectangleShape2D_lp65t")
-
 [node name="hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 shape = SubResource("RectangleShape2D_2vrla")
-
-[node name="CahayaSorot" type="PointLight2D" parent="."]
-color = Color(1, 0.85, 0.3, 1)
-texture = SubResource("GradientTex_light")
-texture_scale = 2.5
-
-[node name="ZonaDeteksi" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ZonaDeteksi"]
-shape = SubResource("CircleShape2D_6phhs")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
-[connection signal="body_entered" from="ZonaDeteksi" to="." method="_on_zona_deteksi_body_entered"]
-[connection signal="body_exited" from="ZonaDeteksi" to="." method="_on_zona_deteksi_body_exited"]
