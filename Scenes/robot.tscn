@@ -159,7 +159,6 @@ radius = 126.62467
 [node name="robot" type="CharacterBody2D"]
 scale = Vector2(10, 10)
 script = ExtResource("1_2vrla")
-waypoints = Array[Vector2]([Vector2(-5926, 15183), Vector2(-5926, 16390), Vector2(-1488, 16390), Vector2(-1496, 15178), Vector2(-5926, 15183)])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_nssvp")
@@ -186,13 +185,9 @@ texture_scale = 2.5
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZonaDeteksi"]
 shape = SubResource("CircleShape2D_6phhs")
 
-[node name="TimerWander" type="Timer" parent="."]
+[node name="RayCast2D" type="RayCast2D" parent="."]
 
-[node name="MataLaser" type="RayCast2D" parent="."]
-
-[node name="SensorKiri" type="RayCast2D" parent="."]
-
-[node name="SensorKanan" type="RayCast2D" parent="."]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_entered" from="ZonaDeteksi" to="." method="_on_zona_deteksi_body_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://bq1aj7gsmv3tt"]
+[gd_scene load_steps=23 format=4 uid="uid://bq1aj7gsmv3tt"]
 
 [ext_resource type="PackedScene" uid="uid://cu3rg6jpc4vf" path="res://Scenes/player.tscn" id="1_3u8fx"]
 [ext_resource type="Texture2D" uid="uid://w0l6ih0qnuju" path="res://Assets/map/tilesett.png" id="1_iy4cr"]
@@ -314,6 +314,11 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_t3aic")
 sources/1 = SubResource("TileSetAtlasSource_r5svf")
 sources/4 = SubResource("TileSetAtlasSource_sf2av")
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_hx7v0"]
+vertices = PackedVector2Array(4632.8906, -708.0078, 4913.0313, 2262.3125, -1696.9297, 2456.6875, -1676.0625, -718.97656)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-1686, -729, -1707, 2467, 4924, 2272, 4642, -718)])
 
 [node name="Level_easy" type="Node2D"]
 
@@ -633,3 +638,7 @@ password = "117"
 
 [node name="robot" parent="." instance=ExtResource("16_ef8o5")]
 position = Vector2(-5937, 15184)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(-5926, 15183)
+navigation_polygon = SubResource("NavigationPolygon_hx7v0")
