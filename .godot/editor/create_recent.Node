@@ -1,9 +1,10 @@
+CollisionShape2D
+Sprite2D
+Area2D
 RayCast2D
 NavigationRegion2D
 NavigationAgent2D
 Timer
-CollisionShape2D
-Area2D
 CharacterBody2D
 AnimatedSprite2D
 PathFollow2D
@@ -11,5 +12,3 @@ Path2D
 Label
 ColorRect
 TextureRect
-Panel
-HBoxContainer
