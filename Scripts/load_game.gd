@@ -34,7 +34,7 @@ func _tampilkan_info_save():
 		label_level.text     = "Level   : " + nama_level
 		label_kesulitan.text = "Tingkat : " + info.get("kesulitan", "-").capitalize()
 		label_timestamp.text = "Disimpan: " + info.get("timestamp", "-")
-		label_hp.text        = "HP      : " + str(info.get("hp", "?"))
+		label_hp.text = "Nyawa : " + str(info.get("nyawa", 3)) + "/3"
 	else:
 		panel_save.hide()
 		panel_kosong.show()

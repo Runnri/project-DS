@@ -108,7 +108,7 @@ func ada_file_save() -> bool:
 	return FileAccess.file_exists(jalur_save_aktif())
 
 # ==========================================
-# SIMPAN GAME (per-user)
+# SIMPAN GAME
 # ==========================================
 func simpan_game(player: CharacterBody2D, nama_level_sekarang: String):
 	if not sudah_login():
@@ -116,11 +116,10 @@ func simpan_game(player: CharacterBody2D, nama_level_sekarang: String):
 		return
 
 	var config = ConfigFile.new()
-	# Simpan nyawa, bukan cuma hp
-	config.set_value("Player", "nyawa", player.nyawa)
-	config.set_value("Player", "hp", player.hp) # Tetap simpan buat cadangan
+	config.set_value("Progres", "level", nama_level_sekarang)
+	config.set_value("Progres", "kesulitan", kesulitan_terpilih)
 	
-	# SIMPAN NYAWA (Bukan HP lagi)
+	# HANYA SIMPAN NYAWA
 	config.set_value("Player", "nyawa", player.nyawa) 
 	
 	config.set_value("Player", "stamina", player.stamina)
@@ -130,7 +129,6 @@ func simpan_game(player: CharacterBody2D, nama_level_sekarang: String):
 	config.set_value("Player", "spawn_x", player.spawn_point.x)
 	config.set_value("Player", "spawn_y", player.spawn_point.y)
 	config.set_value("Meta", "timestamp", Time.get_datetime_string_from_system())
-	config.set_value("Meta", "versi_save", 1)
 
 	var hasil = config.save(jalur_save_aktif())
 	if hasil == OK:
@@ -151,7 +149,7 @@ func baca_info_save() -> Dictionary:
 		"level":     config.get_value("Progres", "level", ""),
 		"kesulitan": config.get_value("Progres", "kesulitan", "easy"),
 		"timestamp": config.get_value("Meta", "timestamp", "Tidak diketahui"),
-		"nyawa":     config.get_value("Player", "nyawa", 3), # Ubah info ke nyawa
+		"nyawa":     config.get_value("Player", "nyawa", 3), # Ambil nyawa, default 3
 	}
 
 # ==========================================
@@ -167,17 +165,10 @@ func muat_game(player: CharacterBody2D) -> bool:
 		push_error("[LOAD ERROR]: Gagal membaca file save.")
 		return false
 
-	# CEK SAVE LAMA VS SAVE BARU
-	# Jika save-an baru (sudah ada data 'nyawa'), pakai itu. 
-	# Jika save lama (masih 'hp'), lempar ke variabel hp biar dikonversi oleh setter di player.gd
-	# Cek apakah ada data 'nyawa', kalau gak ada pakai data 'hp' lama
-	if config.has_section_key("Player", "nyawa"):
-		player.nyawa = config.get_value("Player", "nyawa", 3)
-	else:
-		# Ini akan memicu setter hp di player.gd untuk mengubah nyawa jadi 1-3
-		player.hp = config.get_value("Player", "hp", 100)
+	# LOAD MURNI NYAWA SAJA
+	player.nyawa = config.get_value("Player", "nyawa", 3)
 
-	player.stamina  = config.get_value("Player", "stamina",   player.max_stamina)
+	player.stamina   = config.get_value("Player", "stamina",   player.max_stamina)
 	player.inventory = config.get_value("Player", "inventory", [])
 
 	var px = config.get_value("Player", "posisi_x", player.global_position.x)
@@ -187,9 +178,6 @@ func muat_game(player: CharacterBody2D) -> bool:
 		config.get_value("Player", "spawn_x", px),
 		config.get_value("Player", "spawn_y", py)
 	)
-
-	# BAGIAN ERROR HP_BAR DIHAPUS DARI SINI
-	# Karena UI nyawa sudah otomatis di-update dari dalam setter `nyawa` di player.gd
 
 	if player.stamina_bar:
 		player.stamina_bar.max_value = player.max_stamina

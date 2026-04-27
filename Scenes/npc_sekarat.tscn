@@ -1,0 +1,96 @@
+[gd_scene load_steps=8 format=3 uid="uid://b3sutokdxbmt"]
+
+[ext_resource type="Script" uid="uid://b3dw6uwlcfmx1" path="res://Scripts/npc_sekarat.gd" id="1_aeorn"]
+[ext_resource type="Texture2D" uid="uid://b5ce6fmycrltd" path="res://Assets/npc/slime_sekaratidle.png.png" id="2_y7ttd"]
+[ext_resource type="Texture2D" uid="uid://roma4srytjmp" path="res://Assets/npc/slime_sekaratidlengedip.png.png" id="3_7byxx"]
+[ext_resource type="Texture2D" uid="uid://5h77exlb7vpu" path="res://Assets/npc/slime_sekaratsedih.png.png" id="4_7byxx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aeorn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_y7ttd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_y7ttd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_y7ttd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7byxx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_y7ttd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_y7ttd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_y7ttd")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_y7ttd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7byxx")
+}],
+"loop": true,
+"name": &"ngobrol",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ex2r7"]
+radius = 134.0
+height = 414.0
+
+[sub_resource type="Theme" id="Theme_7byxx"]
+
+[node name="NpcSekarat" type="Area2D"]
+position = Vector2(0, 53)
+script = ExtResource("1_aeorn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -12)
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_aeorn")
+animation = &"ngobrol"
+frame_progress = 0.075320385
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 48)
+shape = SubResource("CapsuleShape2D_ex2r7")
+
+[node name="DialogUI" type="CanvasLayer" parent="."]
+
+[node name="BgDialog" type="Panel" parent="DialogUI"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 346.0
+offset_top = 96.0
+offset_right = -463.0
+offset_bottom = 199.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_7byxx")
+
+[node name="TeksDialog" type="Label" parent="DialogUI/BgDialog"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -128.5
+offset_top = -85.0
+offset_right = 80.5
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 0
