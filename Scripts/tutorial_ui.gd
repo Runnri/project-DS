@@ -29,6 +29,9 @@ func munculkan_tutorial(jenis: String):
 		
 	elif jenis == "f":
 		teks_tutor.text = "[WARNING]\nTekan F untuk pickup item!"
+		
+	elif jenis == "guard1":
+		teks_tutor.text = "[WARNING]\nItu adalah guard pembersih.\njangan sampai kau mengenainya atau kamu akan terdelete!"
 	
 	# === TAMBAHAN: JEDA WAKTU ===
 	# Tunggu 1 detik (pakai 'true' agar timer tetap jalan meski game di-pause)
@@ -54,6 +57,9 @@ func _input(event):
 		if event is InputEventKey and event.pressed:
 			tutup_tutorial()
 		
+	elif tutorial_aktif == "guard1":
+		if event is InputEventKey and event.pressed:
+			tutup_tutorial()
 
 func tutup_tutorial():
 	tutorial_aktif = ""

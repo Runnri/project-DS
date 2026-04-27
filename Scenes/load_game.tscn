@@ -1,6 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://load_game_scene_001"]
+[gd_scene load_steps=9 format=3 uid="uid://n7whyqmhjaf0"]
 
-[ext_resource type="Script" path="res://Scripts/load_game.gd" id="1_lgscr"]
+[ext_resource type="Script" uid="uid://cja6tqu7lli81" path="res://Scripts/load_game.gd" id="1_lgscr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_judul"]
+font_size = 36
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
 bg_color = Color(0.04, 0.04, 0.08, 0.95)
@@ -8,11 +11,13 @@ border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.3, 0.8, 1.0, 0.8)
+border_color = Color(0.3, 0.8, 1, 0.8)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_info"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_load"]
 bg_color = Color(0.1, 0.5, 0.9, 1)
@@ -20,7 +25,7 @@ border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.3, 0.8, 1.0, 1)
+border_color = Color(0.3, 0.8, 1, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -32,7 +37,7 @@ border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(1.0, 0.3, 0.3, 1)
+border_color = Color(1, 0.3, 0.3, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -61,12 +66,6 @@ corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
-
-[sub_resource type="LabelSettings" id="LabelSettings_judul"]
-font_size = 36
-
-[sub_resource type="LabelSettings" id="LabelSettings_info"]
-font_size = 16
 
 [node name="LoadGame" type="Control"]
 layout_mode = 3
@@ -177,6 +176,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
 [node name="LabelKosong" type="Label" parent="PanelKosong"]
+modulate = Color(1, 1, 1, 0.5)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -187,19 +187,17 @@ text = "[ Tidak ada data tersimpan ]"
 label_settings = SubResource("LabelSettings_info")
 horizontal_alignment = 1
 vertical_alignment = 1
-modulate = Color(1, 1, 1, 0.5)
 
 [node name="BtnKembali" type="Button" parent="."]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.0
+anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 0.0
 anchor_bottom = 1.0
 offset_left = 30.0
 offset_top = -60.0
 offset_right = 180.0
 offset_bottom = -20.0
+grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_kembali")
 text = "←  KEMBALI"
@@ -234,7 +232,8 @@ alignment = 1
 
 [node name="LabelKonfirmasi" type="Label" parent="DialogKonfirmasi/VBoxDialog"]
 layout_mode = 2
-text = "Hapus data save?\nTindakan ini tidak bisa dibatalkan."
+text = "Hapus data save?
+Tindakan ini tidak bisa dibatalkan."
 horizontal_alignment = 1
 autowrap_mode = 2
 

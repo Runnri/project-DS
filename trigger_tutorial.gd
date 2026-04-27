@@ -1,7 +1,7 @@
 extends Area2D
 
 # Bikin pilihan di Inspector biar kita gampang nentuin ini sensor buat apa
-@export_enum("gerak", "cmd", "f") var jenis_tutorial: String = "gerak"
+@export_enum("gerak", "cmd", "f", "guard1") var jenis_tutorial: String = "gerak"
 
 func _on_body_entered(body):
 	if body.name == "Player":

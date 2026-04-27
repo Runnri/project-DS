@@ -1,0 +1,4 @@
+res://Scenes/level_easy.tscn
+res://Scripts/global.gd
+res://Scripts/player.gd
+res://Scenes/load_game.tscn
