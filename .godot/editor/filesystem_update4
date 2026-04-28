@@ -36,3 +36,6 @@ res://Scripts/scene_credit.gd
 res://Scenes/tumpukanmayat.gd
 res://Scripts/ending_bin.gd
 res://Scenes/tumpukan_mayat.gd
+res://Scripts/trigger_ending_kanan.gd
+res://Scenes/trigger_ending_kanan.tscn
+res://Scripts/tumpukan_mayat.gd

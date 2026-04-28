@@ -1,117 +1,26 @@
-[gd_scene load_steps=9 format=3 uid="uid://kn51qnnfv6hs"]
+[gd_scene load_steps=8 format=3 uid="uid://kn51qnnfv6hs"]
 
-[ext_resource type="Script" uid="uid://bbunsbwh5t4al" path="res://Scripts/ending_bin.gd" id="1_ending"]
-[ext_resource type="Script" uid="uid://glp4icme00u7" path="res://Scenes/tumpukan_mayat.gd" id="2_ookxm"]
+[ext_resource type="Script" uid="uid://dryifk84muhqm" path="res://Scripts/ending_bin.gd" id="1_ebin"]
+[ext_resource type="Script" uid="uid://dout10p8dxr4e" path="res://Scripts/tumpukan_mayat.gd" id="2_tmyt"]
 [ext_resource type="Texture2D" uid="uid://drkfhfovd8nd8" path="res://Assets/mc/slime_atas-1.png.png" id="3_sprite"]
-[ext_resource type="Texture2D" uid="uid://c3clws2eq8smh" path="res://Assets/npc/slime_npcmati8.png" id="4_fu5lw"]
-[ext_resource type="Texture2D" uid="uid://tg3rvaa3iojr" path="res://Assets/npc/slime_npcmati3.png" id="4_mayat"]
-[ext_resource type="Texture2D" uid="uid://bmrt2amx4jb4v" path="res://Assets/npc/slime_npcmati6.png" id="6_5r8fh"]
-[ext_resource type="Texture2D" uid="uid://b108l5vd2m3xv" path="res://Assets/npc/slime_npcmati10.png" id="7_5r8fh"]
+[ext_resource type="Texture2D" uid="uid://bs2bm332my32k" path="res://Assets/npc/slime_npcmati2.png" id="10_bp3sh"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_bit"]
+[sub_resource type="PhysicsMaterial" id="PM_bit"]
+friction = 0.8
+bounce = 0.3
+
+[sub_resource type="CircleShape2D" id="CS_bit"]
 radius = 18.0
 
+[sub_resource type="RectangleShape2D" id="RS_lantai"]
+size = Vector2(1908, 20)
+
 [node name="EndingBin" type="Node2D"]
-script = ExtResource("1_ending")
-
-[node name="BackgroundSampah" type="Sprite2D" parent="."]
-position = Vector2(954, 463)
-
-[node name="TumpukanMayat" type="Node2D" parent="."]
-script = ExtResource("2_ookxm")
-tekstur_mayat = ExtResource("4_mayat")
-jumlah_mayat = 2500
-lebar_gunung = 1808.0
-
-[node name="TumpukanMayat2" type="Node2D" parent="."]
-position = Vector2(954, 790)
-script = ExtResource("2_ookxm")
-tekstur_mayat = ExtResource("7_5r8fh")
-jumlah_mayat = 2500
-lebar_gunung = 1808.0
-
-[node name="TumpukanMayat3" type="Node2D" parent="."]
-position = Vector2(954, 837)
-script = ExtResource("2_ookxm")
-tekstur_mayat = ExtResource("4_fu5lw")
-jumlah_mayat = 2500
-lebar_gunung = 1808.0
-
-[node name="TumpukanMayat8" type="Node2D" parent="."]
-position = Vector2(954, 958)
-script = ExtResource("2_ookxm")
-tekstur_mayat = ExtResource("4_fu5lw")
-jumlah_mayat = 2500
-lebar_gunung = 1808.0
-tinggi_gunung = 400.0
-
-[node name="TumpukanMayat9" type="Node2D" parent="."]
-position = Vector2(954, 970)
-script = ExtResource("2_ookxm")
-tekstur_mayat = ExtResource("4_fu5lw")
-jumlah_mayat = 2500
-lebar_gunung = 1808.0
-tinggi_gunung = 400.0
-
-[node name="TumpukanMayat4" type="Node2D" parent="."]
-position = Vector2(954, 910)
-script = ExtResource("2_ookxm")
-tekstur_mayat = ExtResource("4_mayat")
-jumlah_mayat = 2500
-lebar_gunung = 1808.0
-
-[node name="TumpukanMayat5" type="Node2D" parent="."]
-position = Vector2(954, 945)
-script = ExtResource("2_ookxm")
-tekstur_mayat = ExtResource("6_5r8fh")
-jumlah_mayat = 2500
-lebar_gunung = 1808.0
-
-[node name="TumpukanMayat6" type="Node2D" parent="."]
-position = Vector2(954, 1002)
-script = ExtResource("2_ookxm")
-tekstur_mayat = ExtResource("6_5r8fh")
-jumlah_mayat = 2500
-lebar_gunung = 1808.0
-
-[node name="TumpukanMayat10" type="Node2D" parent="."]
-position = Vector2(954, 1126)
-script = ExtResource("2_ookxm")
-tekstur_mayat = ExtResource("4_fu5lw")
-jumlah_mayat = 2500
-lebar_gunung = 1808.0
-tinggi_gunung = 400.0
-
-[node name="TumpukanMayat11" type="Node2D" parent="."]
-position = Vector2(954, 1138)
-script = ExtResource("2_ookxm")
-tekstur_mayat = ExtResource("4_fu5lw")
-jumlah_mayat = 2500
-lebar_gunung = 1808.0
-tinggi_gunung = 400.0
-
-[node name="TumpukanMayat7" type="Node2D" parent="."]
-position = Vector2(954, 1078)
-script = ExtResource("2_ookxm")
-tekstur_mayat = ExtResource("4_mayat")
-jumlah_mayat = 2500
-lebar_gunung = 1808.0
-
-[node name="TumpukanMayat12" type="Node2D" parent="."]
-position = Vector2(954, 1113)
-script = ExtResource("2_ookxm")
-tekstur_mayat = ExtResource("6_5r8fh")
-jumlah_mayat = 2500
-lebar_gunung = 1808.0
-
-[node name="TumpukanMayat13" type="Node2D" parent="."]
-position = Vector2(954, 1170)
-script = ExtResource("2_ookxm")
-tekstur_mayat = ExtResource("6_5r8fh")
-jumlah_mayat = 2500
-lebar_gunung = 1808.0
+script = ExtResource("1_ebin")
 
 [node name="Bit_Jatuh" type="RigidBody2D" parent="."]
+position = Vector2(954, -30)
+physics_material_override = SubResource("PM_bit")
 gravity_scale = 2.0
 linear_damp = 0.3
 
@@ -119,10 +28,108 @@ linear_damp = 0.3
 texture = ExtResource("3_sprite")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bit_Jatuh"]
-shape = SubResource("CircleShape2D_bit")
+shape = SubResource("CS_bit")
+
+[node name="BackgroundSampah" type="Sprite2D" parent="."]
+position = Vector2(954, 463)
+
+[node name="TumpukanMayat5" type="Node2D" parent="."]
+position = Vector2(954, 770)
+script = ExtResource("2_tmyt")
+tekstur_mayat = ExtResource("10_bp3sh")
+jumlah_mayat = 2500
+lebar_gunung = 1800.0
+
+[node name="TumpukanMayat6" type="Node2D" parent="."]
+position = Vector2(954, 841)
+script = ExtResource("2_tmyt")
+tekstur_mayat = ExtResource("10_bp3sh")
+jumlah_mayat = 2500
+lebar_gunung = 1788.0
+
+[node name="TumpukanMayat7" type="Node2D" parent="."]
+position = Vector2(954, 877)
+script = ExtResource("2_tmyt")
+tekstur_mayat = ExtResource("10_bp3sh")
+jumlah_mayat = 2500
+lebar_gunung = 1788.0
+
+[node name="TumpukanMayat8" type="Node2D" parent="."]
+position = Vector2(954, 893)
+script = ExtResource("2_tmyt")
+tekstur_mayat = ExtResource("10_bp3sh")
+jumlah_mayat = 2500
+lebar_gunung = 1788.0
 
 [node name="LantaiSampah" type="StaticBody2D" parent="."]
+position = Vector2(954, 877)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LantaiSampah"]
+position = Vector2(0, 239)
+shape = SubResource("RS_lantai")
+
+[node name="TumpukanMayat9" type="Node2D" parent="."]
+position = Vector2(954, 940)
+script = ExtResource("2_tmyt")
+tekstur_mayat = ExtResource("10_bp3sh")
+jumlah_mayat = 2500
+lebar_gunung = 1788.0
+
+[node name="TumpukanMayat10" type="Node2D" parent="."]
+position = Vector2(954, 976)
+script = ExtResource("2_tmyt")
+tekstur_mayat = ExtResource("10_bp3sh")
+jumlah_mayat = 2500
+lebar_gunung = 1788.0
+
+[node name="TumpukanMayat11" type="Node2D" parent="."]
+position = Vector2(954, 992)
+script = ExtResource("2_tmyt")
+tekstur_mayat = ExtResource("10_bp3sh")
+jumlah_mayat = 2500
+lebar_gunung = 1788.0
+
+[node name="TumpukanMayat12" type="Node2D" parent="."]
+position = Vector2(954, 1048)
+script = ExtResource("2_tmyt")
+tekstur_mayat = ExtResource("10_bp3sh")
+jumlah_mayat = 2500
+lebar_gunung = 1800.0
+
+[node name="TumpukanMayat13" type="Node2D" parent="."]
+position = Vector2(954, 1126)
+script = ExtResource("2_tmyt")
+tekstur_mayat = ExtResource("10_bp3sh")
+jumlah_mayat = 2500
+lebar_gunung = 1788.0
+
+[node name="TumpukanMayat14" type="Node2D" parent="."]
+position = Vector2(954, 1162)
+script = ExtResource("2_tmyt")
+tekstur_mayat = ExtResource("10_bp3sh")
+jumlah_mayat = 2500
+lebar_gunung = 1788.0
+
+[node name="TumpukanMayat15" type="Node2D" parent="."]
+position = Vector2(954, 1178)
+script = ExtResource("2_tmyt")
+tekstur_mayat = ExtResource("10_bp3sh")
+jumlah_mayat = 2500
+lebar_gunung = 1788.0
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
+
+[node name="FadeOverlay" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="ColorRect" type="ColorRect" parent="FadeOverlay"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)

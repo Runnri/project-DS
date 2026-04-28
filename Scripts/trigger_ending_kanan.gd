@@ -1,28 +1,29 @@
 extends Area2D
 
-# ==========================================
-# TRIGGER ENDING KANAN (Recycle Bin)
-# Pasang script ini ke Area2D di lorong kanan level utama.
-# Saat Bit masuk area ini, gerakannya dikunci lalu pindah ke ending_bin.
-# ==========================================
-
-# Pastikan sinyal body_entered sudah terhubung ke fungsi ini
-# (bisa via Inspector atau kode di bawah)
-func _ready() -> void:
-	if not body_entered.is_connected(_on_body_entered):
-		body_entered.connect(_on_body_entered)
+var sudah_triggered: bool = false
 
 func _on_body_entered(body: Node2D) -> void:
-	# Hanya trigger untuk player
-	if not body.is_in_group("player"):
+	if not body.is_in_group("player") or sudah_triggered:
 		return
 
-	# Kunci gerakan player
-	if "frozen" in body:
-		body.frozen = true
+	sudah_triggered = true
+	body.frozen = true
 
-	# Pastikan game tidak ter-pause
-	get_tree().paused = false
+	# Buat ColorRect hitam full-screen sebagai overlay fade
+	var overlay = ColorRect.new()
+	overlay.color = Color(0, 0, 0, 0)
+	overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
+	overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	# Taruh di CanvasLayer agar selalu di depan
+	var cl = CanvasLayer.new()
+	cl.layer = 100
+	cl.add_child(overlay)
+	get_tree().root.add_child(cl)
 
-	# Pindah ke scene ending bin
-	get_tree().change_scene_to_file("res://Scenes/ending_bin.tscn")
+	# Fade OUT: hitam dalam 0.8 detik
+	var tw = create_tween()
+	tw.tween_property(overlay, "color", Color(0, 0, 0, 1), 0.8)
+	tw.tween_interval(0.2)
+	tw.tween_callback(func():
+		get_tree().call_deferred("change_scene_to_file", "res://Scenes/ending_bin.tscn")
+	)

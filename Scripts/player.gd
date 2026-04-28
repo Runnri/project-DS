@@ -6,29 +6,44 @@ extends CharacterBody2D
 @export var speed: float = 200.0
 @export var sprint_speed: float = 350.0
 @export var max_stamina: float = 100.0
+@export var max_hp: int = 100        # Tetap ada untuk kompatibilitas save/load
 @export var max_inventory: int = 3
 @export var img_darah_ada: Texture2D = preload("res://Assets/ornamen/slime_darahada.png.png")
 @export var img_darah_kosong: Texture2D = preload("res://Assets/ornamen/slime_darahkosong.png.png")
 @onready var item_di_tangan = $ItemDiTangan
 
 # ==========================================
-# 2. STATUS PLAYER (MURNI 3 NYAWA)
+# 2. STATUS PLAYER
 # ==========================================
 var stamina: float = max_stamina
 var stamina_drain: float = 40.0
 var stamina_regen: float = 20.0
 
+# UBAH DI SINI: Tambahkan Setter untuk hp
+var hp: int = max_hp:
+	set(value):
+		hp = value
+		# Konversi otomatis hp ke nyawa saat data di-load
+		if hp > 66: nyawa = 3
+		elif hp > 33: nyawa = 2
+		elif hp > 0: nyawa = 1
+		else: nyawa = 0
+
+# --- SISTEM 3 NYAWA ---
 const MAX_NYAWA: int = 3
+
+# UBAH DI SINI: Tambahkan Setter untuk nyawa
 var nyawa: int = MAX_NYAWA:
 	set(value):
 		nyawa = clamp(value, 0, MAX_NYAWA)
-		# Update UI otomatis saat nyawa berkurang atau saat load game
+		# Update UI otomatis saat nyawa berubah atau saat load game
 		if has_method("_update_ui_nyawa"):
 			_update_ui_nyawa()
 
 var spawn_awal: Vector2              # Posisi spawn PALING AWAL (tidak pernah berubah)
+
 var is_dead: bool = false
-var frozen: bool = false             # Di-set true oleh pintu_password saat UI aktif
+var frozen: bool = false   # Di-set true oleh pintu_password saat UI aktif
 var spawn_point: Vector2
 var inventory: Array = []
 var arah_terakhir: String = "bawah"
@@ -45,7 +60,7 @@ var arah_terakhir: String = "bawah"
 @onready var senter_player = $SenterPlayer
 @onready var interact_box  = $InteractBox
 @onready var prompt_f      = $F
-@onready var level_notif = $CanvasLayer/LevelNotif
+@onready var level_notif   = $CanvasLayer/LevelNotif
 @onready var nyawa_container = $CanvasLayer/NyawaContainer
 
 
@@ -89,7 +104,11 @@ func _ready():
 		input_cmd.text_submitted.connect(_on_cmd_submitted)
 
 	if Global.sedang_load:
-		Global.muat_game(self)
+		# call_deferred agar semua @onready node sudah siap
+		call_deferred("_lakukan_load_game")
+
+func _lakukan_load_game():
+	Global.muat_game(self)
 
 # ==========================================
 # 6. PERGERAKAN & FISIKA
@@ -225,11 +244,20 @@ func mati():
 		return
 	is_dead = true
 	velocity = Vector2.ZERO
-	get_tree().paused = true
+
+	# FIX: kurangi nyawa DULU sebelum pause
+	# Jika pause dulu, await timer tidak akan berjalan
+	nyawa -= 1
+	nyawa = max(nyawa, 0)
+	_update_ui_nyawa()
 
 	if terminal.visible:
 		terminal.hide()
 
+	if log_teks:
+		log_teks.text += "\n[FATAL ERROR]: System Purged. Nyawa tersisa: " + str(nyawa)
+
+	# Putar animasi mati tanpa pause agar await bisa jalan
 	if sprite.sprite_frames.has_animation("mati"):
 		sprite.play("mati")
 		await sprite.animation_finished
@@ -237,21 +265,14 @@ func mati():
 		if log_teks:
 			log_teks.text += "\n[Error]: Animation 'mati' not found."
 
-	# Kurangi 1 nyawa
-	nyawa -= 1
-	nyawa = max(nyawa, 0)
-	_update_ui_nyawa()
-
-	if log_teks:
-		log_teks.text += "\n[FATAL ERROR]: System Purged. Nyawa tersisa: " + str(nyawa)
-
+	# Baru pause setelah animasi, lalu tunggu 1 detik
+	get_tree().paused = true
 	await get_tree().create_timer(1.0, true).timeout
+	get_tree().paused = false
 
 	if nyawa <= 0:
-		# Semua nyawa habis → reset ke spawn PALING AWAL
 		_game_over()
 	else:
-		# Masih ada nyawa → respawn di checkpoint terakhir
 		respawn()
 
 func respawn():

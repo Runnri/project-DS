@@ -1,19 +1,14 @@
 extends Control
 
-# ==========================================
-# SCENE LOAD GAME
-# Menampilkan info save dan tombol konfirmasi
-# ==========================================
-
-@onready var panel_save     = $PanelSave
-@onready var label_level    = $PanelSave/VBox/LabelLevel
-@onready var label_kesulitan = $PanelSave/VBox/LabelKesulitan
-@onready var label_timestamp = $PanelSave/VBox/LabelTimestamp
-@onready var label_hp        = $PanelSave/VBox/LabelHP
-@onready var panel_kosong   = $PanelKosong
-@onready var btn_load       = $PanelSave/VBox/BtnLoad
-@onready var btn_hapus      = $PanelSave/VBox/BtnHapus
-@onready var btn_kembali    = $BtnKembali
+@onready var panel_save        = $PanelSave
+@onready var label_level       = $PanelSave/VBox/LabelLevel
+@onready var label_kesulitan   = $PanelSave/VBox/LabelKesulitan
+@onready var label_timestamp   = $PanelSave/VBox/LabelTimestamp
+@onready var label_hp          = $PanelSave/VBox/LabelHP
+@onready var panel_kosong      = $PanelKosong
+@onready var btn_load          = $PanelSave/VBox/BtnLoad
+@onready var btn_hapus         = $PanelSave/VBox/BtnHapus
+@onready var btn_kembali       = $BtnKembali
 @onready var dialog_konfirmasi = $DialogKonfirmasi
 
 func _ready():
@@ -27,14 +22,20 @@ func _tampilkan_info_save():
 
 		var info = Global.baca_info_save()
 
-		# Format nama level supaya lebih manusiawi
+		# Format nama level agar lebih manusiawi
 		var nama_level = info.get("level", "")
-		nama_level = nama_level.get_file().replace(".tscn", "").replace("_", " ").capitalize()
+		if nama_level.is_empty():
+			nama_level = "(belum tersimpan)"
+		else:
+			nama_level = nama_level.get_file().replace(".tscn", "").replace("_", " ").capitalize()
 
 		label_level.text     = "Level   : " + nama_level
 		label_kesulitan.text = "Tingkat : " + info.get("kesulitan", "-").capitalize()
 		label_timestamp.text = "Disimpan: " + info.get("timestamp", "-")
-		label_hp.text = "Nyawa : " + str(info.get("nyawa", 3)) + "/3"
+
+		# FIX: pakai key "nyawa" bukan "hp"
+		var nyawa_val = info.get("nyawa", 3)
+		label_hp.text = "Nyawa   : " + str(nyawa_val) + " / 3"
 	else:
 		panel_save.hide()
 		panel_kosong.show()
@@ -47,7 +48,10 @@ func _on_btn_load_pressed():
 	var nama_level = info.get("level", "")
 
 	if nama_level.is_empty():
-		push_error("[LOAD]: Nama level di file save kosong!")
+		push_error("[LOAD]: Nama level di file save kosong! Hapus save lama dan mulai ulang.")
+		# Tampilkan pesan di UI daripada diam saja
+		label_level.text = "Level   : (save lama - tidak valid)"
+		label_level.modulate = Color(1, 0.3, 0.3, 1)
 		return
 
 	Global.sedang_load = true
@@ -58,7 +62,6 @@ func _on_btn_load_pressed():
 		Global.sedang_load = false
 
 func _on_btn_hapus_pressed():
-	# Tampilkan dialog konfirmasi sebelum hapus
 	dialog_konfirmasi.show()
 
 func _on_btn_ya_pressed():
