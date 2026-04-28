@@ -108,7 +108,7 @@ func ada_file_save() -> bool:
 	return FileAccess.file_exists(jalur_save_aktif())
 
 # ==========================================
-# SIMPAN GAME
+# SIMPAN GAME (per-user)
 # ==========================================
 func simpan_game(player: CharacterBody2D, nama_level_sekarang: String):
 	if not sudah_login():
@@ -116,19 +116,19 @@ func simpan_game(player: CharacterBody2D, nama_level_sekarang: String):
 		return
 
 	var config = ConfigFile.new()
-	config.set_value("Progres", "level", nama_level_sekarang)
-	config.set_value("Progres", "kesulitan", kesulitan_terpilih)
-	
-	# HANYA SIMPAN NYAWA
-	config.set_value("Player", "nyawa", player.nyawa) 
-	
+	# Simpan nyawa dan hp (hp untuk kompatibilitas save lama)
+	config.set_value("Player", "nyawa", player.nyawa)
+	config.set_value("Player", "hp", player.hp)
 	config.set_value("Player", "stamina", player.stamina)
 	config.set_value("Player", "inventory", player.inventory)
 	config.set_value("Player", "posisi_x", player.global_position.x)
 	config.set_value("Player", "posisi_y", player.global_position.y)
 	config.set_value("Player", "spawn_x", player.spawn_point.x)
 	config.set_value("Player", "spawn_y", player.spawn_point.y)
+	config.set_value("Progres", "level", nama_level_sekarang)
+	config.set_value("Progres", "kesulitan", kesulitan_terpilih)
 	config.set_value("Meta", "timestamp", Time.get_datetime_string_from_system())
+	config.set_value("Meta", "versi_save", 1)
 
 	var hasil = config.save(jalur_save_aktif())
 	if hasil == OK:
@@ -149,7 +149,7 @@ func baca_info_save() -> Dictionary:
 		"level":     config.get_value("Progres", "level", ""),
 		"kesulitan": config.get_value("Progres", "kesulitan", "easy"),
 		"timestamp": config.get_value("Meta", "timestamp", "Tidak diketahui"),
-		"nyawa":     config.get_value("Player", "nyawa", 3), # Ambil nyawa, default 3
+		"nyawa":     config.get_value("Player", "nyawa", 3),
 	}
 
 # ==========================================
@@ -165,10 +165,12 @@ func muat_game(player: CharacterBody2D) -> bool:
 		push_error("[LOAD ERROR]: Gagal membaca file save.")
 		return false
 
-	# LOAD MURNI NYAWA SAJA
-	player.nyawa = config.get_value("Player", "nyawa", 3)
+	if config.has_section_key("Player", "nyawa"):
+		player.nyawa = config.get_value("Player", "nyawa", 3)
+	else:
+		player.hp = config.get_value("Player", "hp", 100)
 
-	player.stamina   = config.get_value("Player", "stamina",   player.max_stamina)
+	player.stamina  = config.get_value("Player", "stamina",   player.max_stamina)
 	player.inventory = config.get_value("Player", "inventory", [])
 
 	var px = config.get_value("Player", "posisi_x", player.global_position.x)
@@ -189,6 +191,7 @@ func muat_game(player: CharacterBody2D) -> bool:
 	sedang_load = false
 	print("[LOAD]: Berhasil dimuat untuk user '", username_aktif, "'")
 	return true
+
 # ==========================================
 # HAPUS SAVE USER AKTIF
 # ==========================================
@@ -196,3 +199,46 @@ func hapus_save():
 	if ada_file_save():
 		DirAccess.remove_absolute(jalur_save_aktif())
 		print("[SAVE]: File save untuk '", username_aktif, "' dihapus.")
+
+# ==========================================
+# SISTEM ENDING — Catat ending ke file save aktif
+# Mengembalikan jumlah total ending yang sudah terbuka (untuk teks X/2)
+# ==========================================
+func catat_ending_ke_akun(nama_ending: String) -> int:
+	if not sudah_login():
+		push_warning("[ENDING]: Tidak ada user yang login, ending tidak dicatat.")
+		return 0
+
+	var config = ConfigFile.new()
+	# Load file save yang sudah ada (kalau ada), agar data lain tidak hilang
+	if ada_file_save():
+		config.load(jalur_save_aktif())
+
+	# Baca array ending yang sudah tersimpan (default: array kosong)
+	var ending_terbuka: Array = config.get_value("Progres", "ending_terbuka", [])
+
+	# Hanya tambahkan jika belum ada (hindari duplikat)
+	if nama_ending not in ending_terbuka:
+		ending_terbuka.append(nama_ending)
+		config.set_value("Progres", "ending_terbuka", ending_terbuka)
+
+		var hasil = config.save(jalur_save_aktif())
+		if hasil == OK:
+			print("[ENDING]: '", nama_ending, "' dicatat. Total ending: ", ending_terbuka.size())
+		else:
+			push_error("[ENDING ERROR]: Gagal menyimpan ending, kode: " + str(hasil))
+	else:
+		print("[ENDING]: '", nama_ending, "' sudah pernah dicatat sebelumnya.")
+
+	return ending_terbuka.size()
+
+# ==========================================
+# BACA DAFTAR ENDING TERBUKA (untuk UI koleksi, dsb.)
+# ==========================================
+func baca_ending_terbuka() -> Array:
+	if not ada_file_save():
+		return []
+	var config = ConfigFile.new()
+	if config.load(jalur_save_aktif()) != OK:
+		return []
+	return config.get_value("Progres", "ending_terbuka", [])

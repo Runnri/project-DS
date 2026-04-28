@@ -30,3 +30,9 @@ res://Scenes/player.tscn
 res://Scenes/npc_sekarat.tscn
 res://Scenes/npc_sekarat.gd
 res://Scripts/npc_sekarat.gd
+res://Scenes/ending_bin.tscn
+res://Scenes/scene_teks_ending.tscn
+res://Scripts/scene_credit.gd
+res://Scenes/tumpukanmayat.gd
+res://Scripts/ending_bin.gd
+res://Scenes/tumpukan_mayat.gd
