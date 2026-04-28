@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cu3rg6jpc4vf"]
+[gd_scene load_steps=40 format=3 uid="uid://cu3rg6jpc4vf"]
 
 [ext_resource type="Texture2D" uid="uid://beecudkqe1mxu" path="res://Assets/mc/slime_f1.png" id="1_fkybt"]
 [ext_resource type="Texture2D" uid="uid://drkfhfovd8nd8" path="res://Assets/mc/slime_atas-1.png.png" id="1_olqyp"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://b5mrfunagc38d" path="res://Assets/mc/slime_bawah-3.png.png" id="8_y6uwr"]
 [ext_resource type="Texture2D" uid="uid://brxdemkbs0b6r" path="res://Assets/mc/slime_bawah-4.png.png" id="9_83xs0"]
 [ext_resource type="Texture2D" uid="uid://bbw7r43021q0v" path="res://Assets/mc/slime_bawah-5.png.png" id="10_ypfnu"]
+[ext_resource type="Texture2D" uid="uid://btiojripq0os3" path="res://Assets/mc/slime_hidupkosong.png.png" id="14_ypfnu"]
 [ext_resource type="Texture2D" uid="uid://clpxwd476ncv7" path="res://Assets/mc/slime_kiri-1.png.png" id="17_xuaoq"]
 [ext_resource type="Texture2D" uid="uid://bn54ql3lhysxv" path="res://Assets/mc/slime_kiri-2.png" id="18_wohnl"]
 [ext_resource type="Texture2D" uid="uid://cwpxhibcvuh8q" path="res://Assets/mc/slime_kiri-3.png.png" id="19_36dho"]
@@ -73,6 +74,38 @@ animations = [{
 }],
 "loop": true,
 "name": &"bawah",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_fkybt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_ypfnu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_fkybt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_ypfnu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_fkybt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_ypfnu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_fkybt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_ypfnu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_fkybt")
+}],
+"loop": false,
+"name": &"hidup",
 "speed": 8.0
 }, {
 "frames": [{
@@ -283,12 +316,23 @@ process_mode = 3
 position = Vector2(-6, -53.000004)
 scale = Vector2(8.38, 9.320001)
 sprite_frames = SubResource("SpriteFrames_tx1dd")
-animation = &"idle_bawah"
+animation = &"hidup"
+frame = 4
+frame_progress = 0.16735657
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("23_bi64h")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FadeAwal" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
 custom_minimum_size = Vector2(200, 50)

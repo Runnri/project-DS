@@ -1,103 +1,115 @@
 extends Control
 
 @onready var layar_gambar = $TextureRect
-@onready var timer_auto   = $Timer
 @onready var label_skip   = $LabelSkip
+@onready var label_teks   = $LabelTeks
+
 
 var daftar_slide = [
-	preload("res://Assets/intro/humanDelete.png"),
-	preload("res://Assets/intro/pembersihan.png"),
-	preload("res://Assets/intro/humanMinum.png"),
-	preload("res://Assets/intro/pembersihan1.png")
+	{
+		"teks": "Tahun 2026... Protokol pembersihan sistem akan segera dimulai.",
+		"gambar": preload("res://Assets/intro/humanDelete.png")
+	},
+	{
+		"teks": "Satu per satu data usang dihapus tanpa ampun.",
+		"gambar": preload("res://Assets/intro/pembersihan.png")
+	},
+	{
+		"teks": "Di balik rutinitas sang Pengguna, ancaman datang secara diam-diam...",
+		"gambar": preload("res://Assets/intro/humanMinum.png")
+	},
+	{
+		"teks": "Bagi data-data yang terlupakan, ini adalah akhir dari segalanya.",
+		"gambar": preload("res://Assets/intro/pembersihan1.png")
+	}
 ]
 
-const DURASI_PER_SLIDE: float = 4.0
+const KECEPATAN_NGETIK: float = 0.1 
+const DURASI_GAMBAR: float = 3.0     
 
 var slide_sekarang: int = 0
-var bisa_skip: bool = false
+var fase: String = "ngetik"          
+var tween_aktif: Tween
 
 func _ready():
 	layar_gambar.modulate.a = 0.0
-	timer_auto.wait_time = DURASI_PER_SLIDE
-	timer_auto.one_shot = true
-	timer_auto.timeout.connect(_on_timer_auto_timeout)
+	label_teks.modulate.a = 1.0
+	label_teks.text = ""
+	label_teks.visible_characters = 0
+
+	if has_node("Timer"):
+		$Timer.queue_free()
 
 	if daftar_slide.size() > 0:
-		tampilkan_slide()
+		mulai_ngetik()
 
 func _input(event):
-	if bisa_skip and (event.is_action_pressed("ui_accept") or event is InputEventMouseButton and event.pressed):
-		timer_auto.stop()
-		ke_slide_berikutnya()
+	if event.is_action_pressed("ui_accept") or (event is InputEventMouseButton and event.pressed):
+		if fase == "ngetik":
+			if tween_aktif: tween_aktif.kill()
+			label_teks.visible_characters = -1
+			munculkan_gambar()
+		elif fase == "gambar_tampil":
+			if tween_aktif: tween_aktif.kill()
+			lanjut_slide()
 
-func _on_timer_auto_timeout():
-	ke_slide_berikutnya()
+func mulai_ngetik():
+	fase = "ngetik"
+	layar_gambar.modulate.a = 0.0
+	
+	var data = daftar_slide[slide_sekarang]
+	label_teks.text = data["teks"]
+	label_teks.visible_characters = 0
+	
+	var durasi_ngetik = data["teks"].length() * KECEPATAN_NGETIK
 
-func ke_slide_berikutnya():
-	bisa_skip = false
+	tween_aktif = create_tween()
+	tween_aktif.tween_property(label_teks, "visible_characters", data["teks"].length(), durasi_ngetik)
+	tween_aktif.tween_callback(munculkan_gambar)
+
+func munculkan_gambar():
+	fase = "gambar_tampil"
+	label_teks.visible_characters = -1 
+
+	var data = daftar_slide[slide_sekarang]
+	layar_gambar.texture = data["gambar"]
+	_sesuaikan_stretch(data["gambar"])
+
+	tween_aktif = create_tween()
+	tween_aktif.tween_property(layar_gambar, "modulate:a", 1.0, 1.0)
+	tween_aktif.tween_interval(DURASI_GAMBAR)
+	tween_aktif.tween_property(layar_gambar, "modulate:a", 0.0, 0.5)
+	tween_aktif.parallel().tween_property(label_teks, "modulate:a", 0.0, 0.5)
+	tween_aktif.tween_callback(lanjut_slide)
+
+func lanjut_slide():
 	slide_sekarang += 1
 	if slide_sekarang >= daftar_slide.size():
 		pindah_ke_gameplay()
 	else:
-		tampilkan_slide()
+		label_teks.modulate.a = 1.0
+		mulai_ngetik()
 
-# Sesuaikan stretch_mode berdasarkan aspect ratio gambar vs layar
-func _sesuaikan_stretch(tex: Texture2D):
-	var img_w = tex.get_width()
-	var img_h = tex.get_height()
-	var img_ratio = float(img_w) / float(img_h)
+# ==========================================================
+# INI DUA FUNGSI YANG TADI IKUT KEHAPUS
+# ==========================================================
 
-	var layar = get_viewport_rect().size
-	var layar_ratio = layar.x / layar.y
-
-	# Jika rasio gambar hampir sama dengan layar (toleransi 5%), pakai KEEP_ASPECT_COVERED
-	# supaya tidak ada letterbox hitam — gambar memenuhi layar dengan crop minimal.
-	# Jika rasio sangat berbeda (mis. 1:1 vs 16:9), pakai KEEP_ASPECT_CENTERED
-	# supaya gambar penuh terlihat dengan letterbox hitam di sisi kosong.
+func _sesuaikan_stretch(tex):
+	var img_ratio = tex.get_width() / float(tex.get_height())
+	var layar_ratio = 1908.0 / 927.0 
 	var selisih = abs(img_ratio - layar_ratio) / layar_ratio
 
 	if selisih < 0.05:
-		# Rasio hampir sama → penuhi layar tanpa letterbox
 		layar_gambar.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	else:
-		# Rasio beda jauh → tampilkan gambar utuh + letterbox hitam
 		layar_gambar.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-
-func tampilkan_slide():
-	bisa_skip = false
-	var tween = create_tween()
-
-	# 1. FADE OUT gambar lama
-	tween.tween_property(layar_gambar, "modulate:a", 0.0, 0.5)
-
-	# 2. Ganti tekstur + sesuaikan stretch mode sebelum fade in
-	tween.tween_callback(func():
-		var tex = daftar_slide[slide_sekarang]
-		layar_gambar.texture = tex
-		_sesuaikan_stretch(tex)
-	)
-
-	# 3. FADE IN gambar baru
-	tween.tween_property(layar_gambar, "modulate:a", 1.0, 0.5)
-
-	# 4. Aktifkan skip & mulai timer
-	tween.tween_callback(func():
-		bisa_skip = true
-		timer_auto.start()
-	)
 
 func pindah_ke_gameplay():
 	var path_level = "res://Scenes/level_easy.tscn"
-
-	match Global.kesulitan_terpilih:
-		"easy":   path_level = "res://Scenes/level_easy.tscn"
-		"medium": path_level = "res://Scenes/level_medium.tscn"
-		"hard":   path_level = "res://Scenes/level_hard.tscn"
-
-	var tween = create_tween()
-	tween.tween_property(layar_gambar, "modulate:a", 0.0, 0.3)
-	tween.tween_callback(func():
-		var err = get_tree().change_scene_to_file(path_level)
-		if err != OK:
-			push_error("[CutScene]: Gagal load scene: " + path_level)
-	)
+	
+	# Karena di script aslimu ada cek kesulitan (Easy/Hard)
+	if Global.kesulitan_terpilih == "hard":
+		# Ubah string ini kalau scene mode hard kamu namanya beda
+		path_level = "res://Scenes/level_hard.tscn" 
+		
+	get_tree().change_scene_to_file(path_level)

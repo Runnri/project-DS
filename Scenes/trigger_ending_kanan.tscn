@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bcysvkfnc1mmn"]
 
-[ext_resource type="Script" uid="uid://dswllo47n2gmw" path="res://Scripts/trigger_ending_kanan.gd" id="1_trig"]
+[ext_resource type="Script" uid="uid://b51dupsmumbn7" path="res://Scripts/trigger_ending_kanan.gd" id="1_trig"]
 
 [sub_resource type="RectangleShape2D" id="RS_trigger"]
 size = Vector2(63, 1188)

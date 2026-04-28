@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://bq1aj7gsmv3tt"]
+[gd_scene load_steps=37 format=4 uid="uid://bq1aj7gsmv3tt"]
 
 [ext_resource type="PackedScene" uid="uid://cu3rg6jpc4vf" path="res://Scenes/player.tscn" id="1_3u8fx"]
 [ext_resource type="Texture2D" uid="uid://w0l6ih0qnuju" path="res://Assets/map/tilesett.png" id="1_iy4cr"]
@@ -19,6 +19,12 @@
 [ext_resource type="PackedScene" uid="uid://c2q1p1lepergu" path="res://Scenes/pintu_password.tscn" id="17_hx7v0"]
 [ext_resource type="PackedScene" uid="uid://b3sutokdxbmt" path="res://Scenes/npc_sekarat.tscn" id="18_3y6e5"]
 [ext_resource type="PackedScene" uid="uid://bcysvkfnc1mmn" path="res://Scenes/trigger_ending_kanan.tscn" id="19_8e84y"]
+[ext_resource type="Script" uid="uid://b1oi5qu7bkfp6" path="res://Scripts/blok_dorong_1.gd" id="20_4w27m"]
+[ext_resource type="Script" uid="uid://j52bavy6urua" path="res://Scripts/tombol_keluar.gd" id="21_ey1gl"]
+[ext_resource type="Script" uid="uid://vpci08febdrd" path="res://Scripts/tombol_jebakan.gd" id="21_ung83"]
+[ext_resource type="Script" uid="uid://bm2xcvm11bpup" path="res://Scripts/tombol_pengecoh.gd" id="22_cea6p"]
+[ext_resource type="Script" uid="uid://d1rf7posvf34" path="res://Scripts/pintu_keluar.gd" id="24_hfrtm"]
+[ext_resource type="Script" uid="uid://c5o27brch3vlr" path="res://Scripts/laser_jebakan.gd" id="25_2k24n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t3aic"]
 texture = ExtResource("1_iy4cr")
@@ -323,6 +329,24 @@ vertices = PackedVector2Array(4412.1563, -539.09375, 4514.078, -576.6797, 4524.9
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 2, 4, 5), PackedInt32Array(6, 7, 8, 9, 10), PackedInt32Array(6, 10, 11, 12), PackedInt32Array(13, 6, 12, 14, 15), PackedInt32Array(16, 17, 18, 19, 20), PackedInt32Array(21, 22, 23, 24, 25), PackedInt32Array(26, 27, 28, 29, 30), PackedInt32Array(31, 32, 33, 34), PackedInt32Array(24, 35, 36, 25), PackedInt32Array(37, 38, 39, 5), PackedInt32Array(40, 41, 42, 43), PackedInt32Array(33, 44, 45), PackedInt32Array(30, 46, 47, 26), PackedInt32Array(48, 30, 29, 49), PackedInt32Array(50, 51, 52, 40, 43), PackedInt32Array(50, 43, 53, 54), PackedInt32Array(55, 56, 57, 58, 59, 60), PackedInt32Array(19, 61, 20), PackedInt32Array(16, 20, 62, 39), PackedInt32Array(5, 39, 62, 63), PackedInt32Array(64, 65, 66, 67, 53), PackedInt32Array(68, 54, 53, 67, 69), PackedInt32Array(70, 69, 67, 71), PackedInt32Array(4, 21, 25, 72, 73), PackedInt32Array(14, 74, 75, 76), PackedInt32Array(34, 33, 48, 49, 77, 78, 79), PackedInt32Array(80, 59, 58), PackedInt32Array(80, 58, 70, 81), PackedInt32Array(81, 70, 71, 82), PackedInt32Array(72, 82, 71, 73), PackedInt32Array(83, 84, 13, 15), PackedInt32Array(15, 14, 76, 34), PackedInt32Array(33, 45, 48), PackedInt32Array(79, 15, 34), PackedInt32Array(73, 79, 78, 85, 4), PackedInt32Array(4, 85, 5), PackedInt32Array(3, 5, 63), PackedInt32Array(86, 87, 88, 89, 90), PackedInt32Array(91, 92, 93, 94)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1492, 863, -1464, 1066, -441, 1077, -369, 655, -102, 599, -63, 1244, 1367, 1276, 1396, 1553, 1068, 1550, 1062, 2309, 1393, 2303, 1584, 2317, 1587, 1564, 1499, 1553, 1502, 1282, 4535, 1261, 4524, -591, 4402, -546, 4441, 1166, 3090, 1166, 3095, 638, 3397, 672, 3401, 876, 4132, 868, 4153, 358, 3385, 388, 3385, 513, 3073, 538, 3084, -596, 2984, -585, 2962, -57, 4352, -46, 4368, 66, 2967, 82, 2995, 1183, 1524, 1161, 1512, 733, 1912, 724, 1923, 633, 2331, 638, 2326, 890, 2719, 884, 2716, 587, 2714, 353, 2340, 356, 2343, 501, 1916.3364, 501.54413, 1912, 416, 1912, 333, 1495, 339, 1490, 102, 1381, 108, 1375, 427, 1361, 353, 990, 353, 976, 499, 528, 533, 511, 370, 368, 382, 357, 573, 357, 884, 542, 864, 514.02545, 574.60455, 965, 613, 982, 704, 1398, 707, 1429.8638, 583.96265, 1373, 1172, 74, 1141, 59, 84, 3094, 71, 3053, -53, 1504, -45, 1504, -322, 1907, -325, 1910, -695, 1399, -690, 988, -690, 977, -327, 1376, -319, 1387.4128, -51.883667, 69, -51, -57, 38, -24, 538, -385, 527, -396, 143, -1470, 168)])
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ey1gl"]
+size = Vector2(81.125, 78.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2k24n"]
+size = Vector2(65.5, 65)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wco3i"]
+size = Vector2(71, 66)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8e84y"]
+size = Vector2(143, 144)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hfrtm"]
+size = Vector2(199, 170)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2hfg0"]
+size = Vector2(31, 2109)
+
 [node name="Level_easy" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -346,13 +370,10 @@ position = Vector2(-2907, 14697)
 [node name="checkpoint5" parent="." instance=ExtResource("5_v4o3j")]
 position = Vector2(-7223, 17635.002)
 
-[node name="Player" parent="." instance=ExtResource("1_3u8fx")]
-position = Vector2(-72, 366)
-
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
 position = Vector2(130, -242)
-color = Color(0.14767182, 0.14767179, 0.14767179, 1)
+color = Color(0.26657534, 0.26657513, 0.2665752, 1)
 
 [node name="item_senter" parent="." instance=ExtResource("4_r5svf")]
 position = Vector2(648, 289)
@@ -422,154 +443,19 @@ position = Vector2(4549, 230)
 position = Vector2(6065, 5378)
 
 [node name="obstacle" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(3951.0002, 8445)
+position = Vector2(747.00024, 8835.998)
 
 [node name="obstacle2" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(3960, 8688.001)
+position = Vector2(756, 9078.999)
 
 [node name="obstacle3" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(3949.9998, 8208.001)
+position = Vector2(745.99976, 8598.999)
 
 [node name="obstacle4" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(3968, 8919.001)
+position = Vector2(764, 9309.999)
 
 [node name="obstacle5" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(3940, 7988.0015)
-
-[node name="obstacle46" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(3119.0002, 8683.998)
-
-[node name="obstacle47" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(3128, 8926.999)
-
-[node name="obstacle48" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(3117.9998, 8446.999)
-
-[node name="obstacle49" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(3136, 9157.999)
-
-[node name="obstacle50" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(3108, 8227)
-
-[node name="obstacle36" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(1205.0005, 8878.998)
-
-[node name="obstacle37" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(1214.0002, 9121.999)
-
-[node name="obstacle38" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(1204, 8641.999)
-
-[node name="obstacle39" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(1222.0002, 9352.999)
-
-[node name="obstacle40" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(1194.0002, 8422)
-
-[node name="obstacle31" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(4336, 8848.998)
-
-[node name="obstacle32" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(4345, 9091.999)
-
-[node name="obstacle33" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(4334.9995, 8611.999)
-
-[node name="obstacle34" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(4353, 9322.999)
-
-[node name="obstacle35" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(4325, 8392)
-
-[node name="obstacle26" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(2214.0005, 8890.998)
-
-[node name="obstacle27" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(2223, 9133.999)
-
-[node name="obstacle28" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(2213, 8653.999)
-
-[node name="obstacle29" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(2231, 9364.999)
-
-[node name="obstacle30" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(2203, 8434)
-
-[node name="obstacle41" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(1908.0005, 8921.998)
-
-[node name="obstacle42" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(1917, 9164.999)
-
-[node name="obstacle43" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(1907, 8684.999)
-
-[node name="obstacle44" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(1925, 9395.999)
-
-[node name="obstacle45" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(1897, 8465)
-
-[node name="obstacle21" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(1541.0005, 8884.998)
-
-[node name="obstacle22" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(1550.0002, 9127.999)
-
-[node name="obstacle23" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(1540, 8647.999)
-
-[node name="obstacle24" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(1558.0002, 9358.999)
-
-[node name="obstacle25" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(1530.0002, 8428)
-
-[node name="obstacle16" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(820.0005, 8890.998)
-
-[node name="obstacle17" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(829.00024, 9133.999)
-
-[node name="obstacle18" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(819, 8653.999)
-
-[node name="obstacle19" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(837.00024, 9364.999)
-
-[node name="obstacle20" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(809.00024, 8434)
-
-[node name="obstacle6" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(2440.0005, 7930.9985)
-
-[node name="obstacle7" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(2449, 8173.9995)
-
-[node name="obstacle8" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(2439, 7693.9995)
-
-[node name="obstacle9" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(2457, 8405)
-
-[node name="obstacle10" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(2429, 7474)
-
-[node name="obstacle11" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(2440.0005, 7930.9985)
-
-[node name="obstacle12" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(2449, 8173.9995)
-
-[node name="obstacle13" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(2439, 7693.9995)
-
-[node name="obstacle14" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(2457, 8405)
-
-[node name="obstacle15" parent="." instance=ExtResource("9_7rmgh")]
-position = Vector2(2429, 7474)
+position = Vector2(736, 8379)
 
 [node name="TriggerLevel" parent="." instance=ExtResource("11_sf2av")]
 position = Vector2(6090, 1166)
@@ -633,10 +519,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -254.5
-offset_top = -139.25
-offset_right = 254.5
-offset_bottom = 139.25
+offset_left = -267.0
+offset_top = 14.0
+offset_right = 242.0
+offset_bottom = 292.5
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -683,3 +569,155 @@ position = Vector2(-7299, 20914)
 
 [node name="TriggerEndingKanan" parent="." instance=ExtResource("19_8e84y")]
 position = Vector2(-4800, 20802)
+
+[node name="KabelKeluar" type="Line2D" parent="."]
+position = Vector2(0, -24)
+points = PackedVector2Array(403, 9131, 671, 9139, 1433, 8597, 2028, 7725, 2574, 7525, 3651, 7742, 4034, 8088)
+width = 5.0
+default_color = Color(7.460266e-07, 0.30497795, 0.30503622, 1)
+
+[node name="KabelKeluar3" type="Line2D" parent="."]
+position = Vector2(42.15381, -24)
+scale = Vector2(0.9895633, 1)
+points = PackedVector2Array(365.6625, 9131, 629.4152, 9140, 932.5793, 8563, 987.1488, 7997, 1033.6339, 7642)
+width = 5.0
+default_color = Color(7.460266e-07, 0.30497795, 0.30503622, 1)
+
+[node name="KabelKeluar2" type="Line2D" parent="."]
+position = Vector2(-247.28198, -332.0791)
+scale = Vector2(1.6213114, 1.0331125)
+points = PackedVector2Array(402.93433, 9135.578, 565.7655, 9143.321, 912.39844, 9476.296, 1495.26, 9452.097, 1894.3197, 9430.802, 2186.6755, 9156.873)
+width = 5.0
+default_color = Color(7.460266e-07, 0.30497795, 0.30503622, 1)
+
+[node name="TombolKeluar" type="Area2D" parent="."]
+position = Vector2(988, 7535)
+script = ExtResource("21_ey1gl")
+
+[node name="ColorRect" type="ColorRect" parent="TombolKeluar"]
+offset_right = 150.0
+offset_bottom = 150.0
+color = Color(0.8732984, 0.8732984, 0.8732984, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Lampu" type="ColorRect" parent="TombolKeluar"]
+offset_left = 36.0
+offset_top = 31.0
+offset_right = 116.0
+offset_bottom = 111.0
+color = Color(0.9953546, 0, 0.24944285, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TombolKeluar"]
+position = Vector2(75, 75)
+shape = SubResource("RectangleShape2D_ey1gl")
+
+[node name="TombolJebakan" type="Area2D" parent="."]
+position = Vector2(3230, 9060)
+script = ExtResource("21_ung83")
+
+[node name="ColorRect" type="ColorRect" parent="TombolJebakan"]
+offset_right = 150.0
+offset_bottom = 150.0
+color = Color(0.8732984, 0.8732984, 0.8732984, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Lampu" type="ColorRect" parent="TombolJebakan"]
+offset_left = 36.0
+offset_top = 31.0
+offset_right = 116.0
+offset_bottom = 111.0
+color = Color(0.9953546, 0, 0.24944285, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TombolJebakan"]
+position = Vector2(75, 70)
+shape = SubResource("RectangleShape2D_2k24n")
+
+[node name="TombolPengecoh" type="Area2D" parent="."]
+position = Vector2(3965, 7995)
+script = ExtResource("22_cea6p")
+
+[node name="ColorRect" type="ColorRect" parent="TombolPengecoh"]
+offset_right = 150.0
+offset_bottom = 150.0
+color = Color(0.8732984, 0.8732984, 0.8732984, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Lampu" type="ColorRect" parent="TombolPengecoh"]
+offset_left = 36.0
+offset_top = 31.0
+offset_right = 116.0
+offset_bottom = 111.0
+color = Color(0.9953546, 0, 0.24944285, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TombolPengecoh"]
+position = Vector2(76, 71)
+shape = SubResource("RectangleShape2D_wco3i")
+
+[node name="Player" parent="." instance=ExtResource("1_3u8fx")]
+position = Vector2(4048, 8897)
+
+[node name="BlokDorong1" type="RigidBody2D" parent="."]
+position = Vector2(4048, 8526)
+gravity_scale = 0.0
+lock_rotation = true
+linear_damp = 15.0
+script = ExtResource("20_4w27m")
+
+[node name="ColorRect" type="ColorRect" parent="BlokDorong1"]
+offset_right = 145.0
+offset_bottom = 145.0
+color = Color(0.5370113, 0.5370113, 0.5370113, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlokDorong1"]
+position = Vector2(72.5, 73)
+shape = SubResource("RectangleShape2D_8e84y")
+
+[node name="BlokDorong2" type="RigidBody2D" parent="."]
+position = Vector2(3711, 8520)
+gravity_scale = 0.0
+lock_rotation = true
+linear_damp = 15.0
+script = ExtResource("20_4w27m")
+
+[node name="ColorRect" type="ColorRect" parent="BlokDorong2"]
+offset_right = 145.0
+offset_bottom = 145.0
+color = Color(0.5370113, 0.5370113, 0.5370113, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlokDorong2"]
+position = Vector2(72.5, 73)
+shape = SubResource("RectangleShape2D_8e84y")
+
+[node name="PintuKeluar" type="StaticBody2D" parent="."]
+position = Vector2(298, 9101)
+script = ExtResource("24_hfrtm")
+
+[node name="ColorRect" type="ColorRect" parent="PintuKeluar"]
+offset_top = -73.0
+offset_right = 200.0
+offset_bottom = 97.0
+color = Color(0.58431375, 0.90588236, 0.9882353, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PintuKeluar"]
+position = Vector2(99.5, 12)
+shape = SubResource("RectangleShape2D_hfrtm")
+
+[node name="LaserJebakan" type="Area2D" parent="."]
+position = Vector2(3306, 9457)
+script = ExtResource("25_2k24n")
+
+[node name="ColorRect" type="ColorRect" parent="LaserJebakan"]
+offset_left = -16.0
+offset_top = -2071.0
+offset_right = 24.0
+offset_bottom = 40.0
+color = Color(0.9033766, 0.0177988, 2.887845e-05, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LaserJebakan"]
+position = Vector2(5.5, -1012.5)
+shape = SubResource("RectangleShape2D_2hfg0")
+
+[connection signal="body_entered" from="LaserJebakan" to="LaserJebakan" method="_on_body_entered"]

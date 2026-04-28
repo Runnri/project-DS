@@ -62,6 +62,7 @@ var arah_terakhir: String = "bawah"
 @onready var prompt_f      = $F
 @onready var level_notif   = $CanvasLayer/LevelNotif
 @onready var nyawa_container = $CanvasLayer/NyawaContainer
+@onready var fade_awal = $CanvasLayer/FadeAwal
 
 
 
@@ -106,6 +107,22 @@ func _ready():
 	if Global.sedang_load:
 		# call_deferred agar semua @onready node sudah siap
 		call_deferred("_lakukan_load_game")
+		
+	if fade_awal:
+		# Kunci pergerakan saat baru bangun (opsional, hapus baris frozen kalau mau bisa langsung gerak)
+		frozen = true 
+		
+		# Pastikan layar mulai dari hitam pekat
+		fade_awal.color = Color(0, 0, 0, 1)
+		fade_awal.show()
+		
+		var tw = create_tween()
+		# Proses fade out dari hitam ke transparan (durasi 2.0 detik)
+		tw.tween_property(fade_awal, "color:a", 0.0, 2.0)
+		tw.tween_callback(func():
+			fade_awal.hide()
+			frozen = false # Lepas kunci pergerakan
+		)
 
 func _lakukan_load_game():
 	Global.muat_game(self)
@@ -160,6 +177,16 @@ func _physics_process(delta):
 
 	move_and_slide()
 	_update_interaction_prompt()
+	
+	# BIKIN BIT BISA NGEDORONG BALOK
+	var kekuatan_dorong = 60.0 # Gedein angkanya kalau baloknya terasa berat
+	for i in get_slide_collision_count():
+		var tabrakan = get_slide_collision(i)
+		var objek = tabrakan.get_collider()
+		
+		# Kalau yang ditabrak itu RigidBody dan masuk grup "balok"
+		if objek is RigidBody2D and objek.is_in_group("balok"):
+			objek.apply_central_impulse(-tabrakan.get_normal() * kekuatan_dorong)
 
 # ==========================================
 # 7. INPUT
@@ -276,16 +303,33 @@ func mati():
 		respawn()
 
 func respawn():
-	# Kembali ke checkpoint terakhir (spawn_point), BUKAN spawn awal
+	# 1. Kembali ke checkpoint terakhir & reset status (Tetap)
 	global_position = spawn_point
 	stamina = max_stamina
 	if stamina_bar:
 		stamina_bar.value = stamina
 	is_dead = false
-	sprite.play("idle_" + arah_terakhir)
+	
+	# 2. Lepas pause SEBELUM mutar animasi agar await tidak macet (Tetap)
 	get_tree().paused = false
+	
 	if log_teks:
 		log_teks.text += "\n[SYSTEM]: Reboot Successful. Cache restored."
+		
+	# 3. --- MULAI EFEK BANGUN (YANG BARU) ---
+	frozen = true # Kunci pergerakan
+	
+	# Mainkan animasi bangun (Pastikan nama animasinya "bangun" di editor)
+	sprite.play("hidup") 
+	
+	# Tunggu sampai animasi benar-benar selesai
+	await sprite.animation_finished
+	
+	# 4. --- SELESAI BANGUN ---
+	frozen = false # Lepas kunci
+	
+	# Kembali ke animasi idle sesuai arah terakhir (Yang lama dipindah ke sini)
+	sprite.play("idle_" + arah_terakhir)
 
 func _game_over():
 	# Semua nyawa habis → kembali ke spawn PALING AWAL dan reset nyawa

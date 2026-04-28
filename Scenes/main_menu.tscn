@@ -123,6 +123,7 @@ offset_left = 80.0
 offset_top = 120.0
 offset_right = 700.0
 offset_bottom = 290.0
+scale = Vector2(1.4, 1.4)
 theme_override_constants/separation = 6
 
 [node name="LabelTag" type="Label" parent="TitleBlock"]
@@ -144,9 +145,10 @@ label_settings = SubResource("LS_subtitle")
 [node name="MenuBlock" type="VBoxContainer" parent="."]
 layout_mode = 1
 offset_left = 80.0
-offset_top = 310.0
+offset_top = 396.0
 offset_right = 380.0
-offset_bottom = 480.0
+offset_bottom = 566.0
+scale = Vector2(1.4, 1.4)
 theme_override_constants/separation = 2
 
 [node name="Divider" type="Panel" parent="MenuBlock"]

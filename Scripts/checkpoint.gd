@@ -26,3 +26,7 @@ func reset_checkpoint():
 	sprite.play("mati")
 	if lampu_cahaya:
 		lampu_cahaya.enabled = false
+
+
+func _on_tombol_keluar_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.

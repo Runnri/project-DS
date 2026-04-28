@@ -1,9 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://kn51qnnfv6hs"]
+[gd_scene load_steps=12 format=3 uid="uid://kn51qnnfv6hs"]
 
 [ext_resource type="Script" uid="uid://dryifk84muhqm" path="res://Scripts/ending_bin.gd" id="1_ebin"]
 [ext_resource type="Script" uid="uid://dout10p8dxr4e" path="res://Scripts/tumpukan_mayat.gd" id="2_tmyt"]
 [ext_resource type="Texture2D" uid="uid://drkfhfovd8nd8" path="res://Assets/mc/slime_atas-1.png.png" id="3_sprite"]
+[ext_resource type="Texture2D" uid="uid://c3clws2eq8smh" path="res://Assets/npc/slime_npcmati8.png" id="4_fu5lw"]
+[ext_resource type="Texture2D" uid="uid://y3c0di58hybj" path="res://Assets/npc/slime_npcmati5.png" id="7_hgd3r"]
+[ext_resource type="Texture2D" uid="uid://roma4srytjmp" path="res://Assets/npc/slime_sekaratidlengedip.png.png" id="8_hgd3r"]
 [ext_resource type="Texture2D" uid="uid://bs2bm332my32k" path="res://Assets/npc/slime_npcmati2.png" id="10_bp3sh"]
+[ext_resource type="Texture2D" uid="uid://81x224pdoqbo" path="res://Assets/npc/slime_npcmati1.png.png" id="11_cmfnp"]
 
 [sub_resource type="PhysicsMaterial" id="PM_bit"]
 friction = 0.8
@@ -36,7 +40,7 @@ position = Vector2(954, 463)
 [node name="TumpukanMayat5" type="Node2D" parent="."]
 position = Vector2(954, 770)
 script = ExtResource("2_tmyt")
-tekstur_mayat = ExtResource("10_bp3sh")
+tekstur_mayat = ExtResource("4_fu5lw")
 jumlah_mayat = 2500
 lebar_gunung = 1800.0
 
@@ -57,7 +61,7 @@ lebar_gunung = 1788.0
 [node name="TumpukanMayat8" type="Node2D" parent="."]
 position = Vector2(954, 893)
 script = ExtResource("2_tmyt")
-tekstur_mayat = ExtResource("10_bp3sh")
+tekstur_mayat = ExtResource("3_sprite")
 jumlah_mayat = 2500
 lebar_gunung = 1788.0
 
@@ -78,7 +82,7 @@ lebar_gunung = 1788.0
 [node name="TumpukanMayat10" type="Node2D" parent="."]
 position = Vector2(954, 976)
 script = ExtResource("2_tmyt")
-tekstur_mayat = ExtResource("10_bp3sh")
+tekstur_mayat = ExtResource("8_hgd3r")
 jumlah_mayat = 2500
 lebar_gunung = 1788.0
 
@@ -99,14 +103,14 @@ lebar_gunung = 1800.0
 [node name="TumpukanMayat13" type="Node2D" parent="."]
 position = Vector2(954, 1126)
 script = ExtResource("2_tmyt")
-tekstur_mayat = ExtResource("10_bp3sh")
+tekstur_mayat = ExtResource("7_hgd3r")
 jumlah_mayat = 2500
 lebar_gunung = 1788.0
 
 [node name="TumpukanMayat14" type="Node2D" parent="."]
 position = Vector2(954, 1162)
 script = ExtResource("2_tmyt")
-tekstur_mayat = ExtResource("10_bp3sh")
+tekstur_mayat = ExtResource("11_cmfnp")
 jumlah_mayat = 2500
 lebar_gunung = 1788.0
 
