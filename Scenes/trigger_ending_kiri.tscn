@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://blm2ou7rthplv"]
+
+[ext_resource type="Script" uid="uid://csa6iht0d267b" path="res://Scripts/trigger_ending_kiri.gd" id="1_vcu8p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5j40g"]
+size = Vector2(23, 718)
+
+[node name="Trigger_ending_kiri" type="Area2D"]
+script = ExtResource("1_vcu8p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, -3)
+shape = SubResource("RectangleShape2D_5j40g")

@@ -4,6 +4,9 @@ var kesulitan_terpilih: String = "easy"
 var sedang_load: bool = false
 var auth_tujuan: String = "start"
 
+# -- TAMBAHAN UNTUK JUDUL ENDING --
+var last_ending_achieved: String = ""
+
 # ── AKUN ────────────────────────────────────────────────────
 var username_aktif: String = ""
 const JALUR_AKUN = "user://accounts.cfg"
@@ -35,121 +38,62 @@ func register(username: String, password: String) -> String:
 	if config.has_section_key("Accounts", username):
 		return "Username sudah digunakan."
 	config.set_value("Accounts", username, _hash_password(password))
-	var err = config.save(JALUR_AKUN)
-	if err != OK:
-		return "Gagal menyimpan akun."
-	DirAccess.make_dir_recursive_absolute("user://saves")
+	config.save(JALUR_AKUN)
+	
+	var save_dir = "user://saves/"
+	if not DirAccess.dir_exists_absolute(save_dir):
+		DirAccess.make_dir_recursive_absolute(save_dir)
+		
 	return ""
 
-# ── LOGIN ─────────────────────────────────────────────────────
+# ── LOGIN ────────────────────────────────────────────────────
 func login(username: String, password: String) -> String:
-	username = username.strip_edges()
-	password = password.strip_edges()
-	if not FileAccess.file_exists(JALUR_AKUN):
-		return "Belum ada akun. Silakan Register dulu."
 	var config = ConfigFile.new()
+	if not FileAccess.file_exists(JALUR_AKUN):
+		return "Belum ada akun terdaftar."
 	config.load(JALUR_AKUN)
 	if not config.has_section_key("Accounts", username):
 		return "Username tidak ditemukan."
-	var stored_hash = config.get_value("Accounts", username, "")
-	if stored_hash != _hash_password(password):
+	if config.get_value("Accounts", username) != _hash_password(password):
 		return "Password salah."
 	username_aktif = username
-	DirAccess.make_dir_recursive_absolute("user://saves")
-	print("[AUTH]: Login berhasil sebagai '", username, "'")
 	return ""
 
-# ── LOGOUT ────────────────────────────────────────────────────
-func logout():
-	print("[AUTH]: '", username_aktif, "' logout.")
-	username_aktif = ""
-	sedang_load = false
-
-func sudah_login() -> bool:
-	return username_aktif != ""
-
+# ── CEK SAVE ─────────────────────────────────────────────────
 func ada_file_save() -> bool:
-	if not sudah_login():
-		return false
+	if username_aktif == "": return false
 	return FileAccess.file_exists(jalur_save_aktif())
 
-# ── SIMPAN GAME ───────────────────────────────────────────────
-# FIX: tambah section Progres (level & kesulitan) agar load bisa baca nama level
-func simpan_game(player: CharacterBody2D, nama_level_sekarang: String):
-	if not sudah_login():
-		push_error("[SAVE]: Tidak ada user yang login!")
-		return
-
+# ── SIMPAN GAME ──────────────────────────────────────────────
+func simpan_game(player: CharacterBody2D):
+	if username_aktif == "": return
 	var config = ConfigFile.new()
+	if ada_file_save():
+		config.load(jalur_save_aktif())
 
-	# ── Progres (WAJIB untuk load) ──────────────────────────
-	config.set_value("Progres", "level",     nama_level_sekarang)
+	config.set_value("Progres", "posisi_x", player.global_position.x)
+	config.set_value("Progres", "posisi_y", player.global_position.y)
 	config.set_value("Progres", "kesulitan", kesulitan_terpilih)
+	config.save(jalur_save_aktif())
+	print("[SAVE]: Berhasil disimpan untuk user '", username_aktif, "'")
 
-	# ── Data Player ─────────────────────────────────────────
-	config.set_value("Player", "nyawa",     player.nyawa)
-	config.set_value("Player", "hp",        player.hp)
-	config.set_value("Player", "stamina",   player.stamina)
-	config.set_value("Player", "inventory", player.inventory)
-	config.set_value("Player", "posisi_x",  player.global_position.x)
-	config.set_value("Player", "posisi_y",  player.global_position.y)
-	config.set_value("Player", "spawn_x",   player.spawn_point.x)
-	config.set_value("Player", "spawn_y",   player.spawn_point.y)
-
-	# ── Meta ────────────────────────────────────────────────
-	config.set_value("Meta", "timestamp",  Time.get_datetime_string_from_system())
-	config.set_value("Meta", "versi_save", 1)
-
-	var hasil = config.save(jalur_save_aktif())
-	if hasil == OK:
-		print("[AUTOSAVE]: Tersimpan untuk user '", username_aktif, "' di level ", nama_level_sekarang)
-	else:
-		push_error("[AUTOSAVE ERROR]: Kode error: " + str(hasil))
-
-# ── BACA INFO SAVE (untuk UI load_game.tscn) ─────────────────
-# FIX: return "nyawa" bukan "hp" — sesuai data yang disimpan
-func baca_info_save() -> Dictionary:
-	if not ada_file_save():
-		return {}
-	var config = ConfigFile.new()
-	if config.load(jalur_save_aktif()) != OK:
-		return {}
-	return {
-		"level":     config.get_value("Progres", "level",     ""),
-		"kesulitan": config.get_value("Progres", "kesulitan", "easy"),
-		"timestamp": config.get_value("Meta",    "timestamp", "Tidak diketahui"),
-		"nyawa":     config.get_value("Player",  "nyawa",     3),
-	}
-
-# ── MUAT GAME ─────────────────────────────────────────────────
-# FIX: gunakan call_deferred agar @onready sudah siap saat dipanggil
+# ── MUAT GAME ────────────────────────────────────────────────
 func muat_game(player: CharacterBody2D) -> bool:
-	if not ada_file_save():
-		push_warning("[LOAD]: Tidak ada file save untuk user '" + username_aktif + "'.")
-		return false
-
+	if not ada_file_save(): return false
+	sedang_load = true
 	var config = ConfigFile.new()
-	if config.load(jalur_save_aktif()) != OK:
-		push_error("[LOAD ERROR]: Gagal membaca file save.")
-		return false
+	config.load(jalur_save_aktif())
 
-	# Nyawa — cek save baru (key "nyawa") vs save lama (key "hp")
-	if config.has_section_key("Player", "nyawa"):
-		player.nyawa = config.get_value("Player", "nyawa", 3)
-	else:
-		player.hp = config.get_value("Player", "hp", 100)
-
-	player.stamina   = config.get_value("Player", "stamina",   player.max_stamina)
-	player.inventory = config.get_value("Player", "inventory", [])
-
-	var px = config.get_value("Player", "posisi_x", player.global_position.x)
-	var py = config.get_value("Player", "posisi_y", player.global_position.y)
+	var px = config.get_value("Progres", "posisi_x", player.global_position.x)
+	var py = config.get_value("Progres", "posisi_y", player.global_position.y)
+	
 	player.global_position = Vector2(px, py)
-	player.spawn_point = Vector2(
-		config.get_value("Player", "spawn_x", px),
-		config.get_value("Player", "spawn_y", py)
-	)
-
+	
+	if player.has_method("set_deferred"):
+		player.call_deferred("set", "global_position", Vector2(px, py))
+		player.call_deferred("set", "spawn_x", px)
+		player.call_deferred("set", "spawn_y", py)
+	
 	if player.stamina_bar:
 		player.stamina_bar.max_value = player.max_stamina
 		player.stamina_bar.value     = player.stamina
@@ -169,9 +113,10 @@ func hapus_save():
 		print("[SAVE]: File save untuk '", username_aktif, "' dihapus.")
 
 # ── ENDING SYSTEM ────────────────────────────────────────────
-# Dipanggil saat player mencapai sebuah ending
-# Return: jumlah total ending yang sudah terbuka
 func catat_ending_ke_akun(nama_ending: String) -> int:
+	# Simpan judul ending untuk scene teks
+	last_ending_achieved = nama_ending
+	
 	if not ada_file_save():
 		return 0
 
@@ -184,14 +129,6 @@ func catat_ending_ke_akun(nama_ending: String) -> int:
 		list_ending.append(nama_ending)
 		config.set_value("Progres", "ending_terbuka", list_ending)
 		config.save(jalur_save_aktif())
-		print("[ENDING]: '", nama_ending, "' terbuka. Total: ", list_ending.size())
-
+		print("[ENDING]: Baru terbuka -> ", nama_ending)
+	
 	return list_ending.size()
-
-func baca_ending_terbuka() -> Array:
-	if not ada_file_save():
-		return []
-	var config = ConfigFile.new()
-	if config.load(jalur_save_aktif()) != OK:
-		return []
-	return config.get_value("Progres", "ending_terbuka", [])

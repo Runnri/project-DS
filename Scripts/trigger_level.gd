@@ -22,7 +22,9 @@ func _on_body_entered(body: Node2D) -> void:
 		if nama_scene_level.is_empty():
 			push_warning("[TRIGGER]: 'nama_scene_level' belum diisi! Autosave dibatalkan.")
 		else:
-			Global.simpan_game(body, nama_scene_level)
+			# --- BENTROKAN DIPERBAIKI DI SINI ---
+			# Cukup kirim 'body' (si Player) saja, sesuai permintaan global.gd
+			Global.simpan_game(body)
 			print("[SYSTEM]: Progress berhasil disimpan secara otomatis.")
 
 	# Hapus trigger setelah sekali disentuh

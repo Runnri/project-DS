@@ -47,7 +47,7 @@ func _process(delta: float) -> void:
 func _teks_credit() -> String:
 	return """
 ════════════════════════
-     Undeleted Cache
+    Undeleted Cache
 ════════════════════════
 
 ~ GAME DESIGN ~
@@ -70,6 +70,6 @@ func _teks_credit() -> String:
   At SMKN2Cimahi
 
    Terima Kasih Sudah
-       Bermain!
+      Bermain!
 
 """

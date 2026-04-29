@@ -2,31 +2,36 @@ extends Area2D
 
 @export var warna_ubin: String = "biru"
 
-@onready var lampu = $Lampu
-
-var warna_visual: Dictionary = {
-	"biru":  Color(0.1, 0.4, 1.0, 1),
-	"merah": Color(1.0, 0.1, 0.1, 1),
-	"hijau": Color(0.1, 0.85, 0.2, 1),
-}
+@onready var lampu = get_node_or_null("Lampu")
 
 func _ready() -> void:
 	add_to_group("ubin_puzzle")
-	if lampu:
-		lampu.color = warna_visual.get(warna_ubin, Color.RED)
+	if not body_entered.is_connected(_on_body_entered):
+		body_entered.connect(_on_body_entered)
+	set_lampu("asal")
 
-# Signal disambung dari Inspector (bukan connect()) — sama seperti LaserJebakan di project ini
-func _on_body_entered(body: Node2D) -> void:
-	if not body.is_in_group("player"):
+func _on_body_entered(_body: Node2D) -> void:
+	if not _body.is_in_group("player"):
 		return
-	var manager = get_tree().get_first_node_in_group("puzzle_manager")
+	var manager = get_tree().get_root().find_child("PuzzleManager", true, false)
 	if manager:
-		manager.catat_injak(warna_ubin)
+		manager.terima_input(warna_ubin)
 
-func set_lampu(color: Color) -> void:
-	if lampu:
-		lampu.color = color
+func set_lampu(state: String) -> void:
+	if not lampu:
+		return
+	var warna := Color.GRAY
+	match state:
+		"asal":
+			match warna_ubin:
+				"biru":  warna = Color.BLUE
+				"merah": warna = Color.RED
+				"hijau": warna = Color.GREEN
+		"benar":  warna = Color.WHITE
+		"hitam":  warna = Color.BLACK
+		"selesai": warna = Color.YELLOW
 
-func reset_lampu() -> void:
-	if lampu:
-		lampu.color = warna_visual.get(warna_ubin, Color.RED)
+	if lampu is ColorRect:
+		lampu.color = warna
+	else:
+		lampu.modulate = warna

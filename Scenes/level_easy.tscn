@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://bq1aj7gsmv3tt"]
+[gd_scene load_steps=47 format=4 uid="uid://bq1aj7gsmv3tt"]
 
 [ext_resource type="PackedScene" uid="uid://cu3rg6jpc4vf" path="res://Scenes/player.tscn" id="1_3u8fx"]
 [ext_resource type="Texture2D" uid="uid://w0l6ih0qnuju" path="res://Assets/map/tilesett.png" id="1_iy4cr"]
@@ -29,6 +29,9 @@
 [ext_resource type="Script" uid="uid://dkbjqillwn2w4" path="res://Scripts/tombol_matikan_laser.gd" id="27_tmtl"]
 [ext_resource type="PackedScene" path="res://Scenes/puzzle_manager.tscn" id="28_8qebp"]
 [ext_resource type="PackedScene" path="res://Scenes/ubin_puzzle.tscn" id="29_nuw8c"]
+[ext_resource type="PackedScene" uid="uid://blm2ou7rthplv" path="res://Scenes/trigger_ending_kiri.tscn" id="30_gqf51"]
+[ext_resource type="Script" uid="uid://uab5kvpsxb7c" path="res://Scripts/puzzle_manager.gd" id="30_gwkio"]
+[ext_resource type="Script" uid="uid://b2kt2p6pxbi5d" path="res://Scripts/trigger_puzzle.gd" id="30_nuw8c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t3aic"]
 texture = ExtResource("1_iy4cr")
@@ -357,6 +360,9 @@ size = Vector2(31, 2109)
 [sub_resource type="RectangleShape2D" id="RS_laser_kanan"]
 size = Vector2(31, 2109)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nuw8c"]
+size = Vector2(121, 20)
+
 [node name="Level_easy" type="Node2D"]
 
 [node name="KabelKeluar" type="Line2D" parent="."]
@@ -401,7 +407,6 @@ position = Vector2(-2907, 14697)
 position = Vector2(-7223, 17635.002)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 position = Vector2(130, -242)
 color = Color(0.26657534, 0.26657513, 0.2665752, 1)
 
@@ -671,23 +676,9 @@ position = Vector2(76, 71)
 shape = SubResource("RectangleShape2D_wco3i")
 
 [node name="Player" parent="." instance=ExtResource("1_3u8fx")]
-position = Vector2(-2471, 15764)
+position = Vector2(-204, 358)
 
-[node name="PuzzleManager" parent="." groups=["puzzle_manager"] instance=ExtResource("28_8qebp")]
-
-[node name="UbinPuzzle" parent="PuzzleManager" instance=ExtResource("29_nuw8c")]
-position = Vector2(-2143, 15744)
-collision_layer = 0
-
-[node name="UbinPuzzle2" parent="PuzzleManager" instance=ExtResource("29_nuw8c")]
-position = Vector2(-5493, 15689)
-collision_layer = 0
-warna_ubin = "hijau"
-
-[node name="UbinPuzzle3" parent="PuzzleManager" instance=ExtResource("29_nuw8c")]
-position = Vector2(-4651, 16942)
-collision_layer = 0
-warna_ubin = "merah"
+[node name="PuzzleManage" parent="." groups=["puzzle_manager"] instance=ExtResource("28_8qebp")]
 
 [node name="BlokDorong1" type="RigidBody2D" parent="."]
 position = Vector2(4048, 8526)
@@ -785,6 +776,34 @@ position = Vector2(2535, 9060)
 
 [node name="item_medkit2" parent="." instance=ExtResource("27_2hfg0")]
 position = Vector2(-4257, 15819)
+
+[node name="TriggerPuzzle" type="Area2D" parent="."]
+position = Vector2(-2574, 14809)
+script = ExtResource("30_nuw8c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerPuzzle"]
+position = Vector2(-333, 112)
+shape = SubResource("RectangleShape2D_nuw8c")
+
+[node name="Trigger_ending_kiri" parent="." instance=ExtResource("30_gqf51")]
+position = Vector2(-9787, 20807)
+
+[node name="PuzzleManager" type="Node2D" parent="."]
+script = ExtResource("30_gwkio")
+
+[node name="UbinPuzzle" parent="PuzzleManager" instance=ExtResource("29_nuw8c")]
+position = Vector2(-2143, 15744)
+collision_layer = 0
+
+[node name="UbinPuzzle2" parent="PuzzleManager" instance=ExtResource("29_nuw8c")]
+position = Vector2(-5493, 15689)
+collision_layer = 0
+warna_ubin = "hijau"
+
+[node name="UbinPuzzle3" parent="PuzzleManager" instance=ExtResource("29_nuw8c")]
+position = Vector2(-4651, 16942)
+collision_layer = 0
+warna_ubin = "merah"
 
 [connection signal="body_entered" from="LaserJebakan" to="LaserJebakan" method="_on_body_entered"]
 [connection signal="body_entered" from="LaserPinggirKiri" to="LaserPinggirKiri" method="_on_body_entered"]

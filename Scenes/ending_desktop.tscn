@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkkwljypvctuc"]
+
+[ext_resource type="Script" uid="uid://cdae8iojivinu" path="res://Scripts/ending_desktop.gd" id="1_56tw1"]
+[ext_resource type="Texture2D" uid="uid://dqmqxm2c2qegi" path="res://Assets/map/ChatGPT Image Apr 29, 2026, 08_57_47 PM.png" id="2_ne8ms"]
+[ext_resource type="PackedScene" uid="uid://cu3rg6jpc4vf" path="res://Scenes/player.tscn" id="3_k2c5v"]
+[ext_resource type="Texture2D" uid="uid://x24ox2dhxf7f" path="res://Assets/map/resized_image (2).png" id="4_u8un3"]
+
+[node name="EndingDekstop" type="Node2D"]
+script = ExtResource("1_56tw1")
+
+[node name="Wallpaper" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1908.0
+offset_bottom = 1132.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ne8ms")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Player" parent="." instance=ExtResource("3_k2c5v")]
+position = Vector2(1590, 890)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="BlueScreen" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_u8un3")
+expand_mode = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(793, 496)
