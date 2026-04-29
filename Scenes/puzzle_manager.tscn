@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://puzzle_manager_001"]
+
+[ext_resource type="Script" path="res://Scripts/puzzle_manager.gd" id="1_pmgr"]
+
+[node name="PuzzleManager" type="Node"]
+script = ExtResource("1_pmgr")

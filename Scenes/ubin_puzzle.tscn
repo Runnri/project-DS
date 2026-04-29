@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://ubin_puzzle_001"]
+
+[ext_resource type="Script" path="res://Scripts/ubin_puzzle.gd" id="1_ubin"]
+
+[sub_resource type="RectangleShape2D" id="RS_ubin"]
+size = Vector2(200, 200)
+
+[node name="UbinPuzzle" type="Area2D"]
+monitoring = true
+monitorable = true
+script = ExtResource("1_ubin")
+warna_ubin = "biru"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -75.0
+offset_top = -75.0
+offset_right = 75.0
+offset_bottom = 75.0
+color = Color(0.15, 0.15, 0.2, 1)
+
+[node name="Lampu" type="ColorRect" parent="."]
+offset_left = -55.0
+offset_top = -55.0
+offset_right = 55.0
+offset_bottom = 55.0
+color = Color(0.1, 0.4, 1.0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RS_ubin")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

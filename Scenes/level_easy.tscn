@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://bq1aj7gsmv3tt"]
+[gd_scene load_steps=43 format=4 uid="uid://bq1aj7gsmv3tt"]
 
 [ext_resource type="PackedScene" uid="uid://cu3rg6jpc4vf" path="res://Scenes/player.tscn" id="1_3u8fx"]
 [ext_resource type="Texture2D" uid="uid://w0l6ih0qnuju" path="res://Assets/map/tilesett.png" id="1_iy4cr"]
@@ -22,9 +22,13 @@
 [ext_resource type="Script" uid="uid://b1oi5qu7bkfp6" path="res://Scripts/blok_dorong_1.gd" id="20_4w27m"]
 [ext_resource type="Script" uid="uid://j52bavy6urua" path="res://Scripts/tombol_keluar.gd" id="21_ey1gl"]
 [ext_resource type="Script" uid="uid://vpci08febdrd" path="res://Scripts/tombol_jebakan.gd" id="21_ung83"]
-[ext_resource type="Script" uid="uid://bm2xcvm11bpup" path="res://Scripts/tombol_pengecoh.gd" id="22_cea6p"]
 [ext_resource type="Script" uid="uid://d1rf7posvf34" path="res://Scripts/pintu_keluar.gd" id="24_hfrtm"]
 [ext_resource type="Script" uid="uid://c5o27brch3vlr" path="res://Scripts/laser_jebakan.gd" id="25_2k24n"]
+[ext_resource type="Script" uid="uid://bngb3i8ce8xxg" path="res://Scripts/laser_pinggir.gd" id="26_lpin"]
+[ext_resource type="PackedScene" path="res://Scenes/item_medkit.tscn" id="27_2hfg0"]
+[ext_resource type="Script" uid="uid://dkbjqillwn2w4" path="res://Scripts/tombol_matikan_laser.gd" id="27_tmtl"]
+[ext_resource type="PackedScene" path="res://Scenes/puzzle_manager.tscn" id="28_8qebp"]
+[ext_resource type="PackedScene" path="res://Scenes/ubin_puzzle.tscn" id="29_nuw8c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t3aic"]
 texture = ExtResource("1_iy4cr")
@@ -347,7 +351,33 @@ size = Vector2(199, 170)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2hfg0"]
 size = Vector2(31, 2109)
 
+[sub_resource type="RectangleShape2D" id="RS_laser_kiri"]
+size = Vector2(31, 2109)
+
+[sub_resource type="RectangleShape2D" id="RS_laser_kanan"]
+size = Vector2(31, 2109)
+
 [node name="Level_easy" type="Node2D"]
+
+[node name="KabelKeluar" type="Line2D" parent="."]
+position = Vector2(0, -24)
+points = PackedVector2Array(423, 9046, 486.55737, 9133.493, 671, 9139, 1433, 8597, 2028, 7725, 2574, 7525, 3651, 7742, 4034, 8088)
+width = 5.0
+default_color = Color(7.460266e-07, 0.30497795, 0.30503622, 1)
+
+[node name="KabelKeluar3" type="Line2D" parent="."]
+position = Vector2(42.15381, -24)
+scale = Vector2(0.9895633, 1)
+points = PackedVector2Array(403.05276, 9040, 456.40167, 9134.097, 629.4152, 9140, 932.5793, 8563, 987.1488, 7997, 1033.6339, 7642)
+width = 5.0
+default_color = Color(7.460266e-07, 0.30497795, 0.30503622, 1)
+
+[node name="KabelKeluar2" type="Line2D" parent="."]
+position = Vector2(-247.28198, -332.0791)
+scale = Vector2(1.6213114, 1.0331125)
+points = PackedVector2Array(411.5693, 9244.956, 457.82816, 9139.449, 565.7655, 9143.321, 912.39844, 9476.296, 1495.26, 9452.097, 1894.3197, 9430.802, 2186.6755, 9156.873)
+width = 5.0
+default_color = Color(7.460266e-07, 0.30497795, 0.30503622, 1)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(-175.99998, 72.99999)
@@ -547,6 +577,10 @@ jenis_tutorial = "guard1"
 position = Vector2(-2665, 14309)
 isi_pesan = "Temukan berapa lingkaran sempurna dan berapa bug!"
 
+[node name="PapanSign2" parent="." instance=ExtResource("14_opnub")]
+position = Vector2(-2845, 8468)
+isi_pesan = "Tidak ada jalan keluar...."
+
 [node name="JalurSerangga" parent="." instance=ExtResource("15_sncc4")]
 position = Vector2(-1948, 13196.745)
 
@@ -569,26 +603,6 @@ position = Vector2(-7299, 20914)
 
 [node name="TriggerEndingKanan" parent="." instance=ExtResource("19_8e84y")]
 position = Vector2(-4800, 20802)
-
-[node name="KabelKeluar" type="Line2D" parent="."]
-position = Vector2(0, -24)
-points = PackedVector2Array(403, 9131, 671, 9139, 1433, 8597, 2028, 7725, 2574, 7525, 3651, 7742, 4034, 8088)
-width = 5.0
-default_color = Color(7.460266e-07, 0.30497795, 0.30503622, 1)
-
-[node name="KabelKeluar3" type="Line2D" parent="."]
-position = Vector2(42.15381, -24)
-scale = Vector2(0.9895633, 1)
-points = PackedVector2Array(365.6625, 9131, 629.4152, 9140, 932.5793, 8563, 987.1488, 7997, 1033.6339, 7642)
-width = 5.0
-default_color = Color(7.460266e-07, 0.30497795, 0.30503622, 1)
-
-[node name="KabelKeluar2" type="Line2D" parent="."]
-position = Vector2(-247.28198, -332.0791)
-scale = Vector2(1.6213114, 1.0331125)
-points = PackedVector2Array(402.93433, 9135.578, 565.7655, 9143.321, 912.39844, 9476.296, 1495.26, 9452.097, 1894.3197, 9430.802, 2186.6755, 9156.873)
-width = 5.0
-default_color = Color(7.460266e-07, 0.30497795, 0.30503622, 1)
 
 [node name="TombolKeluar" type="Area2D" parent="."]
 position = Vector2(988, 7535)
@@ -636,7 +650,7 @@ shape = SubResource("RectangleShape2D_2k24n")
 
 [node name="TombolPengecoh" type="Area2D" parent="."]
 position = Vector2(3965, 7995)
-script = ExtResource("22_cea6p")
+script = ExtResource("27_tmtl")
 
 [node name="ColorRect" type="ColorRect" parent="TombolPengecoh"]
 offset_right = 150.0
@@ -657,7 +671,23 @@ position = Vector2(76, 71)
 shape = SubResource("RectangleShape2D_wco3i")
 
 [node name="Player" parent="." instance=ExtResource("1_3u8fx")]
-position = Vector2(4048, 8897)
+position = Vector2(-2471, 15764)
+
+[node name="PuzzleManager" parent="." groups=["puzzle_manager"] instance=ExtResource("28_8qebp")]
+
+[node name="UbinPuzzle" parent="PuzzleManager" instance=ExtResource("29_nuw8c")]
+position = Vector2(-2143, 15744)
+collision_layer = 0
+
+[node name="UbinPuzzle2" parent="PuzzleManager" instance=ExtResource("29_nuw8c")]
+position = Vector2(-5493, 15689)
+collision_layer = 0
+warna_ubin = "hijau"
+
+[node name="UbinPuzzle3" parent="PuzzleManager" instance=ExtResource("29_nuw8c")]
+position = Vector2(-4651, 16942)
+collision_layer = 0
+warna_ubin = "merah"
 
 [node name="BlokDorong1" type="RigidBody2D" parent="."]
 position = Vector2(4048, 8526)
@@ -720,4 +750,42 @@ color = Color(0.9033766, 0.0177988, 2.887845e-05, 1)
 position = Vector2(5.5, -1012.5)
 shape = SubResource("RectangleShape2D_2hfg0")
 
+[node name="LaserPinggirKiri" type="Area2D" parent="."]
+position = Vector2(2900, 9457)
+script = ExtResource("26_lpin")
+
+[node name="ColorRect" type="ColorRect" parent="LaserPinggirKiri"]
+offset_left = -16.0
+offset_top = -2071.0
+offset_right = 24.0
+offset_bottom = 40.0
+color = Color(0.9033766, 0.0177988, 2.887845e-05, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LaserPinggirKiri"]
+position = Vector2(5.5, -1012.5)
+shape = SubResource("RS_laser_kiri")
+
+[node name="LaserPinggirKanan" type="Area2D" parent="."]
+position = Vector2(3800, 9457)
+script = ExtResource("26_lpin")
+
+[node name="ColorRect" type="ColorRect" parent="LaserPinggirKanan"]
+offset_left = -16.0
+offset_top = -2071.0
+offset_right = 24.0
+offset_bottom = 40.0
+color = Color(0.9033766, 0.0177988, 2.887845e-05, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LaserPinggirKanan"]
+position = Vector2(5.5, -1012.5)
+shape = SubResource("RS_laser_kanan")
+
+[node name="item_medkit" parent="." instance=ExtResource("27_2hfg0")]
+position = Vector2(2535, 9060)
+
+[node name="item_medkit2" parent="." instance=ExtResource("27_2hfg0")]
+position = Vector2(-4257, 15819)
+
 [connection signal="body_entered" from="LaserJebakan" to="LaserJebakan" method="_on_body_entered"]
+[connection signal="body_entered" from="LaserPinggirKiri" to="LaserPinggirKiri" method="_on_body_entered"]
+[connection signal="body_entered" from="LaserPinggirKanan" to="LaserPinggirKanan" method="_on_body_entered"]

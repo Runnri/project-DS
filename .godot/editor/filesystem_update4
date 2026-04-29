@@ -1,3 +1,8 @@
 res://Scripts/tombol_jebakan.gd
 res://Scenes/level_easy.tscn
 res://Scripts/laser_jebakan.gd
+res://Scripts/laser_pinggir.gd
+res://Scripts/tombol_matikan_laser.gd
+res://Scripts/puzzle_manager.gd
+res://Scenes/ubin_puzzle.tscn
+res://Scripts/ubin_puzzle.gd
