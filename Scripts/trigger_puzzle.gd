@@ -11,11 +11,11 @@ func _on_body_entered(_body: Node2D) -> void:
 
 	_set_puzzle_aktif(true)
 
-	var log = _body.get("log_teks")
+	var log_node = _body.get("log_teks")
 	var notif = _body.get("notif_dot")
-	if log:
-		log.text += "\n[SYSTEM]: Area puzzle terdeteksi."
-		log.text += "\n[PUZZLE] Puzzle dimulai. Urutan: " + _get_urutan()
+	if log_node:
+		log_node.text += "\n[SYSTEM]: Area puzzle terdeteksi."
+		log_node.text += "\n[PUZZLE] Puzzle dimulai. Urutan: " + _get_urutan()
 	if notif:
 		notif.show()
 

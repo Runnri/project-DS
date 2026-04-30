@@ -21,3 +21,6 @@ res://Scripts/scene_teks_ending.gd
 res://Scripts/trigger_level.gd
 res://Scenes/ending_desktop.tscn
 res://Scripts/ending_desktop.gd
+res://Scripts/trigger_ending_kiri.gd
+res://Scripts/checkpoint.gd
+res://Scenes/scene_credit.tscn

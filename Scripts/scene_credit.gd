@@ -46,30 +46,48 @@ func _process(delta: float) -> void:
 
 func _teks_credit() -> String:
 	return """
-════════════════════════
-    Undeleted Cache
-════════════════════════
+UNDELETED CACHE
 
-~ GAME DESIGN ~
-	runnri
+Dibuat & Dikembangkan Oleh:
+Runnri
 
-~ PROGRAMMING ~
-	runnri
+Guru Pembimbing:
+Ibu Ismita Ratnasari
 
-~ ART & ASSETS ~
-	itch.io
+Program Keahlian:
+Rekayasa Perangkat Lunak (RPL)
 
-~ SOUND & MUSIC ~
-	runnri
+Visual Lingkungan & Karakter: 
+murphysdad.itch.io
+silverink.itch.io
+mattwalkden.itch.io
 
-~ SPECIAL THANKS ~
-  Guru Pembimbing
-  Ismita Ratnasari
+Musik & Efek Suara 
+Runnri
 
-~ Create with ❤️ ~
-  At SMKN2Cimahi
+Dibuat Menggunakan:
+Godot Engine 4
 
-   Terima Kasih Sudah
-      Bermain!
+Terima Kasih Kepada:
+Sekolah, Guru guru yang bersangkutan, dan Teman teman yang sudah mensupport sampai sejauh ini!
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Cache finally deleted
 """

@@ -676,7 +676,7 @@ position = Vector2(76, 71)
 shape = SubResource("RectangleShape2D_wco3i")
 
 [node name="Player" parent="." instance=ExtResource("1_3u8fx")]
-position = Vector2(-204, 358)
+position = Vector2(-9171, 20802)
 
 [node name="PuzzleManage" parent="." groups=["puzzle_manager"] instance=ExtResource("28_8qebp")]
 
