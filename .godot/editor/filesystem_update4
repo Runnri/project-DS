@@ -24,3 +24,8 @@ res://Scripts/ending_desktop.gd
 res://Scripts/trigger_ending_kiri.gd
 res://Scripts/checkpoint.gd
 res://Scenes/scene_credit.tscn
+res://Scenes/level_medium.tscn
+res://Scripts/guard.gd
+res://Scenes/intro_cut_scene.tscn
+res://Scripts/intro_cut_scene.gd
+res://Scenes/level_hard.tscn

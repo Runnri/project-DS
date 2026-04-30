@@ -47,7 +47,25 @@ func update_animasi(arah_gerak: Vector2):
 func _on_hitbox_body_entered(body: Node2D):
 	# Gunakan group "player" agar tidak tergantung nama node
 	if body.is_in_group("player") and not sedang_menangkap:
-		sedang_menangkap = true
-		sprite.play("caught_" + arah_sekarang)
+		
+		# Berikan damage ke player terlebih dahulu
 		if body.has_method("terima_damage"):
 			body.terima_damage(100)
+
+		# Cek tingkat kesulitan dari Global.gd
+		if Global.kesulitan_terpilih == "easy":
+			# --- MODE EASY ---
+			# Guard berhenti total setelah menangkap
+			sedang_menangkap = true
+			sprite.play("caught_" + arah_sekarang)
+		else:
+			# --- MODE MEDIUM / HARD ---
+			# Guard nge-stun bentar buat animasi, lalu keliling lagi!
+			sedang_menangkap = true
+			sprite.play("caught_" + arah_sekarang)
+			
+			# Tunggu 1 detik biar animasinya kelar (bisa Bos ubah durasinya)
+			await get_tree().create_timer(1.0).timeout
+			
+			# Lepas status menangkap biar bisa jalan keliling lagi
+			sedang_menangkap = false

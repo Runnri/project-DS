@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://bq1aj7gsmv3tt"]
+[gd_scene load_steps=47 format=4 uid="uid://ct441q8tf2w8w"]
 
 [ext_resource type="PackedScene" uid="uid://cu3rg6jpc4vf" path="res://Scenes/player.tscn" id="1_3u8fx"]
 [ext_resource type="Texture2D" uid="uid://w0l6ih0qnuju" path="res://Assets/map/tilesett.png" id="1_iy4cr"]
@@ -363,7 +363,7 @@ size = Vector2(31, 2109)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nuw8c"]
 size = Vector2(121, 20)
 
-[node name="Level_easy" type="Node2D"]
+[node name="Level_medium" type="Node2D"]
 
 [node name="KabelKeluar" type="Line2D" parent="."]
 position = Vector2(0, -24)
@@ -402,9 +402,6 @@ position = Vector2(-184, 11295.001)
 
 [node name="checkpoint4" parent="." instance=ExtResource("5_v4o3j")]
 position = Vector2(-2907, 14697)
-
-[node name="checkpoint5" parent="." instance=ExtResource("5_v4o3j")]
-position = Vector2(-7223, 17635.002)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
@@ -590,6 +587,9 @@ isi_pesan = "Tidak ada jalan keluar...."
 [node name="JalurSerangga" parent="." instance=ExtResource("15_sncc4")]
 position = Vector2(-1948, 13196.745)
 
+[node name="JalurSerangga3" parent="." instance=ExtResource("15_sncc4")]
+position = Vector2(-1618, 12446.745)
+
 [node name="JalurSerangga2" parent="." instance=ExtResource("15_sncc4")]
 position = Vector2(298, 13041.745)
 
@@ -677,7 +677,7 @@ position = Vector2(76, 71)
 shape = SubResource("RectangleShape2D_wco3i")
 
 [node name="Player" parent="." instance=ExtResource("1_3u8fx")]
-position = Vector2(-9171, 20802)
+position = Vector2(3717, 449)
 
 [node name="PuzzleManage" parent="." groups=["puzzle_manager"] instance=ExtResource("28_8qebp")]
 

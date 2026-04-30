@@ -105,11 +105,18 @@ func _sesuaikan_stretch(tex):
 		layar_gambar.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 
 func pindah_ke_gameplay():
-	var path_level = "res://Scenes/level_easy.tscn"
+	var path_level = ""
 	
-	# Karena di script aslimu ada cek kesulitan (Easy/Hard)
-	if Global.kesulitan_terpilih == "hard":
-		# Ubah string ini kalau scene mode hard kamu namanya beda
-		path_level = "res://Scenes/level_hard.tscn" 
-		
+	# Cek tingkat kesulitan dari Global, lalu arahkan ke file yang sesuai
+	match Global.kesulitan_terpilih:
+		"easy":
+			path_level = "res://Scenes/level_easy.tscn"
+		"medium":
+			path_level = "res://Scenes/level_medium.tscn"
+		"hard":
+			path_level = "res://Scenes/level_hard.tscn"
+		_:
+			# Default (buat jaga-jaga kalau ada error/kosong)
+			path_level = "res://Scenes/level_easy.tscn"
+			
 	get_tree().change_scene_to_file(path_level)
