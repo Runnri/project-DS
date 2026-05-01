@@ -132,3 +132,21 @@ func catat_ending_ke_akun(nama_ending: String) -> int:
 		print("[ENDING]: Baru terbuka -> ", nama_ending)
 	
 	return list_ending.size()
+
+# ── BACA INFO SAVE (untuk UI load_game.tscn) ─────────────────
+func baca_info_save() -> Dictionary:
+	if not ada_file_save():
+		return {}
+	var config = ConfigFile.new()
+	if config.load(jalur_save_aktif()) != OK:
+		return {}
+	return {
+		"level":     config.get_value("Progres", "level",     ""),
+		"kesulitan": config.get_value("Progres", "kesulitan", "easy"),
+		"timestamp": config.get_value("Meta",    "timestamp", "Tidak diketahui"),
+		"nyawa":     config.get_value("Player",  "nyawa",     3),
+	}
+
+# ── SUDAH LOGIN ───────────────────────────────────────────────
+func sudah_login() -> bool:
+	return username_aktif != ""
