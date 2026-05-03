@@ -40,3 +40,5 @@ res://Scripts/ending_bin.gd
 res://Scripts/main_menu.gd
 res://Scripts/player.gd
 res://Scripts/bgm_manager.gd
+res://Scenes/npc_sekarat.tscn
+res://Scripts/npc_sekarat.gd

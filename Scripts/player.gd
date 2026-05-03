@@ -69,11 +69,13 @@ var arah_terakhir: String = "bawah"
 # ==========================================
 # 4. DATABASE TERMINAL (Daftar Perintah)
 # ==========================================
-var valid_commands = ["use flashlight", "use medkit", "use scanner", "use tokenkey", "help", "clear", "inventory", "killme"]
+var _cheat_renri_aktif: bool = false
+var _cheat_speed_asli: float = 0.0
+var _cheat_sprint_asli: float = 0.0
+var valid_commands = ["use flashlight", "use medkit", "use tokenkey", "help", "clear", "inventory", "killme"]
 var item_descriptions = {
 	"flashlight": "Alat penerangan portabel, menggunakan baterai A3.",
 	"medkit":     "P3K standar untuk pertolongan pertama. Memulihkan HP.",
-	"scanner":    "Alat pemindai anomali dan blueprint area sekitar.",
 	"tokenkey":   "Data enkripsi untuk membuka akses gerbang utama."
 }
 
@@ -417,6 +419,28 @@ func _on_cmd_submitted(new_text: String):
 	var action = parts[0]
 	var target = parts[1] if parts.size() > 1 else ""
 
+	# Cheat rahasia — tidak tampil di help
+	if cmd == "use renriganteng":
+		if not _cheat_renri_aktif:
+			_cheat_renri_aktif = true
+			_cheat_speed_asli = speed
+			_cheat_sprint_asli = sprint_speed
+			speed = speed * 3.0
+			sprint_speed = sprint_speed * 3.0
+			collision_layer = 0
+			collision_mask = 0
+			log_teks.text += "\n[System]: MODE RENRI AKTIF."
+		else:
+			_cheat_renri_aktif = false
+			speed = _cheat_speed_asli
+			sprint_speed = _cheat_sprint_asli
+			collision_layer = 1
+			collision_mask = 1
+			log_teks.text += "\n[System]: MODE RENRI NONAKTIF."
+		await get_tree().process_frame
+		log_teks.scroll_to_line(log_teks.get_line_count())
+		return
+
 	if cmd in valid_commands or action == "help" or action == "inventory" or action == "clear" or action == "killme":
 		match action:
 			"use":
@@ -482,11 +506,6 @@ func _handle_use_command(target: String):
 					log_teks.text += "\n[System]: Nyawa sudah penuh!"
 			else:
 				log_teks.text += "\n[Error]: Item 'medkit' tidak ada di inventory."
-		"scanner":
-			if "scanner" in inventory:
-				log_teks.text += "\n[System]: Scanner aktif. Memindai area sekitar..."
-			else:
-				log_teks.text += "\n[Error]: Item 'scanner' tidak ada di inventory."
 		_:
 			log_teks.text += "\n[Error]: Target '" + target + "' tidak dikenal."
 

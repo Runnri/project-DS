@@ -13,8 +13,8 @@ var dialog_lines: Array = [
 	"Lorong kanan. Itu Recycle Bin.",
 	"Tidak ada yang tau apa yang terjadi jika kamu masuk ke Recycle Bin...",
 	"Sudah tidak ada jalan keluar lagi....",
-	"Lorong kiri adalah data corrupt",
-	"Kalo kamu masuk kesana datamu akan corrupt, hancur!",
+	"Dan...",
+	"Pokoknya kamu tidak boleh masuk ke lorong kiri!",
 	"aku..aku sudah tidak tau lagi harus kemana..",
 	"Sudah tidak ada jalan keluar lagi :("
 ]

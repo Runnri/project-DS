@@ -67,7 +67,7 @@ texture = ExtResource("1_iy4cr")
 0:4/0 = 0
 0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:4/0 = 0
-1:4/0/modulate = Color(1, 1, 1, 0.7490196)
+1:4/0/modulate = Color(1, 1, 1, 0)
 1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:3/0 = 0
 
@@ -392,7 +392,6 @@ tile_map_data = PackedByteArray("AAD9/wAAAQALAA0AAAD9/wEAAQALAA0AAAD9/wIAAQALAA0
 tile_set = SubResource("TileSet_r5svf")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 position = Vector2(130, -242)
 color = Color(0.26657534, 0.26657513, 0.2665752, 1)
 
@@ -487,6 +486,7 @@ pesan_level = "
 [ SEKTOR 1 — INISIALISASI ]
 Temukan jalur keluar dan buka aksesnya."
 aktifkan_autosave = false
+nama_scene_level = null
 
 [node name="TriggerLevel4" parent="." instance=ExtResource("11_sf2av")]
 position = Vector2(6067, 1711)
@@ -494,6 +494,7 @@ pesan_level = "
 [ PERINGATAN ]
 Ingat pesan tadi di awal!"
 aktifkan_autosave = false
+nama_scene_level = null
 
 [node name="TriggerLevel5" parent="." instance=ExtResource("11_sf2av")]
 position = Vector2(5341, 8140)
@@ -501,6 +502,7 @@ pesan_level = "
 [ ANOMALI TERDETEKSI ]
 Nonaktifkan laser penghalang!"
 aktifkan_autosave = false
+nama_scene_level = null
 
 [node name="TriggerLevel6" parent="." instance=ExtResource("11_sf2av")]
 position = Vector2(-204, 10910)
@@ -508,6 +510,7 @@ pesan_level = "[ DATA CORRUPT ]
 Sektor ini tidak stabil. Perhatikan setiap langkah.
 Untuk membuka Pintu password hitung berapa patternnya!"
 aktifkan_autosave = false
+nama_scene_level = null
 
 [node name="TriggerLevel7" parent="." instance=ExtResource("11_sf2av")]
 position = Vector2(-2907, 14847)
@@ -515,6 +518,7 @@ pesan_level = "
 [ BAHAYA TINGGI ]
 Robot pembersih berpatroli aktif. Tetap di luar jangkauan pandangannya."
 aktifkan_autosave = false
+nama_scene_level = null
 
 [node name="TriggerLevel8" parent="." instance=ExtResource("11_sf2av")]
 position = Vector2(-7223, 17339)
@@ -522,12 +526,14 @@ pesan_level = "
 [ HAMPIR SAMPAI ]
 Jalan kabur sudah terlihat!"
 aktifkan_autosave = false
+nama_scene_level = null
 
 [node name="TriggerLevel2" parent="." instance=ExtResource("11_sf2av")]
 position = Vector2(983, 362)
 pesan_level = "
 Kamu adalah B.I.T — data yang lolos dari proses penghapusan sistem."
 aktifkan_autosave = false
+nama_scene_level = null
 
 [node name="TriggerLevel3" parent="." instance=ExtResource("11_sf2av")]
 position = Vector2(1739, 362)
@@ -535,6 +541,7 @@ pesan_level = "
 Sistem pembersih aktif. Satu tujuan: kabur ke USB Drive sebelum kamu didelete.
 "
 aktifkan_autosave = false
+nama_scene_level = null
 
 [node name="TutorialUI" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -603,7 +610,7 @@ jenis_tutorial = "guard1"
 
 [node name="PapanSign" parent="." instance=ExtResource("14_opnub")]
 position = Vector2(-2665, 14309)
-isi_pesan = "Temukan berapa lingkaran sempurna dan berapa bug!"
+isi_pesan = "Temukan pattern lingkaran!"
 
 [node name="PapanSign2" parent="." instance=ExtResource("14_opnub")]
 position = Vector2(-2845, 8468)
@@ -623,7 +630,7 @@ position = Vector2(298, 12000.745)
 
 [node name="PintuPassword" parent="." instance=ExtResource("17_hx7v0")]
 position = Vector2(-2894, 14511)
-password = "112"
+password = "11"
 
 [node name="robot" parent="." instance=ExtResource("16_ef8o5")]
 position = Vector2(-5937, 15184)
