@@ -29,3 +29,8 @@ res://Scripts/guard.gd
 res://Scenes/intro_cut_scene.tscn
 res://Scripts/intro_cut_scene.gd
 res://Scenes/level_hard.tscn
+res://Scripts/pintu_keluar_puzzle.gd
+res://Scripts/robot.gd
+res://Scripts/tutorial_ui.gd
+res://Scripts/dialog_naratif.gd
+res://Scenes/dialog_naratif.tscn

@@ -6,24 +6,22 @@ extends StaticBody2D
 # ==========================================
 
 @onready var collision = $CollisionShape2D
-@onready var sprite    = get_node_or_null("Sprite2D")
-@onready var animasi   = get_node_or_null("AnimationPlayer")
+@onready var visual_pintu = $ColorRect # Langsung ambil ColorRect-nya
 
 func _ready() -> void:
+	# Memastikan pintu masuk grup agar bisa dipanggil oleh puzzle manager
 	add_to_group("pintu_keluar")
 
 func buka_pintu() -> void:
 	print("[PINTU]: Pintu terbuka!")
 
-	# Nonaktifkan collision agar player bisa lewat
+	# 1. Nonaktifkan collision agar player bisa lewat
 	if collision:
 		collision.set_deferred("disabled", true)
 
-	# Mainkan animasi jika ada
-	if animasi and animasi.has_animation("buka"):
-		animasi.play("buka")
-	elif sprite:
-		# Tidak ada animasi — sembunyikan saja
-		sprite.hide()
-	else:
-		hide()
+	# 2. Sembunyikan ColorRect agar pintunya seolah-olah hilang/terbuka
+	if visual_pintu:
+		visual_pintu.hide()
+	
+	# Opsional: Kalau mau menyembunyikan seluruh node PintuPuzzle sekaligus, 
+	# kamu juga bisa cukup memanggil hide() di sini.

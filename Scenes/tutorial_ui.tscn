@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://tutorial_ui_001"]
+
+[ext_resource type="Script" path="res://Scripts/tutorial_ui.gd" id="1_tutor"]
+
+[sub_resource type="StyleBoxFlat" id="SB_panel"]
+bg_color = Color(0.03, 0.03, 0.07, 0.93)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0, 0.85, 1.0, 0.8)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="LabelSettings" id="LS_teks"]
+font_size = 22
+font_color = Color(0.85, 1.0, 0.95, 1.0)
+
+[node name="TutorialUI" type="CanvasLayer"]
+layer = 11
+script = ExtResource("1_tutor")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.55)
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -340.0
+offset_top = -120.0
+offset_right = 340.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("SB_panel")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 20.0
+offset_right = -24.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LS_teks")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Spotlight" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(100, 500)

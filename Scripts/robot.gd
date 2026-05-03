@@ -8,7 +8,7 @@ enum State { PATROL, CHASE }
 @onready var hitbox = $hitbox
 
 var state = State.PATROL
-var speed = 100.0
+@export var speed: float = 100.0
 
 # titik patrol kamu
 var patrol_points = [

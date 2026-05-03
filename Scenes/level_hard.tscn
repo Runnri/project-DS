@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=4 uid="uid://uqymirlgqdrx"]
+[gd_scene load_steps=47 format=4 uid="uid://0q57m8csbi0e"]
 
 [ext_resource type="PackedScene" uid="uid://cu3rg6jpc4vf" path="res://Scenes/player.tscn" id="1_3u8fx"]
 [ext_resource type="Texture2D" uid="uid://w0l6ih0qnuju" path="res://Assets/map/tilesett.png" id="1_iy4cr"]
@@ -30,6 +30,7 @@
 [ext_resource type="PackedScene" path="res://Scenes/ubin_puzzle.tscn" id="29_nuw8c"]
 [ext_resource type="PackedScene" uid="uid://blm2ou7rthplv" path="res://Scenes/trigger_ending_kiri.tscn" id="30_gqf51"]
 [ext_resource type="Script" uid="uid://uab5kvpsxb7c" path="res://Scripts/puzzle_manager.gd" id="30_gwkio"]
+[ext_resource type="PackedScene" uid="uid://be23pfm3mgx2o" path="res://Scenes/dialog_naratif.tscn" id="30_mngm4"]
 [ext_resource type="Script" uid="uid://b2kt2p6pxbi5d" path="res://Scripts/trigger_puzzle.gd" id="30_nuw8c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t3aic"]
@@ -353,14 +354,14 @@ size = Vector2(199, 170)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2hfg0"]
 size = Vector2(31, 2109)
 
-[sub_resource type="RectangleShape2D" id="RS_laser_kiri"]
-size = Vector2(31, 2109)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nuw8c"]
+size = Vector2(121, 20)
 
 [sub_resource type="RectangleShape2D" id="RS_laser_kanan"]
 size = Vector2(31, 2109)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nuw8c"]
-size = Vector2(121, 20)
+[sub_resource type="RectangleShape2D" id="RS_pintu_puzzle"]
+size = Vector2(64, 128)
 
 [node name="Level_hard" type="Node2D"]
 
@@ -407,11 +408,9 @@ position = Vector2(-2167, 13655)
 [node name="tokenPintu" parent="." instance=ExtResource("6_3xkti")]
 position = Vector2(9637, 3026)
 
-[node name="tokenPintu2" parent="." instance=ExtResource("6_3xkti")]
-position = Vector2(6065, 4438)
-
 [node name="guard5" parent="." node_paths=PackedStringArray("titik_tujuan") instance=ExtResource("6_j7iv4")]
 position = Vector2(6053, 1929)
+speed = 700.0
 titik_tujuan = NodePath("../Marker2D5")
 
 [node name="guard6" parent="." node_paths=PackedStringArray("titik_tujuan") instance=ExtResource("6_j7iv4")]
@@ -420,22 +419,27 @@ titik_tujuan = NodePath("../Marker2D6")
 
 [node name="guard7" parent="." node_paths=PackedStringArray("titik_tujuan") instance=ExtResource("6_j7iv4")]
 position = Vector2(4559, 586)
+speed = 550.0
 titik_tujuan = NodePath("../Marker2D7")
 
 [node name="guard4" parent="." node_paths=PackedStringArray("titik_tujuan") instance=ExtResource("6_j7iv4")]
 position = Vector2(8294, 4970)
+speed = 500.0
 titik_tujuan = NodePath("../Marker2D4")
 
 [node name="guard3" parent="." node_paths=PackedStringArray("titik_tujuan") instance=ExtResource("6_j7iv4")]
 position = Vector2(6118, 4975)
+speed = 400.0
 titik_tujuan = NodePath("../Marker2D3")
 
 [node name="guard2" parent="." node_paths=PackedStringArray("titik_tujuan") instance=ExtResource("6_j7iv4")]
 position = Vector2(9670, 3368)
+speed = 500.0
 titik_tujuan = NodePath("../Marker2D2")
 
 [node name="guard" parent="." node_paths=PackedStringArray("titik_tujuan") instance=ExtResource("6_j7iv4")]
 position = Vector2(6291, 3038)
+speed = 350.0
 titik_tujuan = NodePath("../Marker2D")
 
 [node name="Marker2D" type="Marker2D" parent="."]
@@ -480,49 +484,55 @@ position = Vector2(736, 8379)
 [node name="TriggerLevel" parent="." instance=ExtResource("11_sf2av")]
 position = Vector2(6090, 1166)
 pesan_level = "
-Temukan jalan keluar dan buka kuncinya."
+[ SEKTOR 1 — INISIALISASI ]
+Temukan jalur keluar dan buka aksesnya."
 aktifkan_autosave = false
 
 [node name="TriggerLevel4" parent="." instance=ExtResource("11_sf2av")]
 position = Vector2(6067, 1711)
 pesan_level = "
-Jangan sampai terkena sensor robot penjaga!"
+[ PERINGATAN ]
+Ingat pesan tadi di awal!"
 aktifkan_autosave = false
 
 [node name="TriggerLevel5" parent="." instance=ExtResource("11_sf2av")]
 position = Vector2(5341, 8140)
 pesan_level = "
-hati\" akan ada arus listrik bocor setiap 4 detik!"
+[ ANOMALI TERDETEKSI ]
+Nonaktifkan laser penghalang!"
 aktifkan_autosave = false
 
 [node name="TriggerLevel6" parent="." instance=ExtResource("11_sf2av")]
 position = Vector2(-204, 10910)
-pesan_level = "
-ruangan yang datanya tercorrupt!, perhatikan langkahmu.."
+pesan_level = "[ DATA CORRUPT ]
+Sektor ini tidak stabil. Perhatikan setiap langkah.
+Untuk membuka Pintu password hitung berapa patternnya!"
 aktifkan_autosave = false
 
 [node name="TriggerLevel7" parent="." instance=ExtResource("11_sf2av")]
 position = Vector2(-2907, 14847)
 pesan_level = "
-hati hati dengan robot pembersih!"
+[ BAHAYA TINGGI ]
+Robot pembersih berpatroli aktif. Tetap di luar jangkauan pandangannya."
 aktifkan_autosave = false
 
 [node name="TriggerLevel8" parent="." instance=ExtResource("11_sf2av")]
 position = Vector2(-7223, 17339)
 pesan_level = "
-Tempat kabur yaitu USB port sudah dekat!"
+[ HAMPIR SAMPAI ]
+Jalan kabur sudah terlihat!"
 aktifkan_autosave = false
 
 [node name="TriggerLevel2" parent="." instance=ExtResource("11_sf2av")]
 position = Vector2(983, 362)
 pesan_level = "
-Kamu adalah bit data yang tidak terdelete"
+Kamu adalah B.I.T — data yang lolos dari proses penghapusan sistem."
 aktifkan_autosave = false
 
 [node name="TriggerLevel3" parent="." instance=ExtResource("11_sf2av")]
 position = Vector2(1739, 362)
 pesan_level = "
-tugasmu hanyalah mencari jalan keluar dan melarikan diri dari sistem pembersih 
+Sistem pembersih aktif. Satu tujuan: kabur ke USB Drive sebelum kamu didelete.
 "
 aktifkan_autosave = false
 
@@ -553,6 +563,29 @@ grow_vertical = 2
 
 [node name="Spotlight" type="PointLight2D" parent="TutorialUI"]
 
+[node name="ColorRect2" type="ColorRect" parent="TutorialUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.5609549, 0.5609549, 0.5609549, 0.32941177)
+
+[node name="Label2" type="Label" parent="TutorialUI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -267.0
+offset_top = 14.0
+offset_right = 242.0
+offset_bottom = 292.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Spotlight2" type="PointLight2D" parent="TutorialUI"]
+
 [node name="TriggerTutorial" parent="." instance=ExtResource("13_hoff1")]
 position = Vector2(309, 231)
 
@@ -579,8 +612,14 @@ isi_pesan = "Tidak ada jalan keluar...."
 [node name="JalurSerangga" parent="." instance=ExtResource("15_sncc4")]
 position = Vector2(-1948, 13196.745)
 
+[node name="JalurSerangga3" parent="." instance=ExtResource("15_sncc4")]
+position = Vector2(-1948, 12000.745)
+
 [node name="JalurSerangga2" parent="." instance=ExtResource("15_sncc4")]
 position = Vector2(298, 13041.745)
+
+[node name="JalurSerangga4" parent="." instance=ExtResource("15_sncc4")]
+position = Vector2(298, 12000.745)
 
 [node name="PintuPassword" parent="." instance=ExtResource("17_hx7v0")]
 position = Vector2(-2894, 14511)
@@ -666,7 +705,9 @@ position = Vector2(76, 71)
 shape = SubResource("RectangleShape2D_wco3i")
 
 [node name="Player" parent="." instance=ExtResource("1_3u8fx")]
-position = Vector2(3674, 358)
+position = Vector2(1557, 392)
+sprint_speed = 450.0
+max_stamina = 110.0
 
 [node name="PuzzleManage" parent="." groups=["puzzle_manager"] instance=ExtResource("28_8qebp")]
 
@@ -743,21 +784,23 @@ offset_bottom = 40.0
 color = Color(0.9033766, 0.0177988, 2.887845e-05, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LaserPinggirKiri"]
-position = Vector2(5.5, -1012.5)
-shape = SubResource("RS_laser_kiri")
 
-[node name="LaserPinggirKanan" type="Area2D" parent="."]
+[node name="TriggerPuzzle" type="Area2D" parent="."]
 position = Vector2(3800, 9457)
 script = ExtResource("26_lpin")
 
-[node name="ColorRect" type="ColorRect" parent="LaserPinggirKanan"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerPuzzle"]
+position = Vector2(-333, 112)
+shape = SubResource("RectangleShape2D_nuw8c")
+
+[node name="LaserPinggirKanan#ColorRect" type="ColorRect" parent="."]
 offset_left = -16.0
 offset_top = -2071.0
 offset_right = 24.0
 offset_bottom = 40.0
 color = Color(0.9033766, 0.0177988, 2.887845e-05, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LaserPinggirKanan"]
+[node name="LaserPinggirKanan#CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(5.5, -1012.5)
 shape = SubResource("RS_laser_kanan")
 
@@ -767,16 +810,14 @@ position = Vector2(2535, 9060)
 [node name="item_medkit2" parent="." instance=ExtResource("27_2hfg0")]
 position = Vector2(-4257, 15819)
 
-[node name="TriggerPuzzle" type="Area2D" parent="."]
+[node name="TriggerPuzzle2" type="Area2D" parent="."]
 position = Vector2(-2574, 14809)
 script = ExtResource("30_nuw8c")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerPuzzle"]
-position = Vector2(-333, 112)
-shape = SubResource("RectangleShape2D_nuw8c")
-
 [node name="Trigger_ending_kiri" parent="." instance=ExtResource("30_gqf51")]
 position = Vector2(-9787, 20807)
+
+[node name="DialogNaratif" parent="." instance=ExtResource("30_mngm4")]
 
 [node name="PuzzleManager" type="Node2D" parent="."]
 script = ExtResource("30_gwkio")
@@ -795,6 +836,20 @@ position = Vector2(-4651, 16942)
 collision_layer = 0
 warna_ubin = "merah"
 
+[node name="PintuPuzzle" type="StaticBody2D" parent="."]
+position = Vector2(-6150, 15752)
+scale = Vector2(1.3, 1.3)
+script = ExtResource("24_hfrtm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PintuPuzzle"]
+shape = SubResource("RS_pintu_puzzle")
+
+[node name="ColorRect" type="ColorRect" parent="PintuPuzzle"]
+offset_left = -32.0
+offset_top = -64.0
+offset_right = 32.0
+offset_bottom = 64.0
+color = Color(0.2, 0.6, 1, 1)
+
 [connection signal="body_entered" from="LaserJebakan" to="LaserJebakan" method="_on_body_entered"]
 [connection signal="body_entered" from="LaserPinggirKiri" to="LaserPinggirKiri" method="_on_body_entered"]
-[connection signal="body_entered" from="LaserPinggirKanan" to="LaserPinggirKanan" method="_on_body_entered"]
