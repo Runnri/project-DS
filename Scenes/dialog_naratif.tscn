@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://be23pfm3mgx2o"]
+[gd_scene load_steps=3 format=3 uid="uid://be23pfm3mgx2o"]
 
 [ext_resource type="Script" uid="uid://c4yorvw3fgueo" path="res://Scripts/dialog_naratif.gd" id="1_dnar"]
 
@@ -46,3 +46,6 @@ grow_horizontal = 2
 grow_vertical = 2
 label_settings = SubResource("LS_teks")
 autowrap_mode = 2
+
+[node name="SfxKetik" type="AudioStreamPlayer" parent="."]
+volume_db = -6.0

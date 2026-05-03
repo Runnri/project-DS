@@ -8,6 +8,7 @@ const DELAY_JATUH: float = 2.5
 @onready var overlay       = $FadeOverlay/ColorRect
 
 func _ready():
+	BgmManager.fade_to("ending")
 	# Catat ending ke akun
 	var jumlah = Global.catat_ending_ke_akun("THE RECYCLE BIN")
 	Global.set_meta("jumlah_ending_saat_ini", jumlah)

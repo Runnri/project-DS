@@ -34,3 +34,9 @@ res://Scripts/robot.gd
 res://Scripts/tutorial_ui.gd
 res://Scripts/dialog_naratif.gd
 res://Scenes/dialog_naratif.tscn
+res://Scripts/auth.gd
+res://Scripts/difficulty.gd
+res://Scripts/ending_bin.gd
+res://Scripts/main_menu.gd
+res://Scripts/player.gd
+res://Scripts/bgm_manager.gd

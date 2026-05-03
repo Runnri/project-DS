@@ -81,6 +81,7 @@ var item_descriptions = {
 # 5. FUNGSI UTAMA
 # ==========================================
 func _ready():
+	BgmManager.play("ingame")
 	self.process_mode = Node.PROCESS_MODE_ALWAYS
 	add_to_group("player")
 

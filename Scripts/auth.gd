@@ -11,6 +11,7 @@ var mode: String = "login"
 @onready var btn_toggle    = $Panel/VBox/BtnToggle
 
 func _ready():
+	BgmManager.play("lobby")
 	label_error.text = ""
 	input_password.secret = true
 	_set_mode("login")

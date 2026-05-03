@@ -13,6 +13,7 @@ var is_glitching: bool = false
 var durasi_glitch: float = 0.0
 
 func _ready():
+	BgmManager.play("lobby")
 	base_vbox_y    = vbox.position.y
 	base_judul_pos = judul_game.position
 	timer_tunggu   = randf_range(2.0, 5.0)

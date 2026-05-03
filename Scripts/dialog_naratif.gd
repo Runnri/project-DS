@@ -7,6 +7,7 @@ extends CanvasLayer
 # ============================================================
 
 @onready var panel      = $Panel
+@onready var sfx_ketik: AudioStreamPlayer = $SfxKetik
 @onready var label_teks = $Panel/Label
 
 const KECEPATAN_KETIK: float = 0.03   # detik per karakter
@@ -21,6 +22,10 @@ var _selesai_ketik: bool = false
 func _ready():
 	self.process_mode = Node.PROCESS_MODE_ALWAYS
 	panel.hide()
+	# Load audio via path agar tidak perlu import di .tscn
+	var sfx_path = "res://Assets/audio/suara_ketikan.mp3"
+	if ResourceLoader.exists(sfx_path):
+		sfx_ketik.stream = load(sfx_path)
 
 func tampilkan(teks: String) -> void:
 	_teks_penuh    = teks
@@ -43,6 +48,8 @@ func _ketik_karakter() -> void:
 
 	label_teks.text += _teks_penuh[_idx]
 	_idx += 1
+	if sfx_ketik and not sfx_ketik.playing:
+		sfx_ketik.play()
 	await get_tree().create_timer(KECEPATAN_KETIK, true).timeout
 	_ketik_karakter()
 
