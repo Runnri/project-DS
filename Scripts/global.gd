@@ -65,7 +65,7 @@ func ada_file_save() -> bool:
 	return FileAccess.file_exists(jalur_save_aktif())
 
 # ── SIMPAN GAME ──────────────────────────────────────────────
-func simpan_game(player: CharacterBody2D):
+func simpan_game(player: CharacterBody2D, nama_level: String = ""):
 	if username_aktif == "": return
 	var config = ConfigFile.new()
 	if ada_file_save():
@@ -74,6 +74,9 @@ func simpan_game(player: CharacterBody2D):
 	config.set_value("Progres", "posisi_x", player.global_position.x)
 	config.set_value("Progres", "posisi_y", player.global_position.y)
 	config.set_value("Progres", "kesulitan", kesulitan_terpilih)
+	if not nama_level.is_empty():
+		config.set_value("Progres", "level", nama_level)
+	config.set_value("Meta", "timestamp", Time.get_datetime_string_from_system())
 	config.save(jalur_save_aktif())
 	print("[SAVE]: Berhasil disimpan untuk user '", username_aktif, "'")
 

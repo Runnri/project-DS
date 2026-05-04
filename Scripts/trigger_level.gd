@@ -3,7 +3,6 @@ extends Area2D
 @export_multiline var pesan_level: String = "SEQUENCE 1..."
 @export var aktifkan_autosave: bool = true
 @export var nama_scene_level: String = "res://Scenes/level_easy.tscn"
-# Set ke "menuju_ending" di trigger ke-8, kosong = tidak ganti musik
 @export var ganti_bgm: String = ""
 
 func _on_body_entered(body: Node2D) -> void:
@@ -15,7 +14,6 @@ func _on_body_entered(body: Node2D) -> void:
 	if dialog_ui and dialog_ui.has_method("tampilkan"):
 		dialog_ui.tampilkan(pesan_level)
 
-	# Ganti BGM jika diset di Inspector
 	if not ganti_bgm.is_empty():
 		BgmManager.fade_to(ganti_bgm)
 
@@ -23,6 +21,7 @@ func _on_body_entered(body: Node2D) -> void:
 		if nama_scene_level.is_empty():
 			push_warning("[TRIGGER]: 'nama_scene_level' belum diisi! Autosave dibatalkan.")
 		else:
-			Global.simpan_game(body)
+			# FIX: kirim nama_scene_level sebagai parameter ke-2
+			Global.simpan_game(body, nama_scene_level)
 
 	queue_free()

@@ -712,7 +712,7 @@ position = Vector2(76, 71)
 shape = SubResource("RectangleShape2D_wco3i")
 
 [node name="Player" parent="." instance=ExtResource("1_3u8fx")]
-position = Vector2(1557, 392)
+position = Vector2(-204, 358)
 sprint_speed = 450.0
 max_stamina = 110.0
 

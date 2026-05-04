@@ -726,7 +726,7 @@ position = Vector2(76, 71)
 shape = SubResource("RectangleShape2D_wco3i")
 
 [node name="Player" parent="." instance=ExtResource("1_3u8fx")]
-position = Vector2(-2892, 14732)
+position = Vector2(-204, 362)
 sprint_speed = 450.0
 
 [node name="PuzzleManage" parent="." groups=["puzzle_manager"] instance=ExtResource("28_8qebp")]

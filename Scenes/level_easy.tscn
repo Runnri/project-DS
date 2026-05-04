@@ -501,8 +501,6 @@ position = Vector2(6090, 1166)
 pesan_level = "
 [ SEKTOR 1 — INISIALISASI ]
 Temukan jalur keluar dan buka aksesnya."
-aktifkan_autosave = null
-nama_scene_level = null
 
 [node name="TriggerLevel4" parent="." instance=ExtResource("11_sf2av")]
 position = Vector2(6067, 1711)
@@ -510,52 +508,41 @@ pesan_level = "
 [ PERINGATAN ]
 Ingat pesan tadi di awal!"
 aktifkan_autosave = false
-nama_scene_level = null
 
 [node name="TriggerLevel5" parent="." instance=ExtResource("11_sf2av")]
 position = Vector2(5341, 8140)
 pesan_level = "[ ANOMALI TERDETEKSI ]
 Nonaktifkan laser penghalang!"
-aktifkan_autosave = null
-nama_scene_level = null
 
 [node name="TriggerLevel6" parent="." instance=ExtResource("11_sf2av")]
 position = Vector2(-204, 10910)
 pesan_level = "[ DATA CORRUPT ]
 Sektor ini tidak stabil. Perhatikan setiap langkah.
 Untuk membuka Pintu password hitung berapa patternnya!"
-aktifkan_autosave = null
-nama_scene_level = null
 
 [node name="TriggerLevel7" parent="." instance=ExtResource("11_sf2av")]
 position = Vector2(-2907, 14847)
 pesan_level = "
 [ BAHAYA TINGGI ]
 Robot pembersih berpatroli aktif. Tetap di luar jangkauan pandangannya."
-aktifkan_autosave = null
-nama_scene_level = null
 
 [node name="TriggerLevel8" parent="." instance=ExtResource("11_sf2av")]
 position = Vector2(-7223, 17339)
 pesan_level = "
 [ HAMPIR SAMPAI ]
 Jalan kabur sudah terlihat!"
-aktifkan_autosave = null
-nama_scene_level = null
 
 [node name="TriggerLevel2" parent="." instance=ExtResource("11_sf2av")]
 position = Vector2(983, 362)
 pesan_level = "
 Kamu adalah B.I.T — data yang lolos dari proses penghapusan sistem."
 aktifkan_autosave = false
-nama_scene_level = null
 
 [node name="TriggerLevel3" parent="." instance=ExtResource("11_sf2av")]
 position = Vector2(1739, 362)
 pesan_level = "
 Sistem pembersih aktif. Satu tujuan: kabur ke USB Drive sebelum kamu didelete."
 aktifkan_autosave = false
-nama_scene_level = null
 
 [node name="TutorialUI" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -699,7 +686,7 @@ position = Vector2(76, 71)
 shape = SubResource("RectangleShape2D_wco3i")
 
 [node name="Player" parent="." instance=ExtResource("1_3u8fx")]
-position = Vector2(-7199, 16119)
+position = Vector2(6110, 1029)
 
 [node name="PuzzleManage" parent="." groups=["puzzle_manager"] instance=ExtResource("28_8qebp")]
 
